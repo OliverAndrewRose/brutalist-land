@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/C-Man.png-ee0a7d6d8e01608942c510dd837cd08d.s3tc.stex"
-path.etc2="res://.import/C-Man.png-ee0a7d6d8e01608942c510dd837cd08d.etc2.stex"
+path.s3tc="res://.import/C-Man.png-6de304db07a67bfab49dbe69e5e995b5.s3tc.stex"
+path.etc2="res://.import/C-Man.png-6de304db07a67bfab49dbe69e5e995b5.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/C-Man.png"
-dest_files=[ "res://.import/C-Man.png-ee0a7d6d8e01608942c510dd837cd08d.s3tc.stex", "res://.import/C-Man.png-ee0a7d6d8e01608942c510dd837cd08d.etc2.stex" ]
+source_file="res://addons/qodot/textures/C-Man.png"
+dest_files=[ "res://.import/C-Man.png-6de304db07a67bfab49dbe69e5e995b5.s3tc.stex", "res://.import/C-Man.png-6de304db07a67bfab49dbe69e5e995b5.etc2.stex" ]
 
 [params]
 

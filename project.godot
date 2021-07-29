@@ -207,7 +207,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Brutalistland"
+run/main_scene="res://maps/01_ResidentalBlock/01_ResidentialBlock.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Pause="*res://addons/singletons/Pause.gd"
 
 [editor_plugins]
 
