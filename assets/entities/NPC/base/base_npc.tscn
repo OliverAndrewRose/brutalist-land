@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/models/characters/security/security_model.tscn" type="PackedScene" id=1]
+
+[node name="Base_NPC" type="Spatial"]
+
+[node name="security_model" parent="." instance=ExtResource( 1 )]
