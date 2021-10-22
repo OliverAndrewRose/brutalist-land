@@ -1,9 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/models/characters/security/security_model.glb" type="PackedScene" id=1]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "pistol_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "pistol_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/pistol_idle/node = SubResource( 2 )
+states/pistol_idle/position = Vector2( 442, 118 )
+"states/pistol_idle 2/node" = SubResource( 1 )
+"states/pistol_idle 2/position" = Vector2( 672, 118 )
+transitions = [ "pistol_idle", "pistol_idle 2", SubResource( 3 ), "pistol_idle 2", "pistol_idle", SubResource( 4 ) ]
+start_node = "pistol_idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
 [node name="security_model" instance=ExtResource( 1 )]
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0 )
 
 [node name="Skeleton" parent="security_01" index="0"]
 transform = Transform( 0.999858, 0.0167753, 0.00150393, -0.0167775, 0.999858, 0.00151253, -0.00147835, -0.00153755, 0.999998, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 6 )

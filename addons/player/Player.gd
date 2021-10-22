@@ -3,28 +3,31 @@ extends KinematicBody
 var mouse_sensitivity = 1
 var joystick_deadzone = 0.2
 
-var run_speed = 6 # Running speed in m/s
+var run_speed = 10 # Running speed in m/s
 var walk_speed = run_speed / 2
 var crouch_speed = run_speed / 3
-var jump_height = 4
+var jump_height = 5
 
 var current_speed = run_speed
 
 var ground_acceleration = 10
-var air_acceleration = 5
+var air_acceleration = 8
 var acceleration = air_acceleration
 
 var direction = Vector3()
 var velocity = Vector3() # Direction with acceleration added
 var movement = Vector3() # Velocity with gravity added
 
-var gravity = 9.8
+var gravity = 11
 var gravity_vec = Vector3()
 
 var snapped = false
 var can_jump = true
 var crouched = false
 var can_crouch = true
+
+var crouch_height = 1.3;
+var stand_height = 1.6;
 
 # Data:
 var player_speed = 0
@@ -97,9 +100,9 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if Input.is_key_pressed(KEY_SHIFT) or Input.get_joy_axis(0, 6) >= 0.6:
-			current_speed = walk_speed
+			current_speed = run_speed;
 		else:
-			current_speed = run_speed
+			current_speed = walk_speed
 		if crouched:
 			current_speed = crouch_speed
 	
@@ -139,15 +142,15 @@ func land_animation():
 func crouch_animation(button_pressed):
 	if button_pressed:
 		if not crouched:
-			$CrouchTween.interpolate_property($MeshInstance, "mesh:mid_height", $MeshInstance.mesh.mid_height, 0.25, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-			$CrouchTween.interpolate_property($CollisionShape, "shape:height", $CollisionShape.shape.height, 0.25, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-			$CrouchTween.interpolate_property($Head, "translation:y", $Head.translation.y, 1.35, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($MeshInstance, "mesh:mid_height", $MeshInstance.mesh.mid_height, 0.3, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($CollisionShape, "shape:height", $CollisionShape.shape.height, 0.3, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($Head, "translation:y", $Head.translation.y, crouch_height, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			$CrouchTween.start()
 			crouched = true
 	else:
 		if crouched:
-			$CrouchTween.interpolate_property($MeshInstance, "mesh:mid_height", $MeshInstance.mesh.mid_height, 0.75, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-			$CrouchTween.interpolate_property($CollisionShape, "shape:height", $CollisionShape.shape.height, 0.75, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-			$CrouchTween.interpolate_property($Head, "translation:y", $Head.translation.y, 1.6, 0.2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($MeshInstance, "mesh:mid_height", $MeshInstance.mesh.mid_height, 1.7, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($CollisionShape, "shape:height", $CollisionShape.shape.height, 1.7, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			$CrouchTween.interpolate_property($Head, "translation:y", $Head.translation.y, stand_height, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			$CrouchTween.start()
 			crouched = false

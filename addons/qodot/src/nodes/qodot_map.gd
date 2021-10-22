@@ -429,7 +429,7 @@ func build_entity_nodes() -> Array:
 						node = ClassDB.instance(entity_definition.node_class)
 				elif entity_definition is QodotFGDPointClass:
 					if entity_definition.scene_file:
-						node = entity_definition.scene_file.instance(PackedScene.GEN_EDIT_STATE_INSTANCE)
+						node = entity_definition.scene_file.instance() #PackedScene.GEN_EDIT_STATE_INSTANCE
 
 				if entity_definition.script_class:
 					node.set_script(entity_definition.script_class)
