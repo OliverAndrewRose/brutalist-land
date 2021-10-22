@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://addons/player/shoot/AK-47.obj" type="ArrayMesh" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://addons/player/shoot/pistol_shoot.wav" type="AudioStream" id=11]
 [ext_resource path="res://addons/player/shoot/Knife.obj" type="ArrayMesh" id=12]
 [ext_resource path="res://addons/player/Theme.tres" type="Theme" id=13]
+[ext_resource path="res://assets/models/weapons/m1911/m1911.obj" type="ArrayMesh" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -57,8 +58,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, -0.18 )
 
 [node name="Weapon" type="MeshInstance" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
-mesh = ExtResource( 2 )
+mesh = ExtResource( 14 )
 material/0 = null
+material/1 = null
+material/2 = null
 
 [node name="ShellSpawn" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.01, -0.2 )

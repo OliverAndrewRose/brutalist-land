@@ -33,3 +33,8 @@ func _input(event) -> void:
 			if not rotate: return
 			yaw += event.relative.x * -0.002
 			pitch += event.relative.y * -0.002
+
+
+func _on_ReloadButton_pressed():
+	self.e
+	pass # Replace with function body.

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var player = get_tree().get_root().find_node("Player", true, false)
+onready var player = owner
 var movement_speed = 0.0
 
 func _ready():

@@ -46,7 +46,7 @@ var reload_tip_displayed = false
 
 onready var weapon = $Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon
 
-onready var player = get_tree().get_root().find_node("Player", true, false)
+onready var player = owner
 onready var camera = player.get_node("Head/Camera")
 
 func _ready():

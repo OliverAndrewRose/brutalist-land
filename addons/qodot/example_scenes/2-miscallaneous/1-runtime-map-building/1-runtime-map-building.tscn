@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=3]
-[ext_resource path="res://addons/qodot/example_scenes/2-miscallaneous/1-runtime-map-building/orbit_arm.gd" type="Script" id=5]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=14]
 
 [sub_resource type="ProceduralSky" id=1]
@@ -46,15 +45,6 @@ environment = SubResource( 2 )
 transform = Transform( -1, 8.74228e-08, 8.26597e-14, -7.92319e-08, -0.906308, 0.422618, 3.69465e-08, 0.422618, 0.906308, 0, 13.4201, 0 )
 light_color = Color( 0.654902, 0.647059, 0.945098, 1 )
 shadow_enabled = true
-
-[node name="OrbitCameraController" type="Spatial" parent="."]
-transform = Transform( 0.85264, -0.245298, 0.461339, 0, 0.882947, 0.469472, -0.522499, -0.40029, 0.752836, 1.73346, -1.42268, -7.17249 )
-script = ExtResource( 5 )
-
-[node name="Camera" type="Camera" parent="OrbitCameraController"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40 )
-current = true
-far = 500.0
 
 [node name="QodotMap" type="Spatial" parent="."]
 script = ExtResource( 3 )
@@ -165,10 +155,11 @@ mode_overrides_title = false
 mode = 0
 access = 2
 filters = PoolStringArray( "*.map" )
-current_dir = "P:/Personal/Godot/Qodot/qodot-example"
+current_dir = "/Users/olive/Documents/GODOT/brutalistland"
 current_file = "qodot_example.map"
-current_path = "P:/Personal/Godot/Qodot/qodot-example/qodot_example.map"
+current_path = "/Users/olive/Documents/GODOT/brutalistland/qodot_example.map"
+
 [connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/MapFileHBox/OpenButton" to="UI/MapFileDialog" method="popup"]
 [connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/MapFileHBox/ReloadButton" to="QodotMap" method="verify_and_build"]
-[connection signal="file_selected" from="UI/MapFileDialog" to="UI/Panel/MarginContainer/VBoxContainer/MapFileHBox/FilenameLabel" method="set_text"]
 [connection signal="file_selected" from="UI/MapFileDialog" to="QodotMap" method="set_map_file"]
+[connection signal="file_selected" from="UI/MapFileDialog" to="UI/Panel/MarginContainer/VBoxContainer/MapFileHBox/FilenameLabel" method="set_text"]

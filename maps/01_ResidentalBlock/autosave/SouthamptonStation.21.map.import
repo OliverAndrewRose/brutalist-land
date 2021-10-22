@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/SouthamptonStation.21.map-163c0b8193a276d208f4c0cdf08afef6.tres"
+
+[deps]
+
+source_file="res://maps/01_ResidentalBlock/autosave/SouthamptonStation.21.map"
+dest_files=[ "res://.import/SouthamptonStation.21.map-163c0b8193a276d208f4c0cdf08afef6.tres" ]
+
+[params]
+

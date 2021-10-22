@@ -3,7 +3,6 @@
 [ext_resource path="res://addons/qodot/src/resources/worldspawn_layer.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd" type="Script" id=2]
 
-
 [resource]
 resource_name = "Water Layer"
 script = ExtResource( 1 )
