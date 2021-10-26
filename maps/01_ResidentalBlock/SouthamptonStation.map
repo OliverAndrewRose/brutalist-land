@@ -3373,6 +3373,13 @@
 }
 // entity 52
 {
+"classname" "ai_hint_location"
+"origin" "536 200 152"
+"locationType" "cover"
+"angle" "180"
+}
+// entity 53
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "clip"

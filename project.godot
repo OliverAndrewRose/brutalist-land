@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "QodotEntity",
+"class": "AIHintPosition",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/map_markers/ai_hint_position.gd"
+}, {
+"base": "NPC_State",
+"class": "CoverState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/CoverState.gd"
+}, {
+"base": "NPC_State",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/IdleState.gd"
+}, {
 "base": "LiquidLayer",
 "class": "LavaLayer",
 "language": "GDScript",
@@ -29,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/example_scenes/2-miscallaneous/1-runtime-map-building/orbit_arm.gd"
 }, {
+"base": "Spatial",
+"class": "Pathfinding",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/pathfinding.gd"
+}, {
 "base": "PhysicsEntity",
 "class": "PhysicsBall",
 "language": "GDScript",
@@ -38,6 +58,11 @@ _global_script_classes=[ {
 "class": "PhysicsEntity",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/fgd/solid_classes/physics.gd"
+}, {
+"base": "AudioStreamPlayer3D",
+"class": "PlayGunshot",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/PlayGunshot.gd"
 }, {
 "base": "Reference",
 "class": "QodotDependencies",
@@ -143,6 +168,11 @@ _global_script_classes=[ {
 "class": "QuakeWadImportPlugin",
 "language": "GDScript",
 "path": "res://addons/qodot/src/import_plugins/quake_wad_import_plugin.gd"
+}, {
+"base": "Node",
+"class": "ShootTarget",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/attacks/ShootTarget.gd"
 }, {
 "base": "LiquidLayer",
 "class": "SlimeLayer",
@@ -253,14 +283,24 @@ _global_script_classes=[ {
 "class": "WaterLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
+}, {
+"base": "Node",
+"class": "WeaponProperties",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/WeaponProperties.gd"
 } ]
 _global_script_class_icons={
+"AIHintPosition": "",
+"CoverState": "",
+"IdleState": "",
 "LavaLayer": "",
 "LiquidLayer": "",
 "NPC_State": "",
 "OrbitArm": "",
+"Pathfinding": "",
 "PhysicsBall": "",
 "PhysicsEntity": "",
+"PlayGunshot": "",
 "QodotDependencies": "",
 "QodotEntity": "",
 "QodotFGDBaseClass": "",
@@ -282,6 +322,7 @@ _global_script_class_icons={
 "QuakePaletteImportPlugin": "",
 "QuakeWadFile": "",
 "QuakeWadImportPlugin": "",
+"ShootTarget": "",
 "SlimeLayer": "",
 "State": "",
 "StateMachine": "",
@@ -303,7 +344,8 @@ _global_script_class_icons={
 "VFSMTriggerScript": "",
 "VFSMTriggerTimer": "",
 "WaterAnimated": "",
-"WaterLayer": ""
+"WaterLayer": "",
+"WeaponProperties": ""
 }
 
 [application]
@@ -319,6 +361,12 @@ Pause="*res://singletons/Pause.gd"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/qodot/plugin.cfg", "res://addons/visual_fsm/plugin.cfg", "res://addons/waterways/plugin.cfg" )
+
+[layer_names]
+
+3d_physics/layer_1="default"
+3d_physics/layer_2="player"
+3d_physics/layer_3="npc"
 
 [physics]
 
