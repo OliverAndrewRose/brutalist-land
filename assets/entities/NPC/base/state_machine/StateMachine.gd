@@ -8,7 +8,7 @@ signal transitioned(state_name)
 export var initial_state := NodePath()
 
 # The current active state. At the start of the game, we get the `initial_state`.
-onready var state: State = get_node(initial_state);
+onready var state = get_node(initial_state)
 
 
 func _ready() -> void:

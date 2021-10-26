@@ -1,4 +1,5 @@
 extends Spatial;
+class_name Pathfinding
 
 var path = [];
 var path_node: int;
@@ -21,14 +22,14 @@ func _move_to_next_node():
 	if(path_node < path.size()):
 		var direction: Vector3 = (path[path_node] - global_transform.origin);
 		
-		if(direction.length() < 1):
+		if(direction.length() < 0.5):
 			path_node +=1;
 		else:
 			kinematic_body.move_and_slide(direction.normalized() * speed, Vector3.UP);
 
 
 func _on_path_regen_timeout():
-	target = get_node("/root/Root/Debug_position").global_transform.origin;
+	#target = get_node("/root/Root/Debug_position").global_transform.origin;
 	_create_path();
 	
 
