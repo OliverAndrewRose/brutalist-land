@@ -12,7 +12,7 @@ description = "A location marker for the AI (i.e. cover)"
 qodot_internal = false
 base_classes = [  ]
 class_properties = {
-"locationType": "\"cover\""
+"locationType": "cover"
 }
 class_property_descriptions = {
 "locationType": "What sort of location is this? (Cover, Hide, Escape)"

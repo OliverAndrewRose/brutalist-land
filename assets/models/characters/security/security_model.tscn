@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/models/characters/security/security_model.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/models/weapons/dummy_gun/dummy_gun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/entities/NPC/base/functions/Ragdoll_Control.gd" type="Script" id=3]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "pistol_idle"
@@ -33,9 +34,10 @@ transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0 )
 [node name="Skeleton" parent="security_01" index="0"]
 transform = Transform( 0.999858, 0.0167753, 0.00150393, -0.0167775, 0.999858, 0.00151253, -0.00147835, -0.00153755, 0.999998, 0, 0, 0 )
 bones/34/bound_children = [ NodePath("BoneAttachment") ]
+script = ExtResource( 3 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="security_01/Skeleton" index="1"]
-transform = Transform( 0.0903333, -0.0683527, 0.993563, -0.209631, 0.973985, 0.0860653, -0.973599, -0.216056, 0.0736546, -12.0334, 41.1694, -147.865 )
+transform = Transform( 0.0868049, -0.0691789, 0.99382, -0.205028, 0.97499, 0.0857763, -0.974898, -0.211207, 0.0704504, -11.8654, 41.1052, -147.781 )
 bone_name = "mixamorig_RightHand"
 
 [node name="dummy_gun" parent="security_01/Skeleton/BoneAttachment" index="0" instance=ExtResource( 2 )]
@@ -44,5 +46,4 @@ transform = Transform( -1.29016, 6.87986, 0.0546273, 6.87743, 1.28809, 0.204502,
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 6 )

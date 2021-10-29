@@ -3,7 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures/Building;textures/Ground;textures/Roof;textures/Wall;textures/base;textures/layers;textures/materials;textures/special"
+"_tb_textures" "textures/Building;textures/Door;textures/Ground;textures/Roof;textures/Wall;textures/base;textures/layers;textures/materials;textures/special"
 "_tb_def" "external:C:/Users/olive/Downloads/Trenchbroom/games/Qodot/Qodot.fgd"
 // brush 0
 {
