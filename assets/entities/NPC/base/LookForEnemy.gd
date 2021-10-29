@@ -44,7 +44,6 @@ func _return_all_in_line_of_sight(entity_list, in_sight: bool = true):
 	var detected = [];
 	
 	for target in entity_list.keys():
-		print(_check_line_of_sight(target));
 		if _check_line_of_sight(target) == in_sight:
 			detected.append(target);
 			
@@ -68,15 +67,15 @@ func _check_line_of_sight(target: Spatial):
 func _process_lost_enemies():
 	var recently_lost = _return_all_in_line_of_sight(detected_entities, false);
 	for i in recently_lost:
-		detected_entities.keys().erase(i);
+		detected_entities.erase(i);
 		emit_signal("enemy_lost",i);
 	pass
 	
 
 func _on_fov_detection_body_exited(body: Spatial):
 	if potential_entities.has(body):
-		potential_entities.keys().erase(body);
+		potential_entities.erase(body);
 		
 	if detected_entities.has(body):
-		detected_entities.keys().erase(body);
+		detected_entities.erase(body);
 		emit_signal("enemy_lost", body);

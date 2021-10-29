@@ -13,6 +13,7 @@ export (Resource) var pistol_shoot_sound
 export (Resource) var reload_sound
 export (Resource) var empty_sound
 
+export(PackedScene) var bullet_scene;
 onready var shoot_sound = rifle_shoot_sound
 
 var weapon1_ammo = 30
@@ -184,6 +185,7 @@ func shoot():
 	
 	shoot_animation()
 	spawn_impact()
+	spawn_projectile()
 	spawn_shell()
 	
 	# Calculate bullet spread amount
@@ -197,6 +199,15 @@ func shoot():
 	
 	ammo -= 1
 	$HUD/DisplayAmmo/AmmoText.text = str(ammo)
+
+
+func spawn_projectile():
+	var bullet: Bullet = bullet_scene.instance() as Bullet;
+	get_tree().get_root().get_node("Root").add_child(bullet);
+	bullet.global_translate($Position3D.get_global_transform().origin);
+	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 200);
+	bullet.bullet_damage = 30;
+
 
 func spawn_shell():
 	var shell_instance = shell.instance()

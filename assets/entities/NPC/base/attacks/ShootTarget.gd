@@ -7,7 +7,7 @@ onready var shoot_origin: Spatial = owner.get_node("shoot_position") as Spatial;
 onready var shot_interval_timer: Timer = get_node("shot_interval") as Timer;
 onready var lost_visual_timer: Timer = get_node("lost_visual") as Timer;
 
-onready var bullet_scene: PackedScene = load(weaponProperties.bullet_directory);
+onready var bullet_scene: PackedScene = weaponProperties.bullet;
 
 var enemy: Spatial;
 var aim_direction: Vector3;
@@ -41,7 +41,7 @@ func _check_should_aim_and_shoot():
 
 
 func _aim_at_enemy():
-		
+	
 	# Get the Spatial and position of the enemy's chest.
 	var aim_body: Spatial = enemy.get_node("chest_position");
 	var aim_loc: Vector3 = aim_body.get_global_transform().origin
@@ -69,9 +69,10 @@ func _on_shot_interval_timeout():
 
 
 func _shoot_weapon():
-	var bullet: RigidBody = bullet_scene.instance() as RigidBody;
+	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
 	bullet.global_translate(shoot_origin.get_global_transform().origin);
 	bullet.global_transform.basis.z = aim_direction;
-	bullet.linear_velocity = aim_direction * weaponProperties.bullet_velocity;
+	bullet.apply_impulse(Vector3.ZERO, aim_direction * weaponProperties.bullet_velocity);
+	bullet.bullet_damage = weaponProperties.damage;
 	pass

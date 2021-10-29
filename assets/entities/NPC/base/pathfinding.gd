@@ -3,17 +3,19 @@ class_name Pathfinding
 
 var path = [];
 var path_node: int;
+export(PackedScene) var debug_model: PackedScene;
 
 onready var kinematic_body: KinematicBody = get_parent().get_parent() as KinematicBody;
 onready var nav: Navigation = get_node("/root/Root/Navigation") as Navigation;
 
-export(Vector3) var target;
-export(float) var speed;
+export(Vector3) var target: Vector3;
+export(float) var speed: float;
 
 func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta: float):
+	process_priority = 10;
 	_move_to_next_node();
 	
 
@@ -22,16 +24,28 @@ func _move_to_next_node():
 	if(path_node < path.size()):
 		var direction: Vector3 = (path[path_node] - global_transform.origin);
 		
-		if(direction.length() < 0.5):
-			path_node +=1;
+		if(direction.length() < 1):
+			path_node = clamp(path_node + 1,0, path.size()-1);
+			var look_direction: Vector3 = Vector3(path[path_node].x, owner.get_global_transform().origin.y, path[path_node].z);
+			owner.look_at(look_direction,Vector3.UP);
 		else:
 			kinematic_body.move_and_slide(direction.normalized() * speed, Vector3.UP);
 
 
 func _on_path_regen_timeout():
 	#target = get_node("/root/Root/Debug_position").global_transform.origin;
-	_create_path();
+	if target.distance_to(global_transform.origin) > 5:
+		_create_path();
 	
 
 func _create_path():
 	path = nav.get_simple_path(global_transform.origin, target, true);
+	path_node = 0;
+	#_debug_path();
+
+
+func _debug_path():
+	for i in path:
+		var model = debug_model.instance();
+		get_tree().get_root().get_node("Root").add_child(model);
+		model.global_transform.origin = i;

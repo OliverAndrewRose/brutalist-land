@@ -3,7 +3,7 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures/Ground;textures/Roof;textures/Wall;textures/base;textures/special"
+"_tb_textures" "textures/Ground;textures/Roof;textures/Wall;textures/base;textures/layers;textures/materials;textures/special"
 "_tb_def" "external:C:/Users/olive/Downloads/Trenchbroom/games/Qodot/Qodot.fgd"
 // brush 0
 {
@@ -121,4 +121,13 @@
 "_tb_name" "clip"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
+// brush 0
+{
+( -456 288 32 ) ( -456 -96 32 ) ( -456 -96 16 ) materials/basic_water_material 0 0 0 1 1
+( -456 -96 32 ) ( 160 -96 32 ) ( 160 -96 16 ) materials/basic_water_material 0 0 0 1 1
+( 160 -96 16 ) ( 160 288 16 ) ( -456 288 16 ) materials/basic_water_material 0 0 0 1 1
+( -456 288 32 ) ( 160 288 32 ) ( 160 -96 32 ) materials/basic_water_material 0 0 0 1 1
+( 160 288 16 ) ( 160 288 32 ) ( -456 288 32 ) materials/basic_water_material 0 0 0 1 1
+( 160 -96 32 ) ( 160 288 32 ) ( 160 288 16 ) materials/basic_water_material 0 0 0 1 1
+}
 }

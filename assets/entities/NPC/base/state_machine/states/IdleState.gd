@@ -11,7 +11,4 @@ func update(delta: float):
 
 func check_for_exit():
 	
-	if debug_cover:
-		state_machine.transition_to("cover");
-	
 	pass
