@@ -11,6 +11,3 @@ metallic_specular = 0.41
 roughness = 0.07
 normal_enabled = true
 normal_scale = 16.0
-refraction_enabled = true
-refraction_scale = 0.02
-refraction_texture_channel = 0

@@ -15,7 +15,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta: float):
-	process_priority = 10;
+	
 	_move_to_next_node();
 	
 
@@ -27,7 +27,7 @@ func _move_to_next_node():
 		if(direction.length() < 1):
 			path_node = clamp(path_node + 1,0, path.size()-1);
 			var look_direction: Vector3 = Vector3(path[path_node].x, owner.get_global_transform().origin.y, path[path_node].z);
-			owner.look_at(look_direction,Vector3.UP);
+			owner.get_node("Look_Towards").look_towards(look_direction);
 		else:
 			kinematic_body.move_and_slide(direction.normalized() * speed, Vector3.UP);
 

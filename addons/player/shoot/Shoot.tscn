@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
-[ext_resource path="res://addons/player/shoot/AK-47.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://addons/player/shoot/Impact.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/player/shoot/rifle_shoot.wav" type="AudioStream" id=4]
 [ext_resource path="res://addons/player/shoot/reload.wav" type="AudioStream" id=5]
@@ -27,7 +26,6 @@ default_font = SubResource( 1 )
 
 [node name="Shoot" type="Spatial"]
 script = ExtResource( 1 )
-rifle_model = ExtResource( 2 )
 pistol_model = ExtResource( 10 )
 knife_model = ExtResource( 12 )
 impact = ExtResource( 3 )

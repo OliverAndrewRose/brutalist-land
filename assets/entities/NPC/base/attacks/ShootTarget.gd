@@ -48,7 +48,7 @@ func _aim_at_enemy():
 	var look_direction: Vector3 = Vector3(aim_loc.x, owner.get_global_transform().origin.y, aim_loc.z);
 	
 	aim_direction = (aim_loc - shoot_origin.get_global_transform().origin).normalized();
-	owner.look_at(look_direction, Vector3.UP);
+	owner.get_node("Look_Towards").look_towards(look_direction);
 
 
 

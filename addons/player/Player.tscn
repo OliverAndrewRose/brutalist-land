@@ -18,7 +18,6 @@ height = 1.7
 radius = 0.5
 
 [node name="Player" type="KinematicBody" groups=[
-"Player",
 "Team_Hunter",
 ]]
 collision_layer = 3

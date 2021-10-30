@@ -20,7 +20,7 @@ height = 0.01
 
 [node name="Bullet" type="RigidBody"]
 continuous_cd = true
-contacts_reported = 4
+contacts_reported = 8
 contact_monitor = true
 script = ExtResource( 1 )
 
