@@ -1,18 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
+[ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
 [ext_resource path="res://addons/player/shoot/Impact.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/player/shoot/rifle_shoot.wav" type="AudioStream" id=4]
 [ext_resource path="res://addons/player/shoot/reload.wav" type="AudioStream" id=5]
 [ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://addons/player/shoot/empty.wav" type="AudioStream" id=7]
 [ext_resource path="res://addons/player/shoot/Shell.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/player/shoot/AK-47_Magazine.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/player/shoot/M1911.obj" type="ArrayMesh" id=10]
-[ext_resource path="res://addons/player/shoot/pistol_shoot.wav" type="AudioStream" id=11]
-[ext_resource path="res://addons/player/shoot/Knife.obj" type="ArrayMesh" id=12]
 [ext_resource path="res://addons/player/Theme.tres" type="Theme" id=13]
-[ext_resource path="res://assets/models/weapons/m1911/m1911.obj" type="ArrayMesh" id=14]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=15]
 
 [sub_resource type="DynamicFont" id=1]
@@ -26,13 +22,11 @@ default_font = SubResource( 1 )
 
 [node name="Shoot" type="Spatial"]
 script = ExtResource( 1 )
-pistol_model = ExtResource( 10 )
-knife_model = ExtResource( 12 )
 impact = ExtResource( 3 )
 shell = ExtResource( 8 )
 magazine = ExtResource( 9 )
-rifle_shoot_sound = ExtResource( 4 )
-pistol_shoot_sound = ExtResource( 11 )
+rifle_shoot_sound = ExtResource( 2 )
+pistol_shoot_sound = ExtResource( 2 )
 reload_sound = ExtResource( 5 )
 empty_sound = ExtResource( 7 )
 bullet_scene = ExtResource( 15 )
@@ -57,11 +51,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2 )
 [node name="MagazineSpawn" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, -0.18 )
 
-[node name="Weapon" type="MeshInstance" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
-mesh = ExtResource( 14 )
-material/0 = null
-material/1 = null
-material/2 = null
+[node name="Weapon" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
 
 [node name="ShellSpawn" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.01, -0.2 )

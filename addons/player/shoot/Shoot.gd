@@ -1,8 +1,8 @@
 extends Spatial
 
-export (Resource) var rifle_model
-export (Resource) var pistol_model
-export (Resource) var knife_model
+export(PackedScene) var rifle_model
+export(PackedScene) var pistol_model
+export(PackedScene) var knife_model;
 
 export (PackedScene) var impact
 export (PackedScene) var shell
@@ -46,6 +46,7 @@ var can_switch_joy_dpad = true
 var reload_tip_displayed = false
 
 onready var weapon = $Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon
+var current_weapon_model = null;
 
 onready var player = owner
 onready var camera = player.get_node("Head/Camera")
@@ -107,8 +108,6 @@ func _process(delta):
 		else:
 			can_switch_joy_dpad = true
 		
-
-	
 	
 	if $BulletSpread/RayCast.is_colliding():
 		$Position3D/LookAt.look_at($BulletSpread/RayCast.get_collision_point(), Vector3.UP)
@@ -205,7 +204,7 @@ func spawn_projectile():
 	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
 	bullet.global_translate($Position3D.get_global_transform().origin);
-	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 200);
+	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 330);
 	bullet.bullet_damage = 30;
 
 
@@ -266,35 +265,39 @@ func shoot_animation():
 	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
 	
-	value = rand_range(0.035, 0.045)
-	$ShootTween.interpolate_property(weapon, "translation:z", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(weapon, "translation:z", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+	var animator= current_weapon_model.get_node("AnimationPlayer")
+	animator.stop()
+	animator.play("fire_regular")
 	
-	value = rand_range(-0.005, 0.005)
-	$ShootTween.interpolate_property(weapon, "translation:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(weapon, "translation:x",value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
-	
-	value = rand_range(0.005, 0.015)
-	$ShootTween.interpolate_property(weapon, "translation:y", 0, value, 0.075, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(weapon, "translation:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.075)
-	
-	value = rand_range(-1.5, -0.5)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:x", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
-	
-	value = rand_range(-1, 1)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, -value, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
-	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", -value, 0, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.175)
-	
-	value = rand_range(0.5, 1.5)
-	$ShootTween.interpolate_property(camera, "rotation_degrees:x", 0, 1, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(camera, "rotation_degrees:x", 1, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
-	value = rand_range(-1, 1)
-	$ShootTween.interpolate_property(camera, "rotation_degrees:y", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property(camera, "rotation_degrees:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
-	$ShootTween.start()
+#	value = rand_range(0.035, 0.045)
+#	$ShootTween.interpolate_property(weapon, "translation:z", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(weapon, "translation:z", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+#
+#	value = rand_range(-0.005, 0.005)
+#	$ShootTween.interpolate_property(weapon, "translation:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(weapon, "translation:x",value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+#
+#	value = rand_range(0.005, 0.015)
+#	$ShootTween.interpolate_property(weapon, "translation:y", 0, value, 0.075, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(weapon, "translation:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.075)
+#
+#	value = rand_range(-1.5, -0.5)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:x", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+#
+#	value = rand_range(-1, 1)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, -value, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+#	$ShootTween.interpolate_property(weapon, "rotation_degrees:z", -value, 0, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.175)
+#
+#	value = rand_range(0.5, 1.5)
+#	$ShootTween.interpolate_property(camera, "rotation_degrees:x", 0, 1, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(camera, "rotation_degrees:x", 1, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+#	value = rand_range(-1, 1)
+#	$ShootTween.interpolate_property(camera, "rotation_degrees:y", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	$ShootTween.interpolate_property(camera, "rotation_degrees:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+#	$ShootTween.start()
 
 func weapon_bobbing_animation():
 	var animation_speed = 1.0 / player.player_speed
@@ -357,8 +360,14 @@ func switch_animation():
 		$HUD/WeaponSelected/Weapon1.modulate = text_color_active
 		$HUD/WeaponSelected/Weapon2.modulate = text_color_inactive
 		
+		if current_weapon_model:
+					current_weapon_model.queue_free()
+					
+		current_weapon_model = rifle_model.instance()
+		$Position3D.add_child(current_weapon_model)
+		current_weapon_model.get_transform().origin = Vector3.ZERO
+				
 		weapon_position_z = -0.2
-		weapon.mesh = rifle_model
 		shoot_sound = rifle_shoot_sound
 		singleshot = false
 		$HUD/AmmoText.show()
@@ -377,8 +386,14 @@ func switch_animation():
 		$HUD/WeaponSelected/Weapon1.modulate = text_color_inactive
 		$HUD/WeaponSelected/Weapon2.modulate = text_color_active
 		
+		if current_weapon_model:
+					current_weapon_model.queue_free()
+
+		current_weapon_model = pistol_model.instance()
+		$Position3D.add_child(current_weapon_model)
+		current_weapon_model.get_transform().origin = Vector3.ZERO
+		
 		weapon_position_z = -0.3
-		weapon.mesh = pistol_model
 		shoot_sound = pistol_shoot_sound
 		singleshot = true
 		$HUD/AmmoText.show()

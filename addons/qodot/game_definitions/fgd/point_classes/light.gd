@@ -58,7 +58,7 @@ func update_properties():
 
 	light_node.set_param(Light.PARAM_ATTENUATION, attenuation)
 	light_node.set_shadow(true)
-	light_node.set_bake_mode(Light.BAKE_INDIRECT)
+	light_node.set_bake_mode(Light.BAKE_ALL)
 
 	var light_color = Color.white
 	if '_color' in properties:

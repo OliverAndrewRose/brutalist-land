@@ -9,10 +9,9 @@ onready var lost_visual_timer: Timer = get_node("lost_visual") as Timer;
 
 onready var bullet_scene: PackedScene = weaponProperties.bullet;
 
-var enemy: Spatial;
 var aim_direction: Vector3;
 var is_visible: bool = false;
-
+var enemy: Spatial = null;
 
 func _ready():
 	shot_interval_timer.wait_time = 1 / weaponProperties.fire_rate;
@@ -24,20 +23,20 @@ func _process(delta: float):
 	pass
 	
 
-
-func _on_look_for_enemy_enemy_detected(detected_enemy: Spatial):
-	enemy = detected_enemy;
-
-
 func _check_should_aim_and_shoot():
-
+	enemy = owner.get_node("AI_behaviour").current_enemy;
 	if(enemy != null):
 		
+		lost_visual_timer.stop() # Enemy is no longer hidden, so stop timer.
 		_aim_at_enemy();
 		
 		if(not is_visible):
-			shot_interval_timer.start();
-			is_visible = true;
+			shot_interval_timer.start(); # Begin gunshots
+			is_visible = true; # enemy is visible.
+	
+	elif is_visible:
+		is_visible = false;
+		lost_visual_timer.start(); # shoot at last position for x seconds.
 
 
 func _aim_at_enemy():
@@ -51,16 +50,9 @@ func _aim_at_enemy():
 	owner.get_node("Look_Towards").look_towards(look_direction);
 
 
-
-func _on_look_for_enemy_enemy_lost(detected_enemy):
-	if(enemy == detected_enemy):
-		lost_visual_timer.start();
-		enemy = null;
-
-
 func _on_lost_visual_timeout():
 	shot_interval_timer.stop(); # stop shooting.
-	is_visible = false;
+
 
 
 func _on_shot_interval_timeout():

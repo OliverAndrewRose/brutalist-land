@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bullet_crack_01.wav-ef834455a8ee26a08cac4446e8a5a45b.sample"
+
+[deps]
+
+source_file="res://assets/sound/gunshots/bullet_crack_01.wav"
+dest_files=[ "res://.import/bullet_crack_01.wav-ef834455a8ee26a08cac4446e8a5a45b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

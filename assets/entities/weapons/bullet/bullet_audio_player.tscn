@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/entities/weapons/bullet/DeleteAfterClip.gd" type="Script" id=1]
+
+[node name="bullet_crack" type="AudioStreamPlayer3D"]
+attenuation_model = 3
+unit_size = 70.0
+pitch_scale = 1.1
+script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_bullet_crack_finished"]

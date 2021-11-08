@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/entities/props/items/pint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+class_options = "----------------------------------------------------------------"
+classname = "prop_pint"
+description = "pint prop"
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+}
+class_property_descriptions = {
+}
+meta_properties = {
+"color": Color( 0.980392, 0, 0, 1 ),
+"model": "\"entities/props/items/models/pint.obj\"",
+"size": AABB( -4, -4, -4, 8, 8, 8 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = ""
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 1 )
+scripting = "----------------------------------------------------------------"

@@ -5,7 +5,7 @@ var look_toward: Vector3;
 
 
 func look_towards(direction: Vector3):
-	look_toward = direction;
+	look_toward = Vector3(direction.x, owner.get_global_transform().origin.y, direction.z);
 	pass
 	
 func _process(delta):
