@@ -12,9 +12,9 @@ func update_properties():
 	if "pathType" in properties:
 		pathType = properties["pathType"];
 		
-	if "nodeName" in properties:
-		nodeName = properties["nodeName"];
+	if "targetname" in properties:
+		nodeName = properties["targetname"];
 		
-	if "nextNode" in properties:
-		nextNode = properties["nextNode"];
+	if "target" in properties:
+		nextNode = properties["target"];
 	pass

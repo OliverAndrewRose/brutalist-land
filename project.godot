@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AIHelper",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/AI_Helper.gd"
+}, {
 "base": "QodotEntity",
 "class": "AIHintPath",
 "language": "GDScript",
@@ -310,6 +315,7 @@ _global_script_classes=[ {
 "path": "res://assets/entities/weapons/WeaponProperties.gd"
 } ]
 _global_script_class_icons={
+"AIHelper": "",
 "AIHintPath": "",
 "AIHintPosition": "",
 "Bullet": "",
@@ -398,5 +404,10 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/sharpen_intensity=0.05
+quality/shading/force_lambert_over_burley=true
+quality/shading/force_blinn_over_ggx=true
+quality/filters/anisotropic_filter_level=2
 limits/rendering/max_lights_per_object=256
+quality/subsurface_scattering/quality=0
 environment/default_environment="res://default_env.tres"

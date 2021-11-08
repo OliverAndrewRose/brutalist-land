@@ -6,15 +6,16 @@ signal enemy_lost(enemy)
 onready var detection_area: Area = get_node("fov_detection") as Area;
 onready var raycast_detector: RayCast = get_node("cast_detection") as RayCast;
 
-var potential_entities = {}
-var detected_entities = {};
+var potential_enemies = {}
+var detected_enemies = {};
 
 func _on_fov_detection_body_entered(body: Spatial):
 	_track_potential_entitiy(body);
 
 func _track_potential_entitiy(target: Spatial):
 	if _check_enemy_team(target):
-		potential_entities[target] = true;
+		print("Enemy spotted: " + target.name)
+		potential_enemies[target] = true;
 
 
 func _check_enemy_team(target: Spatial):
@@ -32,10 +33,10 @@ func _process(delta):
 
 
 func _detect_potential_enemies():
-	var recently_detected = _return_all_in_line_of_sight(potential_entities, true);
+	var recently_detected = _return_all_in_line_of_sight(potential_enemies, true);
 	for i in recently_detected:
-		detected_entities[i]=true;
-		potential_entities.keys().erase(i);
+		detected_enemies[i]=true;
+		potential_enemies.erase(i);
 		emit_signal("enemy_detected",i);
 	pass
 	
@@ -65,17 +66,18 @@ func _check_line_of_sight(target: Spatial):
 
 
 func _process_lost_enemies():
-	var recently_lost = _return_all_in_line_of_sight(detected_entities, false);
+	var recently_lost = _return_all_in_line_of_sight(detected_enemies, false);
 	for i in recently_lost:
-		detected_entities.erase(i);
+		detected_enemies.erase(i);
+		potential_enemies[i]=true;
 		emit_signal("enemy_lost",i);
 	pass
 	
 
 func _on_fov_detection_body_exited(body: Spatial):
-	if potential_entities.has(body):
-		potential_entities.erase(body);
+	if potential_enemies.has(body):
+		potential_enemies.erase(body);
 		
-	if detected_entities.has(body):
-		detected_entities.erase(body);
+	if detected_enemies.has(body):
+		detected_enemies.erase(body);
 		emit_signal("enemy_lost", body);

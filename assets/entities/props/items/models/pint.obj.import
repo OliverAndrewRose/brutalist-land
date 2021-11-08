@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pint.obj-3252d5bea2f486e0151644a8a02d0941.mesh"
+
+[deps]
+
+files=[ "res://.import/pint.obj-3252d5bea2f486e0151644a8a02d0941.mesh" ]
+
+source_file="res://assets/entities/props/items/models/pint.obj"
+dest_files=[ "res://.import/pint.obj-3252d5bea2f486e0151644a8a02d0941.mesh", "res://.import/pint.obj-3252d5bea2f486e0151644a8a02d0941.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

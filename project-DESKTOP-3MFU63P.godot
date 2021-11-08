@@ -1,0 +1,402 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "QodotEntity",
+"class": "AIHintPath",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/map_markers/ai_hint_path.gd"
+}, {
+"base": "QodotEntity",
+"class": "AIHintPosition",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/map_markers/ai_hint_position.gd"
+}, {
+"base": "RigidBody",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/bullet/Bullet.gd"
+}, {
+"base": "NPC_State",
+"class": "CoverState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/CoverState.gd"
+}, {
+"base": "NPC_State",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/IdleState.gd"
+}, {
+"base": "LiquidLayer",
+"class": "LavaLayer",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/lava.gd"
+}, {
+"base": "Area",
+"class": "LiquidLayer",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid.gd"
+}, {
+"base": "Node",
+"class": "LookTowards",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/functions/LookTowards.gd"
+}, {
+"base": "State",
+"class": "NPC_State",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/NPC_State.gd"
+}, {
+"base": "Spatial",
+"class": "OrbitArm",
+"language": "GDScript",
+"path": "res://addons/qodot/example_scenes/2-miscallaneous/1-runtime-map-building/orbit_arm.gd"
+}, {
+"base": "Spatial",
+"class": "Pathfinding",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/pathfinding.gd"
+}, {
+"base": "NPC_State",
+"class": "PatrolState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/PatrolState.gd"
+}, {
+"base": "PhysicsEntity",
+"class": "PhysicsBall",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/fgd/point_classes/physics_ball.gd"
+}, {
+"base": "RigidBody",
+"class": "PhysicsEntity",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/fgd/solid_classes/physics.gd"
+}, {
+"base": "AudioStreamPlayer3D",
+"class": "PlayGunshot",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/PlayGunshot.gd"
+}, {
+"base": "Reference",
+"class": "QodotDependencies",
+"language": "GDScript",
+"path": "res://addons/qodot/src/util/qodot_dependencies.gd"
+}, {
+"base": "QodotSpatial",
+"class": "QodotEntity",
+"language": "GDScript",
+"path": "res://addons/qodot/src/nodes/qodot_entity.gd"
+}, {
+"base": "QodotFGDClass",
+"class": "QodotFGDBaseClass",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_base_class.gd"
+}, {
+"base": "Resource",
+"class": "QodotFGDClass",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_class.gd"
+}, {
+"base": "Resource",
+"class": "QodotFGDFile",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd"
+}, {
+"base": "QodotFGDClass",
+"class": "QodotFGDPointClass",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd"
+}, {
+"base": "QodotFGDClass",
+"class": "QodotFGDSolidClass",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd"
+}, {
+"base": "QodotEntity",
+"class": "QodotLight",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/fgd/point_classes/light.gd"
+}, {
+"base": "QodotSpatial",
+"class": "QodotMap",
+"language": "GDScript",
+"path": "res://addons/qodot/src/nodes/qodot_map.gd"
+}, {
+"base": "EditorPlugin",
+"class": "QodotPlugin",
+"language": "GDScript",
+"path": "res://addons/qodot/src/qodot_plugin.gd"
+}, {
+"base": "KinematicBody",
+"class": "QodotRotateEntity",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/fgd/solid_classes/rotate.gd"
+}, {
+"base": "Spatial",
+"class": "QodotSpatial",
+"language": "GDScript",
+"path": "res://addons/qodot/src/nodes/qodot_spatial.gd"
+}, {
+"base": "Reference",
+"class": "QodotTextureLoader",
+"language": "GDScript",
+"path": "res://addons/qodot/src/util/qodot_texture_loader.gd"
+}, {
+"base": "Reference",
+"class": "QodotUtil",
+"language": "GDScript",
+"path": "res://addons/qodot/src/util/qodot_util.gd"
+}, {
+"base": "Resource",
+"class": "QodotWorldspawnLayer",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/worldspawn_layer.gd"
+}, {
+"base": "Resource",
+"class": "QuakeMapFile",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/quake_map_file.gd"
+}, {
+"base": "EditorImportPlugin",
+"class": "QuakeMapImportPlugin",
+"language": "GDScript",
+"path": "res://addons/qodot/src/import_plugins/quake_map_import_plugin.gd"
+}, {
+"base": "Resource",
+"class": "QuakePaletteFile",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/quake_palette_file.gd"
+}, {
+"base": "EditorImportPlugin",
+"class": "QuakePaletteImportPlugin",
+"language": "GDScript",
+"path": "res://addons/qodot/src/import_plugins/quake_palette_import_plugin.gd"
+}, {
+"base": "Resource",
+"class": "QuakeWadFile",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/quake_wad_file.gd"
+}, {
+"base": "EditorImportPlugin",
+"class": "QuakeWadImportPlugin",
+"language": "GDScript",
+"path": "res://addons/qodot/src/import_plugins/quake_wad_import_plugin.gd"
+}, {
+"base": "Node",
+"class": "ShootTarget",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/attacks/ShootTarget.gd"
+}, {
+"base": "LiquidLayer",
+"class": "SlimeLayer",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/StateMachine.gd"
+}, {
+"base": "Resource",
+"class": "TrenchBroomFaceAttrib",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_face_attrib.gd"
+}, {
+"base": "Resource",
+"class": "TrenchBroomGameConfigFile",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_game_config_file.gd"
+}, {
+"base": "Resource",
+"class": "TrenchBroomGameConfigFolder",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_game_config_folder.gd"
+}, {
+"base": "Resource",
+"class": "TrenchBroomTag",
+"language": "GDScript",
+"path": "res://addons/qodot/src/resources/game-definitions/trenchbroom/trenchbroom_tag.gd"
+}, {
+"base": "Resource",
+"class": "VFSM",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "VFSMDemoSimpleAIJumper",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/demos/simple_ai_character/vfsm_simple_ai_jumpter.gd"
+}, {
+"base": "Node2D",
+"class": "VFSMDemoTrafficLightsController",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/demos/simple_traffic_lights/traffic_lights.gd"
+}, {
+"base": "Node",
+"class": "VFSMSingleton",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/vfsm_singleton.gd"
+}, {
+"base": "Resource",
+"class": "VFSMState",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm_state.gd"
+}, {
+"base": "Object",
+"class": "VFSMStateBase",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/resources/vfsm_state_base.gd"
+}, {
+"base": "GraphNode",
+"class": "VFSMStateNode",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/editor/vfsm_state_graph_node.gd"
+}, {
+"base": "Resource",
+"class": "VFSMTrigger",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm_trigger.gd"
+}, {
+"base": "VFSMTrigger",
+"class": "VFSMTriggerAction",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm_trigger_action.gd"
+}, {
+"base": "Object",
+"class": "VFSMTriggerBase",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/resources/vfsm_trigger_base.gd"
+}, {
+"base": "PanelContainer",
+"class": "VFSMTriggerGraphSlot",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/editor/vfsm_trigger_graph_slot.gd"
+}, {
+"base": "VFSMTrigger",
+"class": "VFSMTriggerScript",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm_trigger_script.gd"
+}, {
+"base": "VFSMTrigger",
+"class": "VFSMTriggerTimer",
+"language": "GDScript",
+"path": "res://addons/visual_fsm/fsm/vfsm_trigger_timer.gd"
+}, {
+"base": "Spatial",
+"class": "WaterAnimated",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/fgd/solid_classes/water_animated.gd"
+}, {
+"base": "LiquidLayer",
+"class": "WaterLayer",
+"language": "GDScript",
+"path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
+}, {
+"base": "Node",
+"class": "WeaponProperties",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/WeaponProperties.gd"
+} ]
+_global_script_class_icons={
+"AIHintPath": "",
+"AIHintPosition": "",
+"Bullet": "",
+"CoverState": "",
+"IdleState": "",
+"LavaLayer": "",
+"LiquidLayer": "",
+"LookTowards": "",
+"NPC_State": "",
+"OrbitArm": "",
+"Pathfinding": "",
+"PatrolState": "",
+"PhysicsBall": "",
+"PhysicsEntity": "",
+"PlayGunshot": "",
+"QodotDependencies": "",
+"QodotEntity": "",
+"QodotFGDBaseClass": "",
+"QodotFGDClass": "",
+"QodotFGDFile": "",
+"QodotFGDPointClass": "",
+"QodotFGDSolidClass": "",
+"QodotLight": "",
+"QodotMap": "",
+"QodotPlugin": "",
+"QodotRotateEntity": "",
+"QodotSpatial": "res://addons/qodot/icons/icon_qodot_spatial.svg",
+"QodotTextureLoader": "",
+"QodotUtil": "",
+"QodotWorldspawnLayer": "",
+"QuakeMapFile": "",
+"QuakeMapImportPlugin": "",
+"QuakePaletteFile": "",
+"QuakePaletteImportPlugin": "",
+"QuakeWadFile": "",
+"QuakeWadImportPlugin": "",
+"ShootTarget": "",
+"SlimeLayer": "",
+"State": "",
+"StateMachine": "",
+"TrenchBroomFaceAttrib": "",
+"TrenchBroomGameConfigFile": "",
+"TrenchBroomGameConfigFolder": "",
+"TrenchBroomTag": "",
+"VFSM": "",
+"VFSMDemoSimpleAIJumper": "",
+"VFSMDemoTrafficLightsController": "",
+"VFSMSingleton": "",
+"VFSMState": "",
+"VFSMStateBase": "",
+"VFSMStateNode": "",
+"VFSMTrigger": "",
+"VFSMTriggerAction": "",
+"VFSMTriggerBase": "",
+"VFSMTriggerGraphSlot": "",
+"VFSMTriggerScript": "",
+"VFSMTriggerTimer": "",
+"WaterAnimated": "",
+"WaterLayer": "",
+"WeaponProperties": ""
+}
+
+[application]
+
+config/name="Brutalistland"
+run/main_scene="res://maps/01_ResidentalBlock/01_ResidentialBlock.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Pause="*res://singletons/Pause.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/qodot/plugin.cfg", "res://addons/visual_fsm/plugin.cfg", "res://addons/waterways/plugin.cfg" )
+
+[layer_names]
+
+3d_physics/layer_1="default"
+3d_physics/layer_2="player"
+3d_physics/layer_3="npc"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+limits/rendering/max_lights_per_object=256
+environment/default_environment="res://default_env.tres"

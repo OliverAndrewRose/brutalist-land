@@ -2,10 +2,10 @@
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
-[ext_resource path="res://addons/qodot/textures/materials/checkerboard_material.tres" type="Material" id=3]
-[ext_resource path="res://addons/qodot/textures/materials/grid_material.tres" type="Material" id=4]
-[ext_resource path="res://addons/qodot/textures/materials/uv_test_material.tres" type="Material" id=5]
-[ext_resource path="res://addons/qodot/textures/shaders/tangent-test.tres" type="Material" id=6]
+[ext_resource path="res://assets/textures/materials/checkerboard_material.tres" type="Material" id=3]
+[ext_resource path="res://assets/textures/materials/grid_material.tres" type="Material" id=4]
+[ext_resource path="res://assets/textures/materials/uv_test_material.tres" type="Material" id=5]
+[ext_resource path="res://assets/textures/shaders/tangent-test.tres" type="Material" id=6]
 
 [sub_resource type="ProceduralSky" id=1]
 

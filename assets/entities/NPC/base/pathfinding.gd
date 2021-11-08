@@ -26,10 +26,20 @@ func _move_to_next_node():
 		
 		if(direction.length() < 1):
 			path_node = clamp(path_node + 1,0, path.size()-1);
-			var look_direction: Vector3 = Vector3(path[path_node].x, owner.get_global_transform().origin.y, path[path_node].z);
-			owner.get_node("Look_Towards").look_towards(look_direction);
+			_look_towards_path();
 		else:
 			kinematic_body.move_and_slide(direction.normalized() * speed, Vector3.UP);
+
+
+func _look_towards_path():
+	
+	# If there's an enemy, don't look towards the path.
+	if owner.get_node("AI_behaviour").current_enemy != null:
+		return null;
+	
+	var look_direction: Vector3 = path[path_node];
+	owner.get_node("Look_Towards").look_towards(look_direction);
+	pass
 
 
 func _on_path_regen_timeout():

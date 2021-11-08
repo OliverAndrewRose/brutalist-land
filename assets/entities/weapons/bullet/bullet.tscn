@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/entities/weapons/bullet/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://assets/sound/gunshots/bullet_crack_01.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/entities/weapons/bullet/BulletSounds.gd" type="Script" id=3]
+[ext_resource path="res://assets/sound/gunshots/Whiz 03.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/entities/weapons/bullet/bullet_audio_player.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.576471, 0.576471, 0.556863, 1 )
@@ -8,15 +12,20 @@ metallic = 1.0
 
 [sub_resource type="CapsuleMesh" id=2]
 material = SubResource( 1 )
-radius = 0.05
-mid_height = 0.05
+radius = 0.1
+mid_height = 0.1
 radial_segments = 8
 rings = 2
 
 [sub_resource type="CapsuleShape" id=3]
-margin = 0.005
-radius = 0.01
-height = 0.01
+margin = 0.1
+radius = 0.1
+height = 0.1
+
+[sub_resource type="CapsuleShape" id=4]
+margin = 1.0
+radius = 5.0
+height = 3.0
 
 [node name="Bullet" type="RigidBody"]
 continuous_cd = true
@@ -33,4 +42,26 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 3 )
 
+[node name="delete_timer" type="Timer" parent="."]
+wait_time = 1.75
+one_shot = true
+autostart = true
+
+[node name="bullet_sounds" type="Spatial" parent="."]
+script = ExtResource( 3 )
+bullet_crack_clip = ExtResource( 2 )
+bullet_whiz_clip = ExtResource( 4 )
+bullet_audio_player = ExtResource( 5 )
+
+[node name="bullet_crack_range" type="Area" parent="bullet_sounds"]
+collision_layer = 2
+collision_mask = 2
+priority = 5.0
+
+[node name="CollisionShape" type="CollisionShape" parent="bullet_sounds/bullet_crack_range"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
+shape = SubResource( 4 )
+
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="timeout" from="delete_timer" to="." method="_on_delete_timer_timeout"]
+[connection signal="body_entered" from="bullet_sounds/bullet_crack_range" to="bullet_sounds" method="_on_bullet_crack_range_body_entered"]
