@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
 [ext_resource path="res://addons/player/shoot/Impact.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sound/gunshots/FIREARM_Sub_Machine_Gun_Model_01_Fire_Single_RR1_stereo.wav" type="AudioStream" id=4]
 [ext_resource path="res://addons/player/shoot/reload.wav" type="AudioStream" id=5]
 [ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://addons/player/shoot/empty.wav" type="AudioStream" id=7]
@@ -25,11 +26,14 @@ script = ExtResource( 1 )
 impact = ExtResource( 3 )
 shell = ExtResource( 8 )
 magazine = ExtResource( 9 )
-rifle_shoot_sound = ExtResource( 2 )
+rifle_shoot_sound = ExtResource( 4 )
 pistol_shoot_sound = ExtResource( 2 )
 reload_sound = ExtResource( 5 )
 empty_sound = ExtResource( 7 )
 bullet_scene = ExtResource( 15 )
+
+[node name="ShootPosition" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8 )
 
 [node name="BulletSpread" type="Position3D" parent="."]
 
@@ -38,7 +42,7 @@ enabled = true
 cast_to = Vector3( 0, 0, -1000 )
 
 [node name="Position3D" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, -0.1, -0.15 )
 
 [node name="SwitchAndAttack" type="Position3D" parent="Position3D"]
 
@@ -52,6 +56,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11, -0.18 )
 
 [node name="Weapon" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05 )
 
 [node name="ShellSpawn" type="Position3D" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.01, -0.2 )
@@ -67,7 +72,7 @@ omni_range = 2.0
 [node name="LookAt" type="Position3D" parent="Position3D"]
 
 [node name="HUD" type="Control" parent="."]
-modulate = Color( 0.811765, 0.498039, 0.0901961, 1 )
+modulate = Color( 0, 0.627451, 0.901961, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 13 )
@@ -156,7 +161,7 @@ __meta__ = {
 margin_top = 70.0
 margin_right = 122.0
 margin_bottom = 101.0
-text = "1     AK-47"
+text = "1     M45-A"
 
 [node name="Weapon2" type="Label" parent="HUD/WeaponSelected"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -220,6 +225,7 @@ __meta__ = {
 margin_left = 108.0
 margin_right = 164.0
 margin_bottom = 60.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "30"
 
 [node name="Slash" type="Label" parent="HUD/DisplayAmmo"]
@@ -286,7 +292,7 @@ __meta__ = {
 [node name="ReloadTipTween" type="Tween" parent="."]
 
 [node name="FireRateTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.075
 one_shot = true
 
 [node name="RecoilTimer" type="Timer" parent="."]

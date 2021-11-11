@@ -4,7 +4,7 @@ var mouse_sensitivity = 1
 var joystick_deadzone = 0.2
 
 var run_speed = 10 # Running speed in m/s
-var walk_speed = run_speed / 2
+var walk_speed = run_speed / 1.5
 var crouch_speed = run_speed / 3
 var jump_height = 5
 

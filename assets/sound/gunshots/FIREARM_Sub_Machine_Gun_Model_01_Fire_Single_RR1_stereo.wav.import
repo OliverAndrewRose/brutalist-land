@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FIREARM_Sub_Machine_Gun_Model_01_Fire_Single_RR1_stereo.wav-9c399f267d3b29164affaaefa0306c67.sample"
+
+[deps]
+
+source_file="res://assets/sound/gunshots/FIREARM_Sub_Machine_Gun_Model_01_Fire_Single_RR1_stereo.wav"
+dest_files=[ "res://.import/FIREARM_Sub_Machine_Gun_Model_01_Fire_Single_RR1_stereo.wav-9c399f267d3b29164affaaefa0306c67.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
