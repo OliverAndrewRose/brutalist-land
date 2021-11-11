@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/entities/weapons/bullet/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/bullet_crack_01.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/entities/weapons/bullet/BulletSounds.gd" type="Script" id=3]
 [ext_resource path="res://assets/sound/gunshots/Whiz 03.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet_audio_player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/entities/weapons/bullet/bullet_impact.gd" type="Script" id=6]
+[ext_resource path="res://assets/entities/weapons/bullet/bullet_dust.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.576471, 0.576471, 0.556863, 1 )
@@ -62,6 +64,11 @@ priority = 5.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
 shape = SubResource( 4 )
 
+[node name="bullet_impact" type="Spatial" parent="."]
+script = ExtResource( 6 )
+bullet_dust_scene = ExtResource( 7 )
+
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="body_entered" from="." to="bullet_impact" method="_on_Bullet_body_entered"]
 [connection signal="timeout" from="delete_timer" to="." method="_on_delete_timer_timeout"]
 [connection signal="body_entered" from="bullet_sounds/bullet_crack_range" to="bullet_sounds" method="_on_bullet_crack_range_body_entered"]

@@ -6,7 +6,7 @@
 [node name="security_officer_01" instance=ExtResource( 1 )]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
-transform = Transform( -0.0242054, -0.0958352, 0.995103, 0.0409427, 0.994465, 0.0967699, -0.998868, 0.0430851, -0.0201476, -6.32612, 38.7612, -138.362 )
+transform = Transform( -0.105025, -0.994393, 0.0122812, 0.994308, -0.104778, 0.0193072, -0.0179123, 0.0142393, 0.999738, -69.1809, -4.95484, -143.022 )
 bone_name = "mixamorig_RightHand"
 
 [node name="m1911" parent="Armature/Skeleton/BoneAttachment" index="0" instance=ExtResource( 2 )]

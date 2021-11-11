@@ -64,7 +64,7 @@ func _shoot_weapon():
 	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
 	bullet.global_translate(shoot_origin.get_global_transform().origin);
-	bullet.global_transform.basis.z = aim_direction;
+	bullet.global_transform.basis.z = -aim_direction;
 	bullet.apply_impulse(Vector3.ZERO, aim_direction * weaponProperties.bullet_velocity);
 	bullet.bullet_damage = weaponProperties.damage;
 	pass

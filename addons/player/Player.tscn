@@ -47,6 +47,7 @@ pistol_model = ExtResource( 8 )
 [node name="Crosshair" parent="Head/Camera" instance=ExtResource( 3 )]
 
 [node name="Flashlight" parent="Head/Camera" instance=ExtResource( 4 )]
+light_color = Color( 0.905882, 0.803922, 0.627451, 1 )
 
 [node name="FootstepSound" parent="Head/Camera" instance=ExtResource( 6 )]
 

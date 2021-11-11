@@ -16,11 +16,11 @@ export (Resource) var empty_sound
 export(PackedScene) var bullet_scene;
 onready var shoot_sound = rifle_shoot_sound
 
-var weapon1_ammo = 30
-var weapon1_clip = 90
+var weapon1_ammo = 20
+var weapon1_clip = 300
 var weapon1_max_ammo = weapon1_ammo
 
-var weapon2_ammo = 20
+var weapon2_ammo = 7
 var weapon2_clip = 120
 var weapon2_max_ammo = weapon2_ammo
 
@@ -131,7 +131,7 @@ func _process(delta):
 		$Position3D.translation.y = lerp($Position3D.translation.y, -0.1 + -weapon_movement, 5 * delta)
 		$Position3D.translation.z = lerp($Position3D.translation.z, weapon_position_z + weapon_movement, 5 * delta)
 		
-		if player.is_on_floor() and player.player_speed >= 2:
+		if player.player_speed >= 3:
 			weapon_bobbing_animation()
 	
 	if $ReloadTween.is_active() or $SwitchWeaponTween.is_active():
@@ -162,7 +162,10 @@ func _process(delta):
 	
 	if (Input.is_key_pressed(KEY_R) or Input.is_joy_button_pressed(0, JOY_XBOX_X)):
 		if ammo != max_ammo and clip > 0 and weapon_selected < 3:
-			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", 0, 360, 1, Tween.TRANS_BACK, Tween.EASE_IN_OUT, 0)
+			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", 0, -60, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", -60, 0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+			$ReloadTween.interpolate_property(weapon, "translation:y", 0, -0.2, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+			$ReloadTween.interpolate_property(weapon, "translation:y", -0.2, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
 			$ReloadTween.start()
 			play_sound(reload_sound, -5, 0)
 			$SpawnMagazineTimer.start()
@@ -183,7 +186,7 @@ func shoot():
 			dB -= 15
 	
 	shoot_animation()
-	spawn_impact()
+	#spawn_impact()
 	spawn_projectile()
 	spawn_shell()
 	
@@ -203,7 +206,7 @@ func shoot():
 func spawn_projectile():
 	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
-	bullet.global_translate($Position3D.get_global_transform().origin);
+	bullet.global_transform = $ShootPosition.get_global_transform();
 	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 330);
 	bullet.bullet_damage = 30;
 
@@ -265,7 +268,7 @@ func shoot_animation():
 	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
 	
-	var animator= current_weapon_model.get_node("AnimationPlayer")
+	var animator = current_weapon_model.get_node("AnimationPlayer")
 	animator.stop()
 	animator.play("fire_regular")
 	
@@ -300,22 +303,22 @@ func shoot_animation():
 #	$ShootTween.start()
 
 func weapon_bobbing_animation():
-	var animation_speed = 1.0 / player.player_speed
-	var animation_value = player.player_speed / 600 # 0.01
+	var animation_speed = 0.5
+	var animation_value = 0.01 * player.player_speed; # 0.01
 	
 	if not $HBobbingTween.is_active():
-		$HBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:x", 0, animation_value, animation_speed * 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$HBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:x", animation_value, 0, animation_speed * 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed * 2)
+		$HBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:x", 0, animation_value, animation_speed*2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		$HBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:x", animation_value, 0, animation_speed*2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed*2)
 		$HBobbingTween.start()
 	
 	if not $VBobbingTween.is_active():
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:y", 0, animation_value / 2, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:y", animation_value / 2, 0, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed)
+		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:y", animation_value / 4, 0, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:y", 0, animation_value / 4, animation_speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed)
 		
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", 0, -animation_value / 10, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", -animation_value / 10, 0, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed / 2)
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", 0, -animation_value / 10, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, (animation_speed / 2) * 2)
-		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", -animation_value / 10, 0, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, (animation_speed / 2) * 3)
+#		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", 0, -animation_value / 10, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+#		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", -animation_value / 10, 0, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, animation_speed / 2)
+#		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", 0, -animation_value / 10, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, (animation_speed / 2) * 2)
+#		$VBobbingTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing, "translation:z", -animation_value / 10, 0, animation_speed / 2, Tween.TRANS_SINE, Tween.EASE_IN_OUT, (animation_speed / 2) * 3)
 		$VBobbingTween.start()
 
 func switch_animation():
@@ -364,7 +367,7 @@ func switch_animation():
 					current_weapon_model.queue_free()
 					
 		current_weapon_model = rifle_model.instance()
-		$Position3D.add_child(current_weapon_model)
+		$Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon.add_child(current_weapon_model)
 		current_weapon_model.get_transform().origin = Vector3.ZERO
 				
 		weapon_position_z = -0.2
@@ -390,7 +393,7 @@ func switch_animation():
 					current_weapon_model.queue_free()
 
 		current_weapon_model = pistol_model.instance()
-		$Position3D.add_child(current_weapon_model)
+		$Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon.add_child(current_weapon_model)
 		current_weapon_model.get_transform().origin = Vector3.ZERO
 		
 		weapon_position_z = -0.3
