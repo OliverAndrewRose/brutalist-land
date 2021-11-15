@@ -207,7 +207,7 @@ func spawn_projectile():
 	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
 	bullet.global_transform = $ShootPosition.get_global_transform();
-	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 330);
+	bullet.apply_impulse(Vector3.ZERO, -$Position3D/LookAt.get_global_transform().basis.z * 280);
 	bullet.bullet_damage = 30;
 
 

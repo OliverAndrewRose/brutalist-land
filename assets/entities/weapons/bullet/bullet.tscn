@@ -30,8 +30,10 @@ radius = 5.0
 height = 3.0
 
 [node name="Bullet" type="RigidBody"]
+collision_layer = 8
+collision_mask = 17
 continuous_cd = true
-contacts_reported = 8
+contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 1 )
 
@@ -45,7 +47,7 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="delete_timer" type="Timer" parent="."]
-wait_time = 1.75
+wait_time = 1.5
 one_shot = true
 autostart = true
 
