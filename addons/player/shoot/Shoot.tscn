@@ -38,6 +38,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8 )
 [node name="BulletSpread" type="Position3D" parent="."]
 
 [node name="RayCast" type="RayCast" parent="BulletSpread"]
+visible = false
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
 

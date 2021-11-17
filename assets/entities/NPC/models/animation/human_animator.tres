@@ -1,0 +1,39 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=8 format=2]
+
+[sub_resource type="AnimationNodeTimeScale" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "pistol_idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "pistol_strafe_L-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "pistol_run_forward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "pistol_walk_back-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "pistol_strafe_R-loop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=4]
+blend_point_0/node = SubResource( 1 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 2 )
+blend_point_1/pos = Vector2( 0.3, 0 )
+blend_point_2/node = SubResource( 3 )
+blend_point_2/pos = Vector2( 0, 0.7 )
+blend_point_3/node = SubResource( 5 )
+blend_point_3/pos = Vector2( 0, -0.2 )
+blend_point_4/node = SubResource( 6 )
+blend_point_4/pos = Vector2( -0.3, 0 )
+
+[resource]
+graph_offset = Vector2( -254.556, 123.458 )
+nodes/TimeScale/node = SubResource( 7 )
+nodes/TimeScale/position = Vector2( 160, 200 )
+nodes/movement_dir/node = SubResource( 4 )
+nodes/movement_dir/position = Vector2( -60, 200 )
+nodes/output/position = Vector2( 340, 200 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "movement_dir" ]

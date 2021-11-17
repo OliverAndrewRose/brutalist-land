@@ -1,7 +1,7 @@
 extends Node
 class_name LookTowards
 
-var look_toward: Vector3;
+var look_toward: Vector3 = Vector3.FORWARD;
 
 
 func look_towards(direction: Vector3):

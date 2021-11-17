@@ -1,4 +1,4 @@
-[gd_scene load_steps=638 format=2]
+[gd_scene load_steps=639 format=2]
 
 [ext_resource path="res://assets/textures/Wall/Concrete_Wall_05.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/Ground/Concrete_Tile_Light.png" type="Texture" id=2]
@@ -58,6 +58,7 @@
 [ext_resource path="res://assets/textures/Ground/Carpet_01.png" type="Texture" id=56]
 [ext_resource path="res://assets/textures/Wall/Plaster_wall_02.png" type="Texture" id=57]
 [ext_resource path="res://assets/textures/Ground/Wood_Plank_01.png" type="Texture" id=58]
+[ext_resource path="res://assets/entities/debug/RespawnOnDeath.gd" type="Script" id=59]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.25098, 0.447059, 0.533333, 1 )
@@ -2482,7 +2483,6 @@ agent/max_slope = 60.0
 region/min_size = 5.0
 
 [node name="Root" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0828171, -1.90735e-06, -0.00565147 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -2508,7 +2508,7 @@ tree_attach_batch_size = 16
 set_owner_batch_size = 16
 
 [node name="entity_0_worldspawn" type="StaticBody" parent="QodotMap"]
-collision_mask = 15
+collision_mask = 47
 
 [node name="entity_0_mesh_instance" type="MeshInstance" parent="QodotMap/entity_0_worldspawn"]
 use_in_baked_light = true
@@ -4182,6 +4182,7 @@ omni_range = 3.55556
 
 [node name="entity_12_func_group" type="StaticBody" parent="QodotMap"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 11.2795, 2.70682 )
+collision_mask = 47
 
 [node name="entity_12_mesh_instance" type="MeshInstance" parent="QodotMap/entity_12_func_group"]
 mesh = SubResource( 1130 )
@@ -4224,6 +4225,7 @@ shape = SubResource( 1141 )
 
 [node name="entity_13_func_group" type="StaticBody" parent="QodotMap"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 16.2795, 2.79318 )
+collision_mask = 47
 
 [node name="entity_13_mesh_instance" type="MeshInstance" parent="QodotMap/entity_13_func_group"]
 mesh = SubResource( 1142 )
@@ -5297,15 +5299,6 @@ extents = Vector3( 60, 20, 60 )
 bounces = 2
 light_data = ExtResource( 27 )
 
-[node name="Base_NPC2" parent="." instance=ExtResource( 10 )]
-transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 3, 9.25, 15 )
-
-[node name="Base_NPC4" parent="." instance=ExtResource( 10 )]
-transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 12.5127, 19.25, 52 )
-
-[node name="Base_NPC3" parent="." instance=ExtResource( 10 )]
-transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 7, 9.25, 15 )
-
 [node name="Navigation" type="Navigation" parent="."]
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
@@ -5340,6 +5333,8 @@ autoplay = true
 script = ExtResource( 55 )
 
 [node name="Position3D" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 8.8, 31 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 9.76855, 18 )
+script = ExtResource( 59 )
+spawn_entity = ExtResource( 10 )
 
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_MusicPlayer_finished"]

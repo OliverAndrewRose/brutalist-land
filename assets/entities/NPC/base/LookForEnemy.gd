@@ -14,7 +14,7 @@ func _on_fov_detection_body_entered(body: Spatial):
 
 func _track_potential_entitiy(target: Spatial):
 	if _check_enemy_team(target):
-		print("Enemy spotted: " + target.name)
+		#print("Enemy spotted: " + target.name)
 		potential_enemies[target] = true;
 
 

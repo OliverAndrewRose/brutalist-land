@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://assets/entities/NPC/base/state_machine/states/CoverState.gd"
 }, {
 "base": "Node",
+"class": "Death",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/functions/Death.gd"
+}, {
+"base": "Node",
 "class": "Health",
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/functions/Health.gd"
@@ -58,6 +63,11 @@ _global_script_classes=[ {
 "class": "LookTowards",
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/functions/LookTowards.gd"
+}, {
+"base": "Spatial",
+"class": "NPCProperties",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/functions/NPCProperties.gd"
 }, {
 "base": "State",
 "class": "NPC_State",
@@ -325,11 +335,13 @@ _global_script_class_icons={
 "AIHintPosition": "",
 "Bullet": "",
 "CoverState": "",
+"Death": "",
 "Health": "",
 "IdleState": "",
 "LavaLayer": "",
 "LiquidLayer": "",
 "LookTowards": "",
+"NPCProperties": "",
 "NPC_State": "",
 "OrbitArm": "",
 "Pathfinding": "",
@@ -405,6 +417,7 @@ enabled=PoolStringArray( "res://addons/qodot/plugin.cfg", "res://addons/visual_f
 3d_physics/layer_3="npc_agent"
 3d_physics/layer_4="bullets"
 3d_physics/layer_5="npc_hitbox"
+3d_physics/layer_6="ragdoll"
 
 [physics]
 
