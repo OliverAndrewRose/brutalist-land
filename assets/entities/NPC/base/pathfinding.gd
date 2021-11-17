@@ -6,6 +6,7 @@ var path_node: int;
 export(PackedScene) var debug_model: PackedScene;
 
 onready var kinematic_body: KinematicBody = get_parent().get_parent() as KinematicBody;
+onready var npc_root: NPCProperties = owner as NPCProperties;
 onready var nav: Navigation = get_node("/root/Root/Navigation") as Navigation;
 
 export(Vector3) var target: Vector3;
@@ -16,10 +17,10 @@ func _ready():
 
 func _physics_process(delta: float):
 	
-	_move_to_next_node();
+	_move_to_next_node(delta);
 	
 
-func _move_to_next_node():
+func _move_to_next_node(delta_t: float):
 	
 	if(path_node < path.size()):
 		var direction: Vector3 = (path[path_node] - global_transform.origin);
@@ -28,7 +29,8 @@ func _move_to_next_node():
 			path_node = clamp(path_node + 1,0, path.size()-1);
 			_look_towards_path();
 		else:
-			kinematic_body.move_and_slide(direction.normalized() * speed, Vector3.UP);
+			var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * speed,delta_t*10);
+			kinematic_body.move_and_slide(move_dir, Vector3.UP);
 
 
 func _look_towards_path():
