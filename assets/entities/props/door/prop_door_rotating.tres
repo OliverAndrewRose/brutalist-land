@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=1]
+[ext_resource path="res://assets/entities/props/door/door_base.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+class_options = "----------------------------------------------------------------"
+classname = "prop_door_rotating"
+description = "Rotating door model."
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+}
+class_property_descriptions = {
+}
+meta_properties = {
+"color": Color( 0.490196, 0.345098, 0.0431373, 1 ),
+"size": AABB( -4, -16, -6, 4, 16, 42 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = ""
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 2 )
+scripting = "----------------------------------------------------------------"

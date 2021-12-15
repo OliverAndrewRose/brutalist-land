@@ -47,7 +47,7 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="delete_timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.5
 one_shot = true
 autostart = true
 

@@ -55,11 +55,11 @@ func _physics_process(delta):
 	# Direction inputs
 	direction = Vector3()
 	
-	if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_Z) or Input.is_key_pressed(KEY_UP):
+	if Input.is_key_pressed(KEY_W):
 		direction.z += -1
 	if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
 		direction.z += 1
-	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_Q) or Input.is_key_pressed(KEY_LEFT):
+	if Input.is_key_pressed(KEY_A):
 		direction.x += -1
 	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
 		direction.x += 1

@@ -40,6 +40,7 @@ var singleshot = false
 var can_shoot = true
 var weapon_selected = 1
 var weapon_position_z = -0.2
+var recoil = 0;
 
 var can_switch_joy_dpad = true
 
@@ -50,6 +51,7 @@ var current_weapon_model = null;
 
 onready var player = owner
 onready var camera = player.get_node("Head/Camera")
+onready var crosshair = player.get_node("Head/Camera/Crosshair")
 
 func _ready():
 	$HUD/DisplayAmmo/AmmoText.text = str(ammo)
@@ -74,6 +76,7 @@ func _input(event):
 					switch_animation()
 
 func _process(delta):
+	
 	if not $ReloadTween.is_active():
 		if Input.is_key_pressed(KEY_1):
 			if weapon_selected != 1:
@@ -153,6 +156,7 @@ func _process(delta):
 				ammo_animation()
 			
 	reload_tip()
+	crosshair.recoil = crosshair.recoil + (recoil*10 - crosshair.recoil) * delta * 2;
 	
 	if singleshot:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.get_joy_axis(0, 7) >= 0.5:
@@ -166,6 +170,8 @@ func _process(delta):
 			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", -60, 0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
 			$ReloadTween.interpolate_property(weapon, "translation:y", 0, -0.2, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
 			$ReloadTween.interpolate_property(weapon, "translation:y", -0.2, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+			$ReloadTween.interpolate_property(weapon, "translation:z", 0, 0.4, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+			$ReloadTween.interpolate_property(weapon, "translation:z", 0.4, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
 			$ReloadTween.start()
 			play_sound(reload_sound, -5, 0)
 			$SpawnMagazineTimer.start()
@@ -191,8 +197,11 @@ func shoot():
 	spawn_shell()
 	
 	# Calculate bullet spread amount
-	var recoil = 0
-	recoil = $RecoilTimer.time_left * bullet_spread * (1 + player.player_speed / 10)
+	recoil = 0
+	if($RecoilTimer.time_left == 0):
+		recoil = $RecoilTimer.wait_time * bullet_spread * (1 + player.player_speed / 10) * 0.1;
+	else:
+		recoil = $RecoilTimer.time_left * bullet_spread * (1 + player.player_speed / 10)
 	
 	$BulletSpread.rotation_degrees.z = rand_range(0, 360)
 	$BulletSpread/RayCast.rotation_degrees.y = rand_range(-recoil, recoil)
@@ -424,9 +433,11 @@ func switch_animation():
 
 func _on_RecoilTimer_timeout():
 	$BulletSpread/RayCast.rotation_degrees = Vector3()
+	recoil = 0;
 
 func _on_SpawnMagazineTimer_timeout():
-	spawn_magazine()
+	pass
+	#spawn_magazine()
 
 func _on_ReloadTween_tween_all_completed():
 	calculate_ammo()

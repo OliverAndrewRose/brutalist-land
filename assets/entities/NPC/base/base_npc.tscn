@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/entities/NPC/models/security_01/security_officer_01.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/IdleState.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/AssaultState.gd" type="Script" id=19]
 [ext_resource path="res://assets/entities/NPC/models/security_01/security_officer_01_ragdoll.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/entities/NPC/base/functions/NPCProperties.gd" type="Script" id=21]
+[ext_resource path="res://assets/entities/NPC/base/functions/AIDoorOpener.gd" type="Script" id=22]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -126,6 +127,12 @@ speed = 5.0
 [node name="path_regen" type="Timer" parent="AI_behaviour"]
 wait_time = 2.0
 autostart = true
+
+[node name="DoorOpener" type="RayCast" parent="AI_behaviour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+script = ExtResource( 22 )
 
 [node name="chest_position" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
