@@ -1,0 +1,14 @@
+{
+	"type": "sounds",
+	"sub-type": "impact",
+	
+	"materials": [
+		"GLASS",
+	],
+	
+	"GLASS": [
+		"res://assets/sound/impact/glass/SHATTER_Glass_Medium_01_mono.wav",
+		"res://assets/sound/impact/glass/SHATTER_Glass_Medium_02_mono.wav",
+		"res://assets/sound/impact/glass/SHATTER_Glass_Medium_03_mono.wav"
+	],
+}

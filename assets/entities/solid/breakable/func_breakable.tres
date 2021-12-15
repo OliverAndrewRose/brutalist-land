@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://addons/qodot/game_definitions/fgd/solid_classes/mover.gd" type="Script" id=1]
+[ext_resource path="res://assets/entities/solid/breakable/Breakable.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" type="Script" id=2]
 
 [resource]
@@ -11,17 +11,17 @@ description = "A breakable surface."
 qodot_internal = false
 base_classes = [  ]
 class_properties = {
-"rotation": Vector3( 0, 0, 0 ),
-"scale": Vector3( 1, 1, 1 ),
-"speed": 1.0,
-"translation": Vector3( 0, 0, 0 )
+"health": 40,
+"material_type": "GLASS"
 }
 class_property_descriptions = {
+"health": "The health before breaking.",
+"material_type": "Type of material. (e.g. GLASS, WOOD, CONCRETE, GRASS, DIRT)"
 }
 meta_properties = {
 }
 node_options = "----------------------------------------------------------------"
-node_class = "KinematicBody"
+node_class = "RigidBody"
 transient_node = false
 spawn = "----------------------------------------------------------------"
 spawn_type = 2

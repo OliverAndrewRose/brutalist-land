@@ -2,9 +2,7 @@
 
 [ext_resource path="res://assets/entities/NPC/base/map_markers/ai_hint_path.gd" type="Script" id=1]
 
-[node name="ai_hint_path" type="Position3D" groups=[
-"ai_hint_path",
-]]
+[node name="ai_hint_path" type="Position3D" groups=["ai_hint_path"]]
 script = ExtResource( 1 )
 properties = {
 }

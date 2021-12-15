@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://assets/entities/props/door/functions/DoorOpenCloser.gd"
 }, {
+"base": "WeaponBase",
+"class": "FirearmBase",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/base/base_firearm/FirearmBase.gd"
+}, {
 "base": "Node",
 "class": "Health",
 "language": "GDScript",
@@ -335,6 +340,11 @@ _global_script_classes=[ {
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
 }, {
 "base": "Node",
+"class": "WeaponBase",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/base/WeaponBase.gd"
+}, {
+"base": "Node",
 "class": "WeaponProperties",
 "language": "GDScript",
 "path": "res://assets/entities/weapons/WeaponProperties.gd"
@@ -347,6 +357,7 @@ _global_script_class_icons={
 "CoverState": "",
 "Death": "",
 "DoorOpenCloser": "",
+"FirearmBase": "",
 "Health": "",
 "IdleState": "",
 "LavaLayer": "",
@@ -405,6 +416,7 @@ _global_script_class_icons={
 "VFSMTriggerTimer": "",
 "WaterAnimated": "",
 "WaterLayer": "",
+"WeaponBase": "",
 "WeaponProperties": ""
 }
 
