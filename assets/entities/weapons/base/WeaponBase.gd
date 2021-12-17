@@ -19,4 +19,24 @@ export(bool) var hide_ammo_hud: bool = false;
 export(float) var weapon_z_position: float = -0.3;
 
 func fire_weapon() -> void:
+	shoot_animation();
+	pass
+
+
+func shoot_animation():
+	var animator = owner.current_weapon_model.get_node("AnimationPlayer") as AnimationPlayer;
+	animator.stop()
+	animator.play("fire_regular")
+
+
+func play_reload_animation() -> void:
+	
+	var weapon = owner.get_node("Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon");
+	owner.get_node("ReloadTween").interpolate_property(weapon, "rotation_degrees:x", 0, -60, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+	owner.get_node("ReloadTween").interpolate_property(weapon, "rotation_degrees:x", -60, 0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+	owner.get_node("ReloadTween").interpolate_property(weapon, "translation:y", 0, -0.2, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+	owner.get_node("ReloadTween").interpolate_property(weapon, "translation:y", -0.2, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+	owner.get_node("ReloadTween").interpolate_property(weapon, "translation:z", 0, 0.4, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
+	owner.get_node("ReloadTween").interpolate_property(weapon, "translation:z", 0.4, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+	owner.get_node("ReloadTween").start()
 	pass

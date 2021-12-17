@@ -1,4 +1,5 @@
 extends Spatial
+class_name Shoot
 
 var current_weapon: WeaponBase;
 var current_weapon_model: Spatial;
@@ -28,6 +29,7 @@ func _ready():
 	switch_animation();
 	pass
 
+
 func _input(event):
 #	Getting the mouse movement for the weapon sway in the physics process
 	if event is InputEventMouseMotion:
@@ -46,9 +48,8 @@ func _input(event):
 					current_weapon_index -= 1
 					switch_animation()
 
+
 func _process(delta):
-	
-	
 	if $BulletSpread/RayCast.is_colliding():
 		$Position3D/LookAt.look_at($BulletSpread/RayCast.get_collision_point(), Vector3.UP)
 		$Position3D/SwitchAndAttack/Bobbing/LookAtLerp.rotation_degrees = lerp($Position3D/SwitchAndAttack/Bobbing/LookAtLerp.rotation_degrees, $Position3D/LookAt.rotation_degrees, 10 * delta)
@@ -99,13 +100,7 @@ func _process(delta):
 	
 	if (Input.is_key_pressed(KEY_R)):
 		if current_weapon.current_ammo != current_weapon.max_ammo and current_weapon.total_ammo > 0:
-			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", 0, -60, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
-			$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", -60, 0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
-			$ReloadTween.interpolate_property(weapon, "translation:y", 0, -0.2, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
-			$ReloadTween.interpolate_property(weapon, "translation:y", -0.2, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
-			$ReloadTween.interpolate_property(weapon, "translation:z", 0, 0.4, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0)
-			$ReloadTween.interpolate_property(weapon, "translation:z", 0.4, 0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
-			$ReloadTween.start()
+			current_weapon.play_reload_animation();
 			play_sound(current_weapon.reload_sound, -5, 0)
 			$SpawnMagazineTimer.start()
 			
@@ -113,7 +108,8 @@ func _process(delta):
 				$ReloadTipTween.interpolate_property($HUD/ReloadTip, "margin_top", 35, 45, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				$ReloadTipTween.interpolate_property($HUD/ReloadTip, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				reload_tip_displayed = false
-		
+
+
 func shoot():
 	# Adding echo
 	_play_gun_echo();
@@ -121,7 +117,6 @@ func shoot():
 	# Calculate bullet spread amount
 	_process_recoil();
 	current_weapon.fire_weapon();
-	shoot_animation();
 	
 	current_weapon.current_ammo -= 1
 	$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo)
@@ -163,6 +158,7 @@ func play_sound(sound, dB, delay):
 	yield(get_tree().create_timer(10.0), "timeout")
 	audio_node.queue_free()
 
+
 func calculate_ammo():
 	var difference = current_weapon.max_ammo - current_weapon.current_ammo;
 	# If we have more ammo missing than in the clip, take all the ammo in the clip remaining
@@ -175,17 +171,6 @@ func calculate_ammo():
 	
 	update_ammo_HUD()
 
-
-func shoot_animation():
-	randomize()
-	var value = rand_range(0.8, 1)
-	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
-	
-	var animator = current_weapon_model.get_node("AnimationPlayer")
-	animator.stop()
-	animator.play("fire_regular")
-	
 
 func weapon_bobbing_animation():
 	var animation_speed = 0.5
@@ -245,6 +230,7 @@ func _on_RecoilTimer_timeout():
 func _on_ReloadTween_tween_all_completed():
 	calculate_ammo()
 	ammo_animation()
+
 
 func ammo_animation():
 	var animation_speed = 0.1

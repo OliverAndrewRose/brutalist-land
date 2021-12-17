@@ -39,7 +39,7 @@ func _open_door():
 	if open_forwards:
 		_animation_player.play("door_open_forward");
 	else:
-		_animation_player.play("door_open_backward")
+		_animation_player.play("door_open_backward");
 	
 	_audio_player.stream = open_sound;
 	_audio_player.play();

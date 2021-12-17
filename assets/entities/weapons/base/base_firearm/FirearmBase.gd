@@ -6,10 +6,19 @@ export(PackedScene) var shell: PackedScene;
 export(int) var bullet_velocity: int = 280;
 
 func fire_weapon():
-	
+	.fire_weapon();
 	spawn_projectile()
 	spawn_shell()
 	
+
+func shoot_animation():
+	.shoot_animation();
+	
+	randomize()
+	var value = rand_range(0.8, 1)
+	var omi_light = owner.get_node("Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight")
+	owner.get_node("ShootTween").interpolate_property(omi_light, "light_energy", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	owner.get_node("ShootTween").interpolate_property(omi_light, "light_energy", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
 
 
 func spawn_projectile():

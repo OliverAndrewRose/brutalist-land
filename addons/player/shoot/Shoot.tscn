@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://assets/entities/weapons/base/base_firearm/FirearmBase.gd" type="Script" id=4]
 [ext_resource path="res://addons/player/shoot/reload.wav" type="AudioStream" id=5]
 [ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/entities/weapons/grapple/WeaponGrapple.gd" type="Script" id=7]
 [ext_resource path="res://addons/player/shoot/Shell.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/entities/weapons/grapple/grapple_hook.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/player/Theme.tres" type="Theme" id=13]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=15]
 
@@ -21,7 +23,7 @@ default_font = SubResource( 1 )
 
 [node name="Shoot" type="Spatial"]
 script = ExtResource( 1 )
-available_weapons = [ NodePath("Weapons/M1911"), NodePath("Weapons/M1911-A") ]
+available_weapons = [ NodePath("Weapons/M1911"), NodePath("Weapons/M1911-A"), NodePath("Weapons/Harpoon") ]
 
 [node name="ShootPosition" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8 )
@@ -259,6 +261,15 @@ single_shot = false
 weapon_z_position = -0.2
 bullet_scene = ExtResource( 15 )
 shell = ExtResource( 8 )
+
+[node name="Harpoon" type="Node" parent="Weapons"]
+script = ExtResource( 7 )
+weapon_name = "Harpoon"
+weapon_model = ExtResource( 9 )
+current_ammo = 1
+max_ammo = 1
+total_ammo = 40
+bullet_spread = 4
 
 [node name="ShootTween" type="Tween" parent="."]
 
