@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name Player
 
 var mouse_sensitivity = 1
 var joystick_deadzone = 0.2
@@ -11,14 +12,14 @@ var jump_height = 5
 var current_speed = run_speed
 
 var ground_acceleration = 10
-var air_acceleration = 8
+var air_acceleration = 1
 var acceleration = air_acceleration
 
 var direction = Vector3()
 var velocity = Vector3() # Direction with acceleration added
 var movement = Vector3() # Velocity with gravity added
 
-var gravity = 11
+var gravity = 9.8
 var gravity_vec = Vector3()
 
 var snapped = false
@@ -32,6 +33,9 @@ var stand_height = 1.6;
 # Data:
 var player_speed = 0
 var falling_velocity = 0
+onready var _last_pos: Vector3 = get_global_transform().origin;
+var actual_velocity: Vector3;
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -46,6 +50,10 @@ func _input(event):
 	direction = Vector3()
 
 func _physics_process(delta):
+	
+	calculate_actual_velocity(delta);
+	#process_collision_velocity_change();
+	
 	# Look with the right analog of the joystick
 	if Input.get_joy_axis(0, 2) < -joystick_deadzone or Input.get_joy_axis(0, 2) > joystick_deadzone:
 		rotation_degrees.y -= Input.get_joy_axis(0, 2) * 2
@@ -82,6 +90,7 @@ func _physics_process(delta):
 	
 	# Snaps the character on the ground and changes the gravity vector to climb
 	# slopes at the same speed until 45 degrees
+	
 	if is_on_floor():
 		if snapped == false:
 			falling_velocity = gravity_vec.y
@@ -107,30 +116,37 @@ func _physics_process(delta):
 			current_speed = crouch_speed
 	
 	if Input.is_key_pressed(KEY_SPACE) or Input.is_joy_button_pressed(0, JOY_XBOX_A):
-		if is_on_floor() and can_jump:
-			snapped = false
-			can_jump = false
-			gravity_vec = Vector3.UP * jump_height
+		jump(jump_height);
 	else:
 		can_jump = true
 	
 	if is_on_ceiling():
-		gravity_vec.y = 0
+		#gravity_vec.y = 0
+		pass;
 	
 	if Input.is_key_pressed(KEY_CONTROL) or Input.is_key_pressed(KEY_C) or Input.is_joy_button_pressed(0, JOY_XBOX_B):
 		crouch_animation(true)
 	else:
 		crouch_animation(false)
 	
+	
 	velocity = velocity.linear_interpolate(direction * current_speed, acceleration * delta)
 	
 	movement.x = velocity.x + gravity_vec.x
 	movement.z = velocity.z + gravity_vec.z
-	movement.y = gravity_vec.y
+	movement.y = velocity.y + gravity_vec.y
 	
 	movement = move_and_slide(movement, Vector3.UP)
 	
 	player_speed = movement.length()
+
+
+func jump(height: float):
+	if is_on_floor() and can_jump:
+		snapped = false
+		can_jump = false
+		gravity_vec = Vector3.UP * height
+
 
 func land_animation():
 	var movement_y = clamp(falling_velocity, -20, 0) / 40
@@ -154,3 +170,8 @@ func crouch_animation(button_pressed):
 			$CrouchTween.interpolate_property($Head, "translation:y", $Head.translation.y, stand_height, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			$CrouchTween.start()
 			crouched = false
+
+func calculate_actual_velocity(delta_t: float):
+	actual_velocity = (get_global_transform().origin - _last_pos) / delta_t;
+	_last_pos = get_global_transform().origin;
+	pass

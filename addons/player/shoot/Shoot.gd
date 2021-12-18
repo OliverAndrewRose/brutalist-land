@@ -100,7 +100,7 @@ func _process(delta):
 	
 	if (Input.is_key_pressed(KEY_R)):
 		if current_weapon.current_ammo != current_weapon.max_ammo and current_weapon.total_ammo > 0:
-			current_weapon.play_reload_animation();
+			current_weapon.process_reload();
 			play_sound(current_weapon.reload_sound, -5, 0)
 			$SpawnMagazineTimer.start()
 			
@@ -108,6 +108,7 @@ func _process(delta):
 				$ReloadTipTween.interpolate_property($HUD/ReloadTip, "margin_top", 35, 45, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				$ReloadTipTween.interpolate_property($HUD/ReloadTip, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				reload_tip_displayed = false
+				
 
 
 func shoot():

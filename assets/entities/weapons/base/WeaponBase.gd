@@ -23,6 +23,11 @@ func fire_weapon() -> void:
 	pass
 
 
+func process_reload() -> void:
+	play_reload_animation();
+	pass
+
+
 func shoot_animation():
 	var animator = owner.current_weapon_model.get_node("AnimationPlayer") as AnimationPlayer;
 	animator.stop()

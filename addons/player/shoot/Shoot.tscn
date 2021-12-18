@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://assets/entities/weapons/grapple/WeaponGrapple.gd" type="Script" id=7]
 [ext_resource path="res://addons/player/shoot/Shell.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/entities/weapons/grapple/grapple_hook.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/entities/weapons/grapple/projectile/harpoon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sound/gunshots/WHOOSH_Steam_Wobble_Fast_02_mono.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/entities/weapons/grapple/projectile/Rope.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/player/Theme.tres" type="Theme" id=13]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=15]
 
@@ -265,11 +268,14 @@ shell = ExtResource( 8 )
 [node name="Harpoon" type="Node" parent="Weapons"]
 script = ExtResource( 7 )
 weapon_name = "Harpoon"
+shoot_sound = ExtResource( 11 )
 weapon_model = ExtResource( 9 )
 current_ammo = 1
 max_ammo = 1
 total_ammo = 40
 bullet_spread = 4
+harpoon_scene = ExtResource( 10 )
+rope_scene = ExtResource( 12 )
 
 [node name="ShootTween" type="Tween" parent="."]
 

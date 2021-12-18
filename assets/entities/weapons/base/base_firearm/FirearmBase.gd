@@ -4,6 +4,7 @@ class_name FirearmBase
 export(PackedScene) var bullet_scene: PackedScene;
 export(PackedScene) var shell: PackedScene;
 export(int) var bullet_velocity: int = 280;
+export(int) var bullet_damage: int = 30;
 
 func fire_weapon():
 	.fire_weapon();
@@ -26,7 +27,7 @@ func spawn_projectile():
 	get_tree().get_root().get_node("Root").add_child(bullet);
 	bullet.global_transform = owner.get_node("ShootPosition").get_global_transform();
 	bullet.apply_impulse(Vector3.ZERO, -owner.get_node("ShootPosition").get_global_transform().basis.z * bullet_velocity);
-	bullet.bullet_damage = 30;
+	bullet.bullet_damage = bullet_damage;
 
 
 func spawn_shell():

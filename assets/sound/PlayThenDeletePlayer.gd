@@ -5,5 +5,4 @@ func _ready():
 	connect("finished", self, "delete_self");
 	
 func delete_self():
-	pass
-	#queue_free();
+	queue_free();

@@ -7,4 +7,4 @@ func update_properties():
 		return;
 	
 	if 'angle' in properties:
-		self.rotate(Vector3.UP, deg2rad(180+int(properties.angle)));
+		self.rotation_degrees = Vector3(rotation_degrees.x,180 + int(properties.angle), rotation_degrees.z);
