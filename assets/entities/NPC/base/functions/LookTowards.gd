@@ -1,7 +1,7 @@
 extends Node
 class_name LookTowards
 
-var look_toward: Vector3 = Vector3.FORWARD;
+onready var look_toward: Vector3 = owner.transform.xform(Vector3.FORWARD);
 
 
 func look_towards(direction: Vector3):

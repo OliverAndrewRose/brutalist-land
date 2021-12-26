@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/Glass/block_window_01_t.png" type="Texture" id=1]
+
+[resource]
+flags_transparent = true
+params_depth_draw_mode = 1
+albedo_texture = ExtResource( 1 )
+metallic = 0.54
+metallic_specular = 1.0
+roughness = 0.12
+normal_enabled = true
+normal_scale = 16.0

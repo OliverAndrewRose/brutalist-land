@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/civilian_male_01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/IdleState.gd" type="Script" id=2]
+[ext_resource path="res://assets/entities/NPC/base/pathfinding.gd" type="Script" id=3]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://assets/models/basic/cone_collision.tres" type="Shape" id=5]
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/civilian_male_01_ragdoll.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/entities/NPC/base/LookForEnemy.gd" type="Script" id=11]
+[ext_resource path="res://assets/entities/NPC/base/functions/Health.gd" type="Script" id=12]
+[ext_resource path="res://assets/entities/NPC/base/functions/Death.gd" type="Script" id=14]
+[ext_resource path="res://assets/models/basic/debug_capsule.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/entities/NPC/base/functions/LookTowards.gd" type="Script" id=17]
+[ext_resource path="res://assets/entities/NPC/base/AI_Helper.gd" type="Script" id=18]
+[ext_resource path="res://assets/entities/NPC/base/functions/NPCProperties.gd" type="Script" id=21]
+[ext_resource path="res://assets/entities/NPC/base/functions/AIDoorOpener.gd" type="Script" id=22]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.4
+height = 1.5
+
+[node name="Base_NPC" type="KinematicBody" groups=["damagable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+collision_layer = 4
+collision_mask = 5
+script = ExtResource( 21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="model" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.2, 0 )
+
+[node name="AI_behaviour" type="Spatial" parent="."]
+script = ExtResource( 18 )
+
+[node name="look_for_enemy" type="Spatial" parent="AI_behaviour"]
+script = ExtResource( 11 )
+
+[node name="fov_detection" type="Area" parent="AI_behaviour/look_for_enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+collision_layer = 6
+collision_mask = 6
+
+[node name="fov_shape" type="CollisionShape" parent="AI_behaviour/look_for_enemy/fov_detection"]
+transform = Transform( 50, 0, 0, 0, -8.74228e-07, -50, 0, 20, -2.18557e-06, 0, 0, -20 )
+shape = ExtResource( 5 )
+
+[node name="cast_detection" type="RayCast" parent="AI_behaviour/look_for_enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+collision_mask = 7
+
+[node name="state_machine" type="Node" parent="AI_behaviour"]
+script = ExtResource( 4 )
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 2 )
+debug_cover = true
+
+[node name="pathfinding" type="Spatial" parent="AI_behaviour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+script = ExtResource( 3 )
+debug_model = ExtResource( 16 )
+target = Vector3( 0, 0.1, 0 )
+speed = 5.0
+
+[node name="path_regen" type="Timer" parent="AI_behaviour"]
+wait_time = 2.0
+autostart = true
+
+[node name="DoorOpener" type="RayCast" parent="AI_behaviour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+script = ExtResource( 22 )
+
+[node name="chest_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="head_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.65 )
+
+[node name="shoot_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.8 )
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="Death" type="Node" parent="Health"]
+script = ExtResource( 14 )
+body_ragdoll = ExtResource( 6 )
+
+[node name="Look_Towards" type="Node" parent="."]
+script = ExtResource( 17 )
+
+[connection signal="enemy_detected" from="AI_behaviour/look_for_enemy" to="AI_behaviour" method="_on_look_for_enemy_enemy_detected"]
+[connection signal="enemy_lost" from="AI_behaviour/look_for_enemy" to="AI_behaviour" method="_on_look_for_enemy_enemy_lost"]
+[connection signal="body_entered" from="AI_behaviour/look_for_enemy/fov_detection" to="AI_behaviour/look_for_enemy" method="_on_fov_detection_body_entered"]
+[connection signal="body_exited" from="AI_behaviour/look_for_enemy/fov_detection" to="AI_behaviour/look_for_enemy" method="_on_fov_detection_body_exited"]
+[connection signal="timeout" from="AI_behaviour/path_regen" to="AI_behaviour/pathfinding" method="_on_path_regen_timeout"]
+[connection signal="character_death" from="Health" to="Health/Death" method="_on_Health_character_death"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/textures/particle/smoke_03.png" type="Texture" id=1]
+[ext_resource path="res://assets/utilities/DeleteAfterDelay.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -53,6 +54,7 @@ color_ramp = SubResource( 9 )
 [sub_resource type="QuadMesh" id=5]
 
 [node name="bullet_dust" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Particles" type="Particles" parent="."]
 material_override = SubResource( 1 )

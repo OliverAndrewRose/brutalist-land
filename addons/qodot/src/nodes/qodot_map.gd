@@ -252,6 +252,7 @@ func run_build_steps(post_attach := false) -> void:
 		yield(get_tree().create_timer(YIELD_DURATION), YIELD_SIGNAL)
 
 	if post_attach:
+		get_node("entity_0_worldspawn").set_collision_mask(95);
 		build_complete()
 	else:
 		start_profile('add_children')
@@ -456,7 +457,7 @@ func build_worldspawn_layer_nodes() -> Array:
 
 	for worldspawn_layer in worldspawn_layers:
 		var node = ClassDB.instance(worldspawn_layer.node_class)
-		node.name = "entity_0_" + worldspawn_layer.name
+		node.set_collision_mask(95);
 		if worldspawn_layer.script_class:
 			node.set_script(worldspawn_layer.script_class)
 

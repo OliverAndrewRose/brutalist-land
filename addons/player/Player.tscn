@@ -6,8 +6,8 @@
 [ext_resource path="res://addons/player/flashlight/Flashlight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/player/shoot/Shoot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/player/footstep_sound/FootstepSound.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/player/minimap/Minimap.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/entities/weapons/m1911/m1911.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/player/Interact/Interact.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/player/map/map.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -40,10 +40,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 fov = 80.0
+far = 150.0
 
 [node name="Shoot" parent="Head/Camera" instance=ExtResource( 5 )]
-rifle_model = ExtResource( 8 )
-pistol_model = ExtResource( 8 )
 
 [node name="Crosshair" parent="Head/Camera" instance=ExtResource( 3 )]
 
@@ -52,10 +51,13 @@ light_color = Color( 0.905882, 0.803922, 0.627451, 1 )
 
 [node name="FootstepSound" parent="Head/Camera" instance=ExtResource( 6 )]
 
-[node name="Grab" parent="Head/Camera" instance=ExtResource( 2 )]
+[node name="Interact" parent="Head/Camera" instance=ExtResource( 9 )]
 
-[node name="Minimap" parent="Head/Camera" instance=ExtResource( 7 )]
-visible = false
+[node name="Grab" parent="Head/Camera" instance=ExtResource( 2 )]
+visible = true
+
+[node name="Map" parent="Head/Camera" instance=ExtResource( 10 )]
+visible = true
 
 [node name="chest_position" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )

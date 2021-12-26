@@ -20,7 +20,3 @@ func _input(event):
 			
 			get_tree().paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		get_tree().paused = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

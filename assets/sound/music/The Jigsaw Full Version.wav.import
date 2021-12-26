@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/The Jigsaw Full Version.wav-7ea6fb8eeb3210bace301c9444ce5ee5.sample"
+
+[deps]
+
+source_file="res://assets/sound/music/The Jigsaw Full Version.wav"
+dest_files=[ "res://.import/The Jigsaw Full Version.wav-7ea6fb8eeb3210bace301c9444ce5ee5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
