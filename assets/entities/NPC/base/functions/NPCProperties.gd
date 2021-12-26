@@ -1,8 +1,9 @@
-extends Spatial
+extends QodotEntity
 class_name NPCProperties
 
 var linear_velocity: Vector3;
 var forward_velocity: Vector3;
+var target_name: String;
 
 onready var max_speed: float = $AI_behaviour/pathfinding.speed;
 onready var _last_pos: Vector3 = get_global_transform().origin;
@@ -20,4 +21,10 @@ func _calculate_velocity(delta_t: float):
 
 func _calculate_forward_velocity(delta_t: float):
 	forward_velocity = -global_transform.basis.xform_inv(linear_velocity);
+	pass
+
+
+func update_properties() -> void:
+	if "targetname" in properties:
+		target_name = properties.targetname;
 	pass

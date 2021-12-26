@@ -1,0 +1,68 @@
+{
+	"events": [
+		{
+			"character": "character-1640033049.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Welcome to Mike burger. Can I take your order sir..."
+		},
+		{
+			"choice": "I'll take a Big Mike",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1640033049.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Here's your Big Mike Burger, with Mike Fries. Have a Mike day."
+		},
+		{
+			"choice": "I'll take a Mike Nugget",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1640033049.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Here's your Mike nugget. Have a Mike day."
+		},
+		{
+			"emit_signal": "\"food_nugget\"",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "I decided that I don't want anything",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1640033049.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Right..."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1640032941.json",
+		"name": "tower_mikes_server"
+	}
+}

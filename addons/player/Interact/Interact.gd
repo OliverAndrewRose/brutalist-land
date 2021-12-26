@@ -2,7 +2,7 @@ extends RayCast
 
 var can_use = true
 var text_visible = false
-var player: Spatial = owner as Spatial;
+onready var player: Spatial = owner as Spatial;
 var _modulate_color: Color;
 
 func _ready():

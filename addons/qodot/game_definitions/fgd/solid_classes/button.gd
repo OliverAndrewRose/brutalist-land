@@ -61,7 +61,7 @@ func _init() -> void:
 func _attach_to_object():
 	
 	if attach_to != null:
-		_attached_object = get_nodes_by_targetname(attach_to)[0];
+		_attached_object = get_tree().get_root().get_node("Root/QodotHelper").get_nodes_by_targetname(attach_to)[0];
 		_initial_attached_offset = get_transform().origin - _attached_object.get_transform().origin;
 		pass
 
@@ -137,26 +137,3 @@ func release() -> void:
 
 	yield(get_tree().create_timer(release_signal_delay), "timeout")
 	emit_signal("released")
-
-
-func get_nodes_by_targetname(targetname: String) -> Array:
-	var nodes := []
-
-	for node_idx in range(0, get_parent().get_child_count()):
-		var node = get_parent().get_child(node_idx)
-		if not node:
-			continue
-			
-		var entity_properties;
-		if "properties" in node:
-			entity_properties = node.properties;
-		else:
-			continue
-			
-		if not 'targetname' in entity_properties:
-			continue
-
-		if entity_properties['targetname'] == targetname:
-			nodes.append(node)
-
-	return nodes

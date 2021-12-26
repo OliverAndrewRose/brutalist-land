@@ -12,6 +12,7 @@ var weapon_sway_amount = 5
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 
+var enable_all_input = true;
 var can_shoot = true
 var weapon_position_z = -0.2
 
@@ -31,6 +32,10 @@ func _ready():
 
 
 func _input(event):
+	
+	if not enable_all_input:
+		return;
+	
 #	Getting the mouse movement for the weapon sway in the physics process
 	if event is InputEventMouseMotion:
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
@@ -50,6 +55,10 @@ func _input(event):
 
 
 func _process(delta):
+	
+	if not enable_all_input:
+		return;
+	
 	if $BulletSpread/RayCast.is_colliding():
 		$Position3D/LookAt.look_at($BulletSpread/RayCast.get_collision_point(), Vector3.UP)
 		$Position3D/SwitchAndAttack/Bobbing/LookAtLerp.rotation_degrees = lerp($Position3D/SwitchAndAttack/Bobbing/LookAtLerp.rotation_degrees, $Position3D/LookAt.rotation_degrees, 10 * delta)
@@ -271,3 +280,7 @@ func reload_tip():
 				reload_tip_displayed = false
 	
 	$ReloadTipTween.start()
+
+
+func set_active_input(set_active: bool):
+	enable_all_input = set_active;

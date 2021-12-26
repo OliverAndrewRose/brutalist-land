@@ -7,7 +7,7 @@ var joystick_deadzone = 0.2
 var run_speed = 10 # Running speed in m/s
 var walk_speed = run_speed / 1.5
 var crouch_speed = run_speed / 3
-var jump_height = 5
+var jump_height = 4
 
 var current_speed = run_speed
 
@@ -26,6 +26,8 @@ var snapped = false
 var can_jump = true
 var crouched = false
 var can_crouch = true
+var can_move = true;
+var can_look = true;
 
 var crouch_height = 1.3;
 var stand_height = 1.6;
@@ -41,6 +43,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
+	if not can_look:
+		return;
 	# Look with the mouse
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= event.relative.x * mouse_sensitivity / 18
@@ -63,14 +67,15 @@ func _physics_process(delta):
 	# Direction inputs
 	direction = Vector3()
 	
-	if Input.is_key_pressed(KEY_W):
-		direction.z += -1
-	if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
-		direction.z += 1
-	if Input.is_key_pressed(KEY_A):
-		direction.x += -1
-	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
-		direction.x += 1
+	if can_move:
+		if Input.is_key_pressed(KEY_W):
+			direction.z += -1
+		if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
+			direction.z += 1
+		if Input.is_key_pressed(KEY_A):
+			direction.x += -1
+		if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
+			direction.x += 1
 		
 	direction = direction.normalized()
 	
@@ -175,3 +180,10 @@ func calculate_actual_velocity(delta_t: float):
 	actual_velocity = (get_global_transform().origin - _last_pos) / delta_t;
 	_last_pos = get_global_transform().origin;
 	pass
+
+func set_active_input(active_input: bool):
+	$Head/Camera/Shoot.set_active_input(active_input);
+	can_crouch = active_input;
+	can_jump = active_input;
+	can_move = active_input;
+	can_look = active_input;

@@ -9630,7 +9630,7 @@
 ( 256 -1280 1632 ) ( 256 -1280 1696 ) ( 288 -1280 1696 ) Wall/Concrete_Wall_05 656 224 180 0.2 -0.2
 ( 256 -1024 1632 ) ( 256 -1280 1632 ) ( 288 -1280 1632 ) special/skip 368 480 180 1 1
 ( 288 -1280 1696 ) ( 256 -1280 1696 ) ( 256 -1024 1696 ) special/skip 368 480 180 1 1
-( 288 -1024 1696 ) ( 256 -1024 1696 ) ( 256 -1024 1632 ) special/skip 368 96 180 1 -1
+( 288 -1024 1696 ) ( 256 -1024 1696 ) ( 256 -1024 1632 ) Wall/Concrete_Wall_05 -544 224 180 0.2 -0.2
 ( 288 -1280 1696 ) ( 288 -1024 1696 ) ( 288 -1024 1632 ) Wall/Concrete_Wall_03 540 -210.87158 0 0.31007752 0.24023098
 }
 // brush 1076
@@ -11990,184 +11990,172 @@
 // entity 176
 {
 "classname" "prop_door_rotating"
-"origin" "1172 -592 1638"
-"angle" "0"
-}
-// entity 177
-{
-"classname" "prop_door_rotating"
-"origin" "1172 -288 1638"
-"angle" "0"
-}
-// entity 178
-{
-"classname" "prop_door_rotating"
 "origin" "-348 -560 1638"
 "angle" "180"
 }
-// entity 179
+// entity 177
 {
 "classname" "prop_door_rotating"
 "origin" "-256 -516 1638"
 "angle" "90"
 }
-// entity 180
+// entity 178
 {
 "classname" "prop_door_rotating"
 "origin" "-256 -412 1638"
 "angle" "90"
 }
-// entity 181
+// entity 179
 {
 "classname" "prop_door_rotating"
 "origin" "-256 -212 1638"
 "angle" "90"
 }
-// entity 182
+// entity 180
 {
 "classname" "prop_door_rotating"
 "origin" "-256 -108 1638"
 "angle" "90"
 }
-// entity 183
+// entity 181
 {
 "classname" "prop_door_rotating"
 "origin" "-348 -256 1638"
 "angle" "180"
 }
-// entity 184
+// entity 182
 {
 "classname" "prop_door_rotating"
 "origin" "-64 -516 1638"
 "angle" "90"
 }
-// entity 185
+// entity 183
 {
 "classname" "prop_door_rotating"
 "origin" "28 -560 1638"
 "angle" "0"
 }
-// entity 186
+// entity 184
 {
 "classname" "prop_door_rotating"
 "origin" "-64 -412 1638"
 "angle" "90"
 }
-// entity 187
+// entity 185
 {
 "classname" "prop_door_rotating"
 "origin" "-64 -212 1638"
 "angle" "90"
 }
-// entity 188
+// entity 186
 {
 "classname" "prop_door_rotating"
 "origin" "28 -256 1638"
 "angle" "0"
 }
-// entity 189
+// entity 187
 {
 "classname" "prop_door_rotating"
 "origin" "-64 -108 1638"
 "angle" "90"
 }
-// entity 190
+// entity 188
 {
 "classname" "prop_door_rotating"
 "origin" "1216 -212 1638"
 "angle" "90"
 }
-// entity 191
+// entity 189
 {
 "classname" "prop_door_rotating"
 "origin" "1308 -256 1638"
 "angle" "0"
 }
-// entity 192
+// entity 190
 {
 "classname" "prop_door_rotating"
 "origin" "1216 -108 1638"
 "angle" "90"
 }
-// entity 193
+// entity 191
 {
 "classname" "prop_door_rotating"
 "origin" "1172 -288 1638"
 "angle" "0"
 }
-// entity 194
+// entity 192
 {
 "classname" "prop_door_rotating"
 "origin" "1068 -288 1638"
 "angle" "180"
 }
-// entity 195
+// entity 193
 {
 "classname" "prop_door_rotating"
 "origin" "1024 -212 1638"
 "angle" "90"
 }
-// entity 196
+// entity 194
 {
 "classname" "prop_door_rotating"
 "origin" "1024 -108 1638"
 "angle" "90"
 }
-// entity 197
+// entity 195
 {
 "classname" "prop_door_rotating"
 "origin" "932 -256 1638"
 "angle" "180"
 }
-// entity 198
+// entity 196
 {
 "classname" "prop_door_rotating"
 "origin" "1216 -516 1638"
 "angle" "90"
 }
-// entity 199
+// entity 197
 {
 "classname" "prop_door_rotating"
 "origin" "1308 -560 1638"
 "angle" "0"
 }
-// entity 200
+// entity 198
 {
 "classname" "prop_door_rotating"
 "origin" "1216 -412 1638"
 "angle" "90"
 }
-// entity 201
+// entity 199
 {
 "classname" "prop_door_rotating"
 "origin" "1172 -592 1638"
 "angle" "0"
 }
-// entity 202
+// entity 200
 {
 "classname" "prop_door_rotating"
 "origin" "1068 -592 1638"
 "angle" "180"
 }
-// entity 203
+// entity 201
 {
 "classname" "prop_door_rotating"
 "origin" "1024 -516 1638"
 "angle" "90"
 }
-// entity 204
+// entity 202
 {
 "classname" "prop_door_rotating"
 "origin" "1024 -412 1638"
 "angle" "90"
 }
-// entity 205
+// entity 203
 {
 "classname" "prop_door_rotating"
 "origin" "932 -560 1638"
 "angle" "180"
 }
-// entity 206
+// entity 204
 {
 "classname" "light"
 "origin" "-160 -960 1680"
@@ -12175,7 +12163,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 207
+// entity 205
 {
 "classname" "light"
 "origin" "-160 -576 1680"
@@ -12184,7 +12172,7 @@
 "wait" "2"
 "angle" "0"
 }
-// entity 208
+// entity 206
 {
 "classname" "light"
 "origin" "-160 -288 1680"
@@ -12192,7 +12180,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 209
+// entity 207
 {
 "classname" "light"
 "origin" "384 -1152 1680"
@@ -12200,7 +12188,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 210
+// entity 208
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12215,7 +12203,7 @@
 ( 536 -1280 1688 ) ( 536 -1272 1688 ) ( 536 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 211
+// entity 209
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12230,7 +12218,7 @@
 ( 456 -1280 1688 ) ( 456 -1272 1688 ) ( 456 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 212
+// entity 210
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12245,7 +12233,7 @@
 ( 368 -1280 1688 ) ( 368 -1272 1688 ) ( 368 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 213
+// entity 211
 {
 "classname" "light"
 "origin" "896 -1152 1680"
@@ -12253,7 +12241,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 214
+// entity 212
 {
 "classname" "light"
 "origin" "1344 -1152 1680"
@@ -12261,7 +12249,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 215
+// entity 213
 {
 "classname" "light"
 "origin" "1344 -768 1680"
@@ -12269,7 +12257,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 216
+// entity 214
 {
 "classname" "light"
 "origin" "896 -704 1680"
@@ -12277,7 +12265,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 217
+// entity 215
 {
 "classname" "light"
 "origin" "64 -704 1680"
@@ -12285,7 +12273,7 @@
 "_color" "0.654902 0.847059 0.733333"
 "wait" "2"
 }
-// entity 218
+// entity 216
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12300,7 +12288,7 @@
 ( 784 -1280 1688 ) ( 784 -1272 1688 ) ( 784 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 219
+// entity 217
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12315,7 +12303,7 @@
 ( 864 -1280 1688 ) ( 864 -1272 1688 ) ( 864 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 220
+// entity 218
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12330,7 +12318,7 @@
 ( 944 -1280 1688 ) ( 944 -1272 1688 ) ( 944 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 221
+// entity 219
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12345,7 +12333,7 @@
 ( 1184 -1280 1688 ) ( 1184 -1272 1688 ) ( 1184 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 222
+// entity 220
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12360,7 +12348,7 @@
 ( 1104 -1280 1688 ) ( 1104 -1272 1688 ) ( 1104 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 223
+// entity 221
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12375,7 +12363,7 @@
 ( 1024 -1280 1688 ) ( 1024 -1272 1688 ) ( 1024 -1272 1648 ) special/skip -144 -112 180 0.05 0.05
 }
 }
-// entity 224
+// entity 222
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12390,7 +12378,7 @@
 ( 600 -648 1688 ) ( 600 -640 1688 ) ( 600 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 225
+// entity 223
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12405,7 +12393,7 @@
 ( 680 -648 1688 ) ( 680 -640 1688 ) ( 680 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 226
+// entity 224
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12420,7 +12408,7 @@
 ( 760 -648 1688 ) ( 760 -640 1688 ) ( 760 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 227
+// entity 225
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12435,7 +12423,7 @@
 ( 352 -648 1688 ) ( 352 -640 1688 ) ( 352 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 228
+// entity 226
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12450,7 +12438,7 @@
 ( 432 -648 1688 ) ( 432 -640 1688 ) ( 432 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 229
+// entity 227
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12465,7 +12453,7 @@
 ( 520 -648 1688 ) ( 520 -640 1688 ) ( 520 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
 }
-// entity 230
+// entity 228
 {
 "classname" "func_breakable"
 "health" "40"
@@ -12479,6 +12467,19 @@
 ( 272 -640 1648 ) ( 272 -640 1688 ) ( 200 -640 1688 ) Glass/glass_window_frame_01b -122.02734 428.66992 180 0.097772345 0.062499236
 ( 272 -648 1688 ) ( 272 -640 1688 ) ( 272 -640 1648 ) special/skip 208 -112 180 0.05 0.05
 }
+}
+// entity 229
+{
+"classname" "npc_civilian"
+"origin" "1160 -1000 1640"
+"targetname" "npc_server_01"
+}
+// entity 230
+{
+"classname" "ai_dialogue"
+"origin" "1160 -1032 1640"
+"target" "npc_server_01"
+"dialogue" "tower_mikes_server"
 }
 // entity 231
 {

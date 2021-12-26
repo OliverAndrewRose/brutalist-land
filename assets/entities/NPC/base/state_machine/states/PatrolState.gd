@@ -10,38 +10,13 @@ onready var node_wait_timer = get_node("node_wait_timer");
 onready var ai_helper: AIHelper = owner.get_node("AI_behaviour") as AIHelper;
 
 func _ready():
-	_collect_all_path_nodes();
+	patrol_path = get_tree().get_root().get_node("Root/QodotHelper").collect_all_path_nodes(starting_path_node);
 	pass
 
 func enter(_msg := {}) -> void:
 	node_wait_timer.wait_time = node_wait;
 	_goto_current_node();
 	pass
-
-
-func _collect_all_path_nodes():
-	var all_path_nodes = get_tree().get_nodes_in_group("ai_hint_path");
-	var path_names = []
-	
-	var next_path_node = starting_path_node;
-	var current_path_size = 0;
-	var path_finished: bool;
-	
-	while not path_finished:
-		
-		for path_node in all_path_nodes:
-			if path_node.nodeName == next_path_node:
-				patrol_path.append(path_node);
-				path_names.append(path_node.nodeName);
-				next_path_node = path_node.nextNode;
-		
-		if(current_path_size != patrol_path.size() + 1):
-			path_finished = true;
-		else:
-			current_path_size += 1;
-		
-		if path_names.has(next_path_node) or next_path_node == "":
-			path_finished = true;
 
 
 func update(_delta: float):

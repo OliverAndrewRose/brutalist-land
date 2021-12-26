@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/entities/NPC/civilians/civilian_npc.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+class_options = "----------------------------------------------------------------"
+classname = "npc_civilian"
+description = "A civilian NPC"
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+"targetname": ""
+}
+class_property_descriptions = {
+"targetname": "Unique name for this entity for other entities to find"
+}
+meta_properties = {
+"size": AABB( -8, -8, -8, 8, 8, 8 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = "Spatial"
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 1 )
+scripting = "----------------------------------------------------------------"
