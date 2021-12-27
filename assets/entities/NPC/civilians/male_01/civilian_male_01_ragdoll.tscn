@@ -1,12 +1,8 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/entities/NPC/civilians/male_01/civilian_male_01.glb" type="PackedScene" id=1]
-[ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body_black.tres" type="Material" id=2]
-[ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body_yellow.tres" type="Material" id=3]
-[ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_1001_rescaled.png" type="Texture" id=4]
-
-[sub_resource type="SpatialMaterial" id=18]
-albedo_texture = ExtResource( 4 )
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body_yellow.tres" type="Material" id=2]
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body_black.tres" type="Material" id=3]
 
 [sub_resource type="CapsuleShape" id=17]
 radius = 13.1714
@@ -72,26 +68,34 @@ height = 29.407
 radius = 4.0
 height = 13.9554
 
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Armature|mixamocom|Layer0"
+
+[sub_resource type="AnimationNodeBlendTree" id=20]
+graph_offset = Vector2( -63, -5 )
+nodes/Animation/node = SubResource( 19 )
+nodes/Animation/position = Vector2( -80, 160 )
+
 [node name="civilian_male_01" instance=ExtResource( 1 )]
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.013, 0, 0, 0, -5.68248e-10, -0.013, 0, 0.013, -5.68248e-10, 0, 0, 0 )
 
-[node name="Ch01_Body" parent="Armature/Skeleton" index="0"]
-material/0 = SubResource( 18 )
-
 [node name="Ch01_Pants" parent="Armature/Skeleton" index="1"]
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="Ch01_Shirt" parent="Armature/Skeleton" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Ch01_Sneakers" parent="Armature/Skeleton" index="3"]
 material/0 = ExtResource( 3 )
 
 [node name="Hips" type="PhysicalBone" parent="Armature/Skeleton" index="4"]
-transform = Transform( 0.994071, 0.0593359, -0.0911109, 0.0946545, -0.05993, 0.993704, 0.0535021, -0.996437, -0.0651913, 0.159135, 0.210661, -98.8282 )
+transform = Transform( 0.994071, 0.0593359, -0.0911109, 0.0946545, -0.05993, 0.993704, 0.0535021, -0.996437, -0.0651913, 0.159134, 0.210662, -98.8282 )
 joint_type = 1
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 1.24345e-14, -9.53674e-07 )
-body_offset = Transform( 1, 6.0536e-09, 2.23517e-08, -1.11759e-08, 1, 7.45058e-09, 0, 4.09782e-08, 1, -4.76837e-07, 0, 9.53674e-07 )
-bone_name = "mixamorig12_Hips"
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 7.62939e-06, -1.90735e-06 )
+body_offset = Transform( 1, -6.51926e-09, 4.47035e-08, -7.91624e-09, 1, 0, 0, 4.09782e-08, 1, -4.76837e-07, -7.62939e-06, 1.90735e-06 )
+bone_name = "mixamorig_Hips"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
 joint_constraints/impulse_clamp = 0.0
@@ -105,12 +109,12 @@ transform = Transform( 0.0406998, -0.153522, 0.987307, -0.998896, 0.0169408, 0.0
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227929, -4.19122, -0.377475 )
-body_offset = Transform( -0.0152161, -0.110186, 0.993795, 0.0998725, 0.98877, 0.111159, -0.994884, 0.100944, -0.00404149, -0.0901499, 4.20888, 0.19479 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227926, -4.19122, -0.377475 )
+body_offset = Transform( -0.0152161, -0.110186, 0.993795, 0.0998725, 0.98877, 0.111159, -0.994884, 0.100944, -0.0040415, -0.0901499, 4.20888, 0.194793 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_Spine2"
+bone_name = "mixamorig_Spine2"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 45.0
 joint_constraints/angular_limit_lower = -45.0
@@ -123,16 +127,16 @@ transform = Transform( 1, 2.98023e-08, 1.11759e-08, 1.11759e-08, -7.45058e-09, 1
 shape = SubResource( 2 )
 
 [node name="Neck" type="PhysicalBone" parent="Armature/Skeleton" index="6"]
-transform = Transform( 0.997263, -0.0738394, -0.00356159, 0.0456662, 0.577424, 0.815164, -0.0581345, -0.813095, 0.579217, -0.18492, -2.72473, -153.033 )
+transform = Transform( 0.997263, -0.0738394, -0.0035616, 0.0456662, 0.577424, 0.815164, -0.0581345, -0.813095, 0.579217, -0.18492, -2.72473, -153.033 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22192, -4.80085, 0.203886 )
-body_offset = Transform( 0.999875, 0.00139495, 0.0156925, 0.00612287, 0.883352, -0.468666, -0.0145147, 0.468702, 0.883235, -0.218395, 4.33504, 2.07331 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22192, -4.80085, 0.203887 )
+body_offset = Transform( 0.999875, 0.00139496, 0.0156925, 0.00612287, 0.883352, -0.468666, -0.0145147, 0.468702, 0.883235, -0.218395, 4.33504, 2.07331 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_Neck"
+bone_name = "mixamorig_Neck"
 joint_constraints/swing_span = 35.0
 joint_constraints/twist_span = 180.0
 joint_constraints/bias = 0.3
@@ -144,16 +148,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="Head" type="PhysicalBone" parent="Armature/Skeleton" index="7"]
-transform = Transform( 0.996089, -0.0880802, -0.00635299, 0.0595994, 0.617411, 0.784371, -0.0651651, -0.781687, 0.620245, -1.45305, 5.87703, -165.546 )
+transform = Transform( 0.996089, -0.0880803, -0.00635299, 0.0595994, 0.617411, 0.784371, -0.0651651, -0.781687, 0.620246, -1.45305, 5.87703, -165.546 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197776, -12.1916, 0.110399 )
-body_offset = Transform( 0.999966, -0.00349977, 0.00694111, 0.00612626, 0.904409, -0.42661, -0.00478315, 0.426641, 0.9044, -0.241203, 11.0721, 5.10254 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.197776, -12.1916, 0.110403 )
+body_offset = Transform( 0.999966, -0.00349978, 0.00694111, 0.00612623, 0.904409, -0.42661, -0.00478315, 0.426641, 0.9044, -0.241203, 11.0721, 5.10254 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_Head"
+bone_name = "mixamorig_Head"
 joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 180.0
 joint_constraints/bias = 0.3
@@ -165,16 +169,16 @@ transform = Transform( 1, 4.67315e-11, -1.08228e-10, 1.16883e-10, -0.5, 0.866025
 shape = SubResource( 4 )
 
 [node name="LeftArm" type="PhysicalBone" parent="Armature/Skeleton" index="8"]
-transform = Transform( -0.796127, -0.156679, 0.584658, -0.583815, -0.0561392, -0.810079, 0.159757, -0.985942, -0.0467851, 21.5048, -0.538536, -129.123 )
+transform = Transform( -0.796127, -0.156679, 0.584659, -0.583815, -0.0561392, -0.810079, 0.159757, -0.985942, -0.0467851, 21.5048, -0.53853, -129.123 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.240111, 11.3, -0.184586 )
-body_offset = Transform( 0.0134323, -0.00158818, 1.00003, 0.0262524, -0.999545, -0.00194147, 0.999656, 0.0262715, -0.0133872, 0.205763, 11.3008, -0.0593109 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.240107, 11.3, -0.184582 )
+body_offset = Transform( 0.0134325, -0.00158818, 1.00003, 0.0262524, -0.999545, -0.00194146, 0.999656, 0.0262715, -0.0133873, 0.205759, 11.3008, -0.0593147 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftArm"
+bone_name = "mixamorig_LeftArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 50.0
 joint_constraints/angular_limit_lower = -50.0
@@ -196,7 +200,7 @@ body_offset = Transform( 0.999503, 0.0178152, 0.0259224, -0.0175785, 0.999803, -
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftForeArm"
+bone_name = "mixamorig_LeftForeArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
 joint_constraints/angular_limit_lower = -150.0
@@ -209,7 +213,7 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 6 )
 
 [node name="LeftHand" type="PhysicalBone" parent="Armature/Skeleton" index="10"]
-transform = Transform( 0.13377, -0.00733122, -0.990981, -0.990934, -0.0131276, -0.133667, -0.0120272, 0.999881, -0.0090203, 26.4238, 2.6073, -90.1841 )
+transform = Transform( 0.13377, -0.00733121, -0.99098, -0.990934, -0.0131276, -0.133667, -0.0120272, 0.999881, -0.00902028, 26.4238, 2.6073, -90.1841 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 2
@@ -218,7 +222,7 @@ body_offset = Transform( 0.99973, -0.0214951, 0.00825581, 0.0214312, 0.999733, 0
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftHand"
+bone_name = "mixamorig_LeftHand"
 joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 180.0
 joint_constraints/bias = 0.3
@@ -230,16 +234,16 @@ transform = Transform( 0.999999, -1.49012e-08, -4.47035e-08, 7.45058e-09, -5.355
 shape = SubResource( 7 )
 
 [node name="RightArm" type="PhysicalBone" parent="Armature/Skeleton" index="11"]
-transform = Transform( 0.784565, -0.140968, -0.60381, -0.603266, 0.0514797, -0.795877, 0.143277, 0.988675, -0.0446519, -20.2223, -3.53656, -126.457 )
+transform = Transform( 0.784565, -0.140968, -0.60381, -0.603266, 0.0514797, -0.795877, 0.143277, 0.988675, -0.0446518, -20.2223, -3.53655, -126.457 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225929, -11.8268, -0.604466 )
-body_offset = Transform( -0.00358039, 0.0272336, -0.999623, -0.0051985, 0.999615, 0.0272521, 0.99998, 0.00529359, -0.00343704, -0.282961, 11.8376, 0.286453 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225925, -11.8268, -0.60446 )
+body_offset = Transform( -0.00358054, 0.0272336, -0.999623, -0.00519844, 0.999615, 0.0272521, 0.99998, 0.00529359, -0.00343704, -0.282953, 11.8376, 0.286449 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_RightArm"
+bone_name = "mixamorig_RightArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 50.0
 joint_constraints/angular_limit_lower = -50.0
@@ -256,12 +260,12 @@ transform = Transform( 0.606046, -0.0805413, 0.791342, 0.794221, 0.116073, -0.59
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172125, -11.9644, -0.353469 )
-body_offset = Transform( 0.999999, -0.000974782, 0.000843734, 0.000977017, 0.999997, -0.00248228, -0.000840634, 0.00248216, 0.999997, -0.183489, 11.9633, 0.38331 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172129, -11.9644, -0.353471 )
+body_offset = Transform( 0.999999, -0.000974767, 0.000843853, 0.000977069, 0.999997, -0.00248227, -0.000840664, 0.00248218, 0.999997, -0.183493, 11.9633, 0.383312 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_RightForeArm"
+bone_name = "mixamorig_RightForeArm"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 150.0
 joint_constraints/angular_limit_lower = 0.0
@@ -274,16 +278,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 9 )
 
 [node name="RightHand" type="PhysicalBone" parent="Armature/Skeleton" index="13"]
-transform = Transform( 0.419012, 0.107116, 0.901646, 0.906173, 0.0133628, -0.422707, -0.0573268, 0.994162, -0.0914658, -24.0483, 0.3154, -87.1776 )
+transform = Transform( 0.419012, 0.107116, 0.901646, 0.906173, 0.0133628, -0.422707, -0.0573268, 0.994162, -0.0914658, -24.0483, 0.315401, -87.1776 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 2
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195174, -3.08878, 0.118836 )
-body_offset = Transform( 0.994775, 0.0885591, -0.0508674, -0.0919157, 0.993451, -0.067956, 0.0445149, 0.0722763, 0.996397, 0.473739, 3.05869, 0.113525 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195178, -3.08878, 0.118829 )
+body_offset = Transform( 0.994775, 0.0885591, -0.0508673, -0.0919157, 0.993451, -0.067956, 0.0445147, 0.0722763, 0.996397, 0.473742, 3.05869, 0.113533 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_RightHand"
+bone_name = "mixamorig_RightHand"
 joint_constraints/swing_span = 30.0
 joint_constraints/twist_span = 180.0
 joint_constraints/bias = 0.3
@@ -295,16 +299,16 @@ transform = Transform( 1, 3.72529e-09, 2.23517e-08, -2.23517e-08, 0, 1, 3.72529e
 shape = SubResource( 10 )
 
 [node name="LeftUpLeg" type="PhysicalBone" parent="Armature/Skeleton" index="14"]
-transform = Transform( -0.979305, 0.09648, 0.177915, 0.193484, 0.188427, 0.96285, 0.0593712, 0.977334, -0.203198, 11.2683, 3.51891, -74.126 )
+transform = Transform( -0.979305, 0.09648, 0.177915, 0.193484, 0.188428, 0.96285, 0.0593712, 0.977334, -0.203198, 11.2683, 3.51892, -74.126 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0620506, -18.766, 1.21654 )
-body_offset = Transform( 0.999987, 0.00103091, -0.00429837, -0.00102993, 0.999996, 0.000273466, 0.00429688, -0.000268787, 0.999987, -0.0374746, 18.7657, -1.22183 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0620485, -18.766, 1.21654 )
+body_offset = Transform( 0.999987, 0.0010309, -0.00429837, -0.0010299, 0.999996, 0.000273466, 0.00429688, -0.000268772, 0.999987, -0.0374727, 18.7657, -1.22183 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftUpLeg"
+bone_name = "mixamorig_LeftUpLeg"
 joint_constraints/angular_limit_enabled = false
 joint_constraints/angular_limit_upper = 90.0
 joint_constraints/angular_limit_lower = -90.0
@@ -317,16 +321,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 11 )
 
 [node name="LeftLeg" type="PhysicalBone" parent="Armature/Skeleton" index="15"]
-transform = Transform( 0.22904, -0.195137, -0.953667, 0.972638, 0.00618945, 0.232324, -0.0394364, -0.980761, 0.19121, 16.7389, 8.82859, -32.9889 )
+transform = Transform( 0.22904, -0.195137, -0.953667, 0.972638, 0.00618946, 0.232324, -0.0394363, -0.980761, 0.19121, 16.7389, 8.82859, -32.9889 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431462, 18.0856, -0.507476 )
-body_offset = Transform( -0.00604947, 0.0600694, 0.998182, -0.0746862, -0.995436, 0.0594505, 0.997194, -0.0741913, 0.0105067, -0.577225, 18.0654, 0.916871 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431465, 18.0855, -0.50748 )
+body_offset = Transform( -0.00604942, 0.0600694, 0.998182, -0.0746861, -0.995436, 0.0594505, 0.997194, -0.0741913, 0.0105067, -0.577221, 18.0654, 0.916868 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftLeg"
+bone_name = "mixamorig_LeftLeg"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
 joint_constraints/angular_limit_lower = -90.0
@@ -339,16 +343,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="LeftFoot" type="PhysicalBone" parent="Armature/Skeleton" index="16"]
-transform = Transform( -0.125073, 0.320794, -0.938855, -0.524287, 0.782011, 0.337045, 0.842306, 0.534372, 0.0703779, 21.923, 16.0229, -6.53939 )
+transform = Transform( -0.125073, 0.320794, -0.938855, -0.524287, 0.78201, 0.337045, 0.842306, 0.534372, 0.0703779, 21.923, 16.0229, -6.53939 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.866708, -11.2162, -0.340314 )
-body_offset = Transform( -7.18087e-05, -0.000649452, 0.999998, -0.000189573, 0.999993, 0.000648975, -0.999992, -0.000187695, -7.16299e-05, 0.333091, 11.2165, 0.864571 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.866705, -11.2162, -0.340314 )
+body_offset = Transform( -7.17789e-05, -0.000649452, 0.999998, -0.000189424, 0.999993, 0.000648916, -0.999992, -0.000187516, -7.16001e-05, 0.333091, 11.2165, 0.864571 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftFoot"
+bone_name = "mixamorig_LeftFoot"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 20.0
 joint_constraints/angular_limit_lower = -70.0
@@ -361,7 +365,7 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 13 )
 
 [node name="RightUpLeg" type="PhysicalBone" parent="Armature/Skeleton" index="17"]
-transform = Transform( -0.964212, -0.00306007, -0.265128, -0.265113, 0.0259967, 0.963877, 0.00394305, 0.999655, -0.0258771, -9.1232, -1.2607, -75.1662 )
+transform = Transform( -0.964212, -0.00306006, -0.265128, -0.265113, 0.0259967, 0.963877, 0.00394305, 0.999655, -0.0258771, -9.1232, -1.2607, -75.1662 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
@@ -370,7 +374,7 @@ body_offset = Transform( 0.999992, 0.00341775, 0.000980943, -0.00341588, 0.99999
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_RightUpLeg"
+bone_name = "mixamorig_RightUpLeg"
 joint_constraints/angular_limit_enabled = false
 joint_constraints/angular_limit_upper = 90.0
 joint_constraints/angular_limit_lower = -90.0
@@ -383,16 +387,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 14 )
 
 [node name="RightLeg" type="PhysicalBone" parent="Armature/Skeleton" index="18"]
-transform = Transform( 0.426321, -0.00210107, -0.904574, -0.90322, -0.0560356, -0.425542, -0.0497921, 0.998427, -0.0257845, -10.5635, -1.10128, -32.938 )
+transform = Transform( 0.426321, -0.00210107, -0.904574, -0.903219, -0.0560356, -0.425542, -0.0497921, 0.998427, -0.0257846, -10.5635, -1.10127, -32.938 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109947, -18.0578, -0.778934 )
-body_offset = Transform( -0.00176778, -0.0236901, 0.999716, 0.0620739, 0.99779, 0.0237556, -0.998076, 0.062097, -0.000293285, 0.350727, 18.0432, 1.01137 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109947, -18.0578, -0.778931 )
+body_offset = Transform( -0.00176778, -0.0236901, 0.999716, 0.0620739, 0.99779, 0.0237556, -0.998076, 0.062097, -0.000293434, 0.350725, 18.0432, 1.01137 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_RightLeg"
+bone_name = "mixamorig_RightLeg"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 0.0
 joint_constraints/angular_limit_lower = -90.0
@@ -405,16 +409,16 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 15 )
 
 [node name="RightFoot" type="PhysicalBone" parent="Armature/Skeleton" index="19"]
-transform = Transform( 0.128778, 0.318583, 0.939103, 0.52605, 0.780841, -0.33702, -0.840667, 0.537406, -0.0670312, 22.5441, 15.6851, -6.01881 )
+transform = Transform( -0.215064, -0.48863, 0.845567, 0.462689, 0.711523, 0.528841, -0.860053, 0.504964, 0.0730602, -15.1292, 3.99924, -6.24587 )
 collision_layer = 32
 collision_mask = 41
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.369084, -11.4275, -0.340667 )
-body_offset = Transform( -0.00269891, 0.00124529, -0.999988, 0.00363147, 0.999991, 0.0012382, 0.999999, -0.0036335, -0.00270343, -0.327428, 11.4292, 0.326641 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.369082, -11.4275, -0.340668 )
+body_offset = Transform( -0.00269888, 0.00124529, -0.999988, 0.00363129, 0.999991, 0.0012382, 0.999999, -0.00363353, -0.00270355, -0.32743, 11.4292, 0.326638 )
 mass = 10.0
 weight = 98.0
 bounce = 0.25
-bone_name = "mixamorig12_LeftFoot"
+bone_name = "mixamorig_RightFoot"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 20.0
 joint_constraints/angular_limit_lower = -70.0
@@ -427,4 +431,5 @@ transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 shape = SubResource( 16 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 20 )
 anim_player = NodePath("../AnimationPlayer")

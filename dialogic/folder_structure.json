@@ -5,7 +5,8 @@
 	"folders": {
 		"Characters": {
 			"files": [
-				"character-1640033049.json"
+				"character-1640033049.json",
+				"character-1640623805.json"
 			],
 			"folders": {
 
@@ -17,7 +18,7 @@
 		},
 		"Definitions": {
 			"files": [
-
+				"1640481752-785"
 			],
 			"folders": {
 
@@ -44,7 +45,29 @@
 				"timeline-1640032941.json"
 			],
 			"folders": {
+				"Civilians": {
+					"files": [
 
+					],
+					"folders": {
+						"Generic": {
+							"files": [
+								"timeline-1640623764.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
+					}
+				}
 			},
 			"metadata": {
 				"color": null,

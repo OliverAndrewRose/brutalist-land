@@ -1,6 +1,13 @@
 {
 	"glossary": [
-
+		{
+			"extra": "Why not try a Big Mike?",
+			"id": "1640481752-785",
+			"name": "Mike Burger",
+			"text": "A chain of burger stores - all owned by Mike himself. His appearance is kept hidden from the general public.",
+			"title": "Mike Burger",
+			"type": 1
+		}
 	],
 	"variables": [
 
