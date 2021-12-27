@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/entities/NPC/base/dialogue/SetDialogue.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/NPC/base/dialogue/Interaction.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/entities/NPC/base/dialogue/DialogueUtilities.gd" type="Script" id=3]
 
 [node name="Dialogue" type="Spatial"]
 script = ExtResource( 1 )
 properties = {
-"dialogue": "tower_mikes_server"
+"dialogue": "tower_mikes_server",
+"node_height": 1.7,
+"node_radius": 0.7,
+"require_input": "true"
 }
 interaction_scene = ExtResource( 2 )
+
+[node name="DialogueUtilities" type="Node" parent="."]
+script = ExtResource( 3 )

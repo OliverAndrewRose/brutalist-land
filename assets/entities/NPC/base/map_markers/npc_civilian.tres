@@ -17,7 +17,8 @@ class_property_descriptions = {
 "targetname": "Unique name for this entity for other entities to find"
 }
 meta_properties = {
-"size": AABB( -8, -8, -8, 8, 8, 8 )
+"color": Color( 0.180392, 0.443137, 0, 1 ),
+"size": AABB( -8, -8, -8, 8, 8, 32 )
 }
 node_options = "----------------------------------------------------------------"
 node_class = "Spatial"

@@ -17,20 +17,28 @@ func _ready():
 
 func _physics_process(delta: float):
 	
-	_move_to_next_node(delta);
+	if(path_node < path.size()):
+		_move_to_next_node(delta);
+		
+	_process_gravity(delta);
 	
 
 func _move_to_next_node(delta_t: float):
 	
-	if(path_node < path.size()):
-		var direction: Vector3 = (path[path_node] - global_transform.origin);
+	var direction: Vector3 = (path[path_node] - global_transform.origin);
 		
-		if(direction.length() < 1):
-			path_node = clamp(path_node + 1,0, path.size()-1);
-			_look_towards_path();
-		else:
-			var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * speed,delta_t*10);
-			kinematic_body.move_and_slide(move_dir, Vector3.UP);
+	if(direction.length() < 1):
+		path_node = clamp(path_node + 1,0, path.size()-1);
+		_look_towards_path();
+	else:
+		var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * speed,delta_t*10);
+		kinematic_body.move_and_slide(move_dir, Vector3.UP);
+
+
+func _process_gravity(delta: float):
+	if not kinematic_body.is_on_floor():
+		kinematic_body.move_and_slide(Vector3.DOWN * 9.81 * delta, Vector3.UP);
+	pass
 
 
 func _look_towards_path():

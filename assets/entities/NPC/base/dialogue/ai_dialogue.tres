@@ -12,6 +12,9 @@ qodot_internal = false
 base_classes = [  ]
 class_properties = {
 "dialogue": "tower_mikes_server",
+"node_height": 1.7,
+"node_radius": 0.7,
+"require_input": "true",
 "target": ""
 }
 class_property_descriptions = {

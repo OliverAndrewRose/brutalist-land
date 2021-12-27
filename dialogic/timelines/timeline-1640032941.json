@@ -7,7 +7,7 @@
 
 			],
 			"portrait": "",
-			"question": "Welcome to Mike burger. Can I take your order sir..."
+			"question": "Welcome to Mike Burger. Can I take your order sir..."
 		},
 		{
 			"choice": "I'll take a Big Mike",
@@ -57,7 +57,7 @@
 		},
 		{
 			"event_id": "dialogic_022",
-			"transition_duration": 1
+			"transition_duration": 0.3
 		}
 	],
 	"metadata": {

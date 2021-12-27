@@ -12480,6 +12480,9 @@
 "origin" "1160 -1032 1640"
 "target" "npc_server_01"
 "dialogue" "tower_mikes_server"
+"node_height" "1.7"
+"node_radius" "0.7"
+"require_input" "true"
 }
 // entity 231
 {
