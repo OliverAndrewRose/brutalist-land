@@ -11,3 +11,4 @@ metallic_specular = 1.0
 roughness = 0.12
 normal_enabled = true
 normal_scale = 16.0
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )

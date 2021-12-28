@@ -1,8 +1,15 @@
-extends Node
+extends Spatial
 class_name AIHelper
 
 var current_enemy: Spatial;
 var enemies = {};
+
+var mobility_check_countdown: float = 10;
+var mobility_countdown_timeleft: float = 10;
+var is_mobile: bool = false;
+var min_mobile_move_distance = 1;
+var _last_pos: Vector3;
+var _timer_active: bool = false;
 
 
 func _on_look_for_enemy_enemy_lost(enemy):
@@ -37,3 +44,37 @@ func get_nearest_enemy() -> Spatial:
 			closest_distance = x_distance;
 		
 	return closest_enemy;
+
+
+func _process(delta):
+	#check_if_mobile(delta);
+	pass
+
+# Checks to see if the NPC is mobile.
+func check_if_mobile(delta: float):
+	
+	# If the npc hasn't moved a certain distance, then begin timer, if its inactive.
+	if _last_pos.distance_to(get_global_transform().origin) < min_mobile_move_distance:
+		if(not _timer_active and is_mobile):
+			mobility_countdown_timeleft = mobility_check_countdown;
+			_timer_active = true;
+			
+		# counts down the timer.
+		if(_timer_active):
+			mobility_countdown_timeleft -= delta;
+		
+		# On timer time out.
+		if(mobility_countdown_timeleft <= 0):
+			mobility_check_timeout();
+	else:
+		is_mobile = true;
+		_last_pos = get_global_transform().origin;
+		_timer_active = false;
+		pass
+	pass
+	
+# If the time times out, then the NPC is immobile.
+func mobility_check_timeout():
+	is_mobile = false;
+	_timer_active = false;
+	pass

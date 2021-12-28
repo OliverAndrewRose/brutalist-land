@@ -25,8 +25,8 @@ func shoot_animation():
 func spawn_projectile():
 	var bullet: Bullet = bullet_scene.instance() as Bullet;
 	get_tree().get_root().get_node("Root").add_child(bullet);
-	bullet.global_transform = owner.get_node("ShootPosition").get_global_transform();
-	bullet.apply_impulse(Vector3.ZERO, -owner.get_node("ShootPosition").get_global_transform().basis.z * bullet_velocity);
+	bullet.global_transform = owner.get_node("Position3D/LookAt/ShootPosition").get_global_transform();
+	bullet.apply_impulse(Vector3.ZERO, -owner.get_node("Position3D/LookAt/ShootPosition").get_global_transform().basis.z * bullet_velocity);
 	bullet.bullet_damage = bullet_damage;
 
 

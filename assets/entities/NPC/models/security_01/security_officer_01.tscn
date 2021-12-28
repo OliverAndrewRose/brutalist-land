@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/models/weapons/dummy_gun/dummy_gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/NPC/models/security_01/security_model.glb" type="PackedScene" id=2]
 [ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageCalculator.gd" type="Script" id=3]
-[ext_resource path="res://assets/entities/NPC/models/animation/HumanMovementAnimator.gd" type="Script" id=4]
-[ext_resource path="res://assets/entities/NPC/models/animation/human_animator.tres" type="AnimationNodeBlendTree" id=5]
+[ext_resource path="res://assets/entities/NPC/base/animation/HumanMovementAnimator.gd" type="Script" id=4]
+[ext_resource path="res://assets/entities/NPC/base/animation/human_animator.tres" type="AnimationNodeBlendTree" id=5]
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/walk_forward_unarmed.anim" type="Animation" id=6]
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/idle.anim" type="Animation" id=7]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 14, 10 )
@@ -27,14 +29,14 @@ extents = Vector3( 6, 16, 6 )
 transform = Transform( 0.013, 0, 0, 0, -5.68248e-10, -0.013, 0, 0.013, -5.68248e-10, 0, 0, 0 )
 
 [node name="BoneAttachment_gun" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
-transform = Transform( 0.0231846, 0.475068, 0.879643, -0.457021, 0.787596, -0.41331, -0.889154, -0.392433, 0.235376, -7.57068, 42.505, -138.607 )
+transform = Transform( 0.123432, 0.560275, 0.819058, -0.388913, 0.786655, -0.4795, -0.912968, -0.259357, 0.314997, -8.91597, 46.5447, -138.871 )
 bone_name = "mixamorig_RightHandThumb1"
 
 [node name="dummy_gun" parent="Armature/Skeleton/BoneAttachment_gun" index="0" instance=ExtResource( 1 )]
 transform = Transform( -2.84188, 6.3959, -0.127179, 5.7729, 2.50408, -3.06646, -2.75633, -1.34981, -6.29132, -1.90887, 4.15932, -1.32866 )
 
 [node name="col_head" type="BoneAttachment" parent="Armature/Skeleton" index="2"]
-transform = Transform( 0.944575, -0.312429, -0.100825, 0.199513, 0.302404, 0.932066, -0.260714, -0.900523, 0.347977, -0.258934, 9.99722, -144.665 )
+transform = Transform( 0.975679, -0.2154, -0.0406715, 0.108448, 0.313075, 0.943516, -0.1905, -0.92498, 0.32882, -2.94806, 11.4821, -146.476 )
 bone_name = "mixamorig_Head"
 
 [node name="col_head" type="RigidBody" parent="Armature/Skeleton/col_head" index="0"]
@@ -51,7 +53,7 @@ transform = Transform( 1, -8.39332e-18, 2.77556e-17, -7.58938e-19, 1, 0, -4.1633
 shape = SubResource( 1 )
 
 [node name="col_spine2" type="BoneAttachment" parent="Armature/Skeleton" index="3"]
-transform = Transform( 0.808631, -0.0395608, -0.586985, 0.588267, 0.0672988, 0.805861, 0.00762283, -0.996948, 0.0776922, 2.7759, 4.08313, -123.44 )
+transform = Transform( 0.892017, -0.0405052, -0.450184, 0.451945, 0.0957013, 0.886897, 0.00715921, -0.994586, 0.103673, -0.189563, 4.74295, -125.525 )
 bone_name = "mixamorig_Spine2"
 
 [node name="col_spine2" type="RigidBody" parent="Armature/Skeleton/col_spine2" index="0"]
@@ -68,7 +70,7 @@ transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 
 shape = SubResource( 2 )
 
 [node name="col_spine" type="BoneAttachment" parent="Armature/Skeleton" index="4"]
-transform = Transform( 0.841723, 0.0276858, -0.539199, 0.539056, 0.0130423, 0.842169, 0.0303485, -0.999532, -0.00394619, 2.24299, 3.17202, -96.5034 )
+transform = Transform( 0.845665, -0.0140078, -0.533529, 0.532692, 0.0839689, 0.842133, 0.0330034, -0.99637, 0.0784714, 0.662668, 2.39271, -98.682 )
 bone_name = "mixamorig_Spine"
 
 [node name="col_spine" type="RigidBody" parent="Armature/Skeleton/col_spine" index="0"]
@@ -85,7 +87,7 @@ transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 
 shape = SubResource( 3 )
 
 [node name="col_rightupleg" type="BoneAttachment" parent="Armature/Skeleton" index="5"]
-transform = Transform( -0.768334, -0.373392, -0.519861, -0.635755, 0.351117, 0.68742, -0.0741455, 0.858658, -0.507159, -5.12867, -2.40168, -80.0872 )
+transform = Transform( -0.68401, -0.366973, -0.630456, -0.714069, 0.160087, 0.681535, -0.149178, 0.916353, -0.371544, -6.64374, -4.74242, -82.8515 )
 bone_name = "mixamorig_RightUpLeg"
 
 [node name="col_rightupleg" type="RigidBody" parent="Armature/Skeleton/col_rightupleg" index="0"]
@@ -102,7 +104,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 4 )
 
 [node name="col_leftupleg" type="BoneAttachment" parent="Armature/Skeleton" index="6"]
-transform = Transform( -0.900386, -0.00204799, -0.43508, -0.413254, 0.316805, 0.853728, 0.136087, 0.948489, -0.286094, 9.03711, 7.71388, -79.5354 )
+transform = Transform( -0.907485, 0.012007, -0.419905, -0.399288, 0.2859, 0.871106, 0.13051, 0.958184, -0.254656, 7.30104, 5.58139, -81.3481 )
 bone_name = "mixamorig_LeftUpLeg"
 
 [node name="col_leftupleg" type="RigidBody" parent="Armature/Skeleton/col_leftupleg" index="0"]
@@ -119,7 +121,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 4 )
 
 [node name="col_leftleg" type="BoneAttachment" parent="Armature/Skeleton" index="7"]
-transform = Transform( -0.922071, 0.272248, -0.275062, -0.373648, -0.441091, 0.815979, 0.100821, 0.855171, 0.508446, 8.95489, 20.4318, -41.4592 )
+transform = Transform( -0.941358, 0.2043, -0.268512, -0.314398, -0.242356, 0.91783, 0.122437, 0.948432, 0.292378, 7.78305, 17.0586, -42.8826 )
 bone_name = "mixamorig_LeftLeg"
 
 [node name="col_leftleg" type="RigidBody" parent="Armature/Skeleton/col_leftleg" index="0"]
@@ -136,7 +138,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 4 )
 
 [node name="col_rightleg" type="BoneAttachment" parent="Armature/Skeleton" index="8"]
-transform = Transform( -0.77483, 0.00180799, -0.632178, -0.626165, -0.139859, 0.767053, -0.087029, 0.990172, 0.109492, -20.1186, 11.694, -45.6161 )
+transform = Transform( -0.743636, 0.00621983, -0.668566, -0.654759, -0.209175, 0.726326, -0.135331, 0.97786, 0.159617, -21.376, 1.68431, -46.0643 )
 bone_name = "mixamorig_RightLeg"
 
 [node name="col_rightleg" type="RigidBody" parent="Armature/Skeleton/col_rightleg" index="0"]
@@ -153,7 +155,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 4 )
 
 [node name="col_leftarm" type="BoneAttachment" parent="Armature/Skeleton" index="9"]
-transform = Transform( 0.577396, -0.0320096, -0.815836, -0.395607, 0.86313, -0.31385, 0.714219, 0.503966, 0.485705, 19.5948, 14.6202, -132.253 )
+transform = Transform( 0.613672, 0.010989, -0.789484, -0.432339, 0.841356, -0.32435, 0.660673, 0.54037, 0.521068, 17.4323, 14.408, -134.548 )
 bone_name = "mixamorig_LeftArm"
 
 [node name="col_leftarm" type="RigidBody" parent="Armature/Skeleton/col_leftarm" index="0"]
@@ -170,7 +172,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 5 )
 
 [node name="col_leftforearm" type="BoneAttachment" parent="Armature/Skeleton" index="10"]
-transform = Transform( 0.109617, -0.720439, -0.684801, 0.851641, 0.423326, -0.309034, 0.512534, -0.549329, 0.65996, 18.8528, 34.6277, -120.571 )
+transform = Transform( 0.21266, -0.720441, -0.660106, 0.75507, 0.549951, -0.356964, 0.620198, -0.422515, 0.660936, 17.687, 33.9109, -122.022 )
 bone_name = "mixamorig_LeftForeArm"
 
 [node name="col_leftforearm" type="RigidBody" parent="Armature/Skeleton/col_leftforearm" index="0"]
@@ -187,7 +189,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 5 )
 
 [node name="col_rightarm" type="BoneAttachment" parent="Armature/Skeleton" index="11"]
-transform = Transform( 0.583721, -0.0304703, 0.811382, 0.219637, 0.967966, -0.12166, -0.781684, 0.249225, 0.571715, -15.0584, -6.70442, -135.78 )
+transform = Transform( 0.68347, 0.000590917, 0.729979, 0.166567, 0.973492, -0.156743, -0.710721, 0.228719, 0.665254, -19.6828, -2.44473, -137.178 )
 bone_name = "mixamorig_RightArm"
 
 [node name="col_rightarm" type="RigidBody" parent="Armature/Skeleton/col_rightarm" index="0"]
@@ -204,7 +206,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 5 )
 
 [node name="col_rightforearm" type="BoneAttachment" parent="Armature/Skeleton" index="12"]
-transform = Transform( 0.575445, 0.285465, 0.766402, -0.342284, 0.935149, -0.0913185, -0.742768, -0.209778, 0.635837, -15.7648, 15.7334, -130.003 )
+transform = Transform( 0.635274, 0.370296, 0.677723, -0.374039, 0.915286, -0.149485, -0.675664, -0.158531, 0.719963, -19.6691, 20.1212, -131.876 )
 bone_name = "mixamorig_RightForeArm"
 
 [node name="col_rightforearm" type="RigidBody" parent="Armature/Skeleton/col_rightforearm" index="0"]
@@ -222,6 +224,8 @@ shape = SubResource( 5 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "pistol_idle-loop"
+anims/idle = ExtResource( 7 )
+anims/walk_forward_unarmed = ExtResource( 6 )
 
 [node name="BulletDamageCalculator" type="Node" parent="." index="2"]
 script = ExtResource( 3 )
@@ -231,7 +235,7 @@ tree_root = ExtResource( 5 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/TimeScale/scale = 1.3
-parameters/movement_dir/blend_position = Vector2( 0.0242424, -0.112069 )
+parameters/movement_dir/blend_position = Vector2( -0.0289389, 0.225296 )
 script = ExtResource( 4 )
 
 [connection signal="body_entered" from="Armature/Skeleton/col_head/col_head" to="BulletDamageCalculator" method="_on_col_head_body_entered"]

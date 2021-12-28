@@ -11,10 +11,10 @@ dest_files=[ "res://.import/Vortex.wav-ac2d48bbba4d7a7958cdfed4258d8f76.sample" 
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
-force/max_rate=false
-force/max_rate_hz=44100
+force/max_rate=true
+force/max_rate_hz=11025.0
 edit/trim=false
 edit/normalize=false
 edit/loop=false

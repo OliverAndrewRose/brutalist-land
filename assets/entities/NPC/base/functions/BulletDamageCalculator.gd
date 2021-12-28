@@ -9,7 +9,7 @@ var limb_multiplier: float  = 0.75;
 func _process_damage(bullet: Bullet, bodypart_path: String, multiplier: float):
 	
 	if bullet != null:
-		var hit_force_dir: Vector3 = -bullet.get_global_transform().basis.z * bullet.bullet_force;
+		var hit_force_dir: Vector3 = bullet.linear_velocity.normalized() * bullet.bullet_force;
 		health.take_damage_and_force(bullet.bullet_damage * multiplier, bodypart_path, hit_force_dir);
 
 

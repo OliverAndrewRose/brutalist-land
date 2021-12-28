@@ -17,6 +17,7 @@ var inverse_scale_factor := 16.0
 var entity_fgd := preload("res://addons/qodot/game_definitions/fgd/qodot_fgd.tres")
 var base_texture_dir := "res://textures"
 var texture_file_extension := "png"
+export var uv_scale:= Vector3(0.125,0.125,0.125);
 
 var worldspawn_layers := [] setget set_worldspawn_layers
 
@@ -349,6 +350,7 @@ func load_textures() -> Dictionary:
 	return texture_loader.load_textures(texture_list) as Dictionary
 
 func build_materials() -> Dictionary:
+	texture_loader.uv_scale = uv_scale;
 	return texture_loader.create_materials(texture_list, material_file_extension, default_material)
 
 func fetch_entity_definitions() -> Dictionary:
@@ -436,6 +438,10 @@ func build_entity_nodes() -> Array:
 					node.set_script(entity_definition.script_class)
 
 		node.name = node_name
+
+		if 'angle' in properties:
+			node.rotation_degrees = Vector3(node.rotation_degrees.x,180 + int(properties.angle), node.rotation_degrees.z);
+			pass
 
 		if 'origin' in properties:
 			var origin_comps = properties['origin'].split(' ')

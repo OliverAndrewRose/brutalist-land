@@ -7,3 +7,4 @@ params_cull_mode = 2
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.53
 albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 0.25, 0.25, 0.25 )

@@ -1,0 +1,7 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/entities/NPC/civilians/male_01/src/Ch01_shirt_final.png" type="Texture" id=1]
+
+[resource]
+albedo_color = Color( 0.992157, 1, 0, 1 )
+albedo_texture = ExtResource( 1 )

@@ -59,8 +59,8 @@ func play_reload_animation():
 func _fire_harpoon():
 	_harpoon = harpoon_scene.instance();
 	get_tree().get_root().get_node("Root").add_child(_harpoon);
-	_harpoon.global_transform = owner.get_node("ShootPosition").get_global_transform();
-	_harpoon.apply_impulse(Vector3.ZERO, -owner.get_node("ShootPosition").get_global_transform().basis.z * harpoon_fire_velocity);
+	_harpoon.global_transform = owner.get_node("Position3D/LookAt/ShootPosition").get_global_transform();
+	_harpoon.apply_impulse(Vector3.ZERO, -owner.get_node("Position3D/LookAt/ShootPosition").get_global_transform().basis.z * harpoon_fire_velocity);
 
 # Creates a visual rope to the harpoon.
 func _create_rope():

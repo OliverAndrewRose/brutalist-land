@@ -11,6 +11,8 @@ description = "A civilian NPC"
 qodot_internal = false
 base_classes = [  ]
 class_properties = {
+"start_state": "idle",
+"state_target_marker": "",
 "targetname": ""
 }
 class_property_descriptions = {
