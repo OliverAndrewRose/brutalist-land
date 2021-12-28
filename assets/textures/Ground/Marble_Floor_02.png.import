@@ -17,20 +17,21 @@ dest_files=[ "res://.import/Marble_Floor_02.png-7093901172601e4ad9fb3468ba120fb2
 [params]
 
 compress/mode=2
-compress/lossy_quality=0.7
+compress/lossy_quality=0.5
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
+flags/filter=false
 flags/mipmaps=true
-flags/anisotropic=false
+flags/anisotropic=true
 flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-stream=false
-size_limit=0
+process/normal_map_invert_y=false
+stream=0
+size_limit=256
 detect_3d=false
 svg/scale=1.0

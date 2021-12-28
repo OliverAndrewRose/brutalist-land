@@ -10,15 +10,19 @@ onready var npc_root: NPCProperties = owner as NPCProperties;
 onready var nav: Navigation = get_node("/root/Root/Navigation") as Navigation;
 
 export(Vector3) var target: Vector3;
-export(float) var speed: float;
+export (float) var walk_speed: float = 3;
+export(float) var run_speed: float = 10;
+export(float) var current_speed;
 
 func _ready():
+	current_speed = walk_speed;
 	pass # Replace with function body.
 
 func _physics_process(delta: float):
 	
 	if(path_node < path.size()):
 		_move_to_next_node(delta);
+		pass
 		
 	_process_gravity(delta);
 	
@@ -26,12 +30,11 @@ func _physics_process(delta: float):
 func _move_to_next_node(delta_t: float):
 	
 	var direction: Vector3 = (path[path_node] - global_transform.origin);
-		
 	if(direction.length() < 1):
 		path_node = clamp(path_node + 1,0, path.size()-1);
 		_look_towards_path();
 	else:
-		var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * speed,delta_t*10);
+		var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * current_speed,delta_t*10);
 		kinematic_body.move_and_slide(move_dir, Vector3.UP);
 
 

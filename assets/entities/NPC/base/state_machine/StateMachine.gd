@@ -5,15 +5,14 @@ extends Node
 signal transitioned(state_name)
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-export var initial_state := NodePath()
-
-# The current active state. At the start of the game, we get the `initial_state`.
-onready var state = get_node(initial_state)
-
+export var initial_state_name: String = "idle";
+var state;
 
 func _ready() -> void:
 	yield(owner, "ready")
 	# The state machine assigns itself to the State objects' state_machine property.
+	initial_state_name = owner.start_state_name;
+	state = get_node(initial_state_name);
 	for child in get_children():
 		child.state_machine = self
 	state.enter()

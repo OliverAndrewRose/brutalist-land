@@ -7,14 +7,16 @@ var patrol_path = [];
 var current_node: int = 0;
 var waiting: bool = false;
 onready var node_wait_timer = get_node("node_wait_timer");
+onready var npc_properties: NPCProperties = owner as NPCProperties;
 onready var ai_helper: AIHelper = owner.get_node("AI_behaviour") as AIHelper;
 
 func _ready():
-	patrol_path = get_tree().get_root().get_node("Root/QodotHelper").collect_all_path_nodes(starting_path_node);
 	pass
 
 func enter(_msg := {}) -> void:
 	node_wait_timer.wait_time = node_wait;
+	starting_path_node = npc_properties.state_target_marker_name;
+	patrol_path = get_tree().get_root().get_node("Root/QodotHelper").collect_all_path_nodes(starting_path_node);
 	_goto_current_node();
 	pass
 

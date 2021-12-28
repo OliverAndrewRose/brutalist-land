@@ -1,6 +1,7 @@
 class_name QodotTextureLoader
 
 const TEXTURE_EMPTY := '__TB_empty'	# TrenchBroom empty texture string
+var uv_scale = Vector3(0.125,0.125,0.125);
 
 enum PBRSuffix {
 	NORMAL,
@@ -150,6 +151,7 @@ func create_material(
 		return material
 
 	material.set_texture(SpatialMaterial.TEXTURE_ALBEDO, texture)
+	material.set_uv1_scale(uv_scale);
 
 	var pbr_textures : Dictionary = get_pbr_textures(texture_name)
 	for pbr_suffix in PBRSuffix:

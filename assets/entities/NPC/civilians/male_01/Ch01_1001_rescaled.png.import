@@ -2,27 +2,29 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.stex"
+path.s3tc="res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.s3tc.stex"
+path.etc2="res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.etc2.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/entities/NPC/civilians/male_01/Ch01_1001_rescaled.png"
-dest_files=[ "res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.stex" ]
+dest_files=[ "res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.s3tc.stex", "res://.import/Ch01_1001_rescaled.png-dc7da48ea4b13fa5faa1e4e1c60e5e40.etc2.stex" ]
 
 [params]
 
-compress/mode=1
-compress/lossy_quality=0.25
+compress/mode=2
+compress/lossy_quality=1.0
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
-flags/mipmaps=true
-flags/anisotropic=false
+flags/mipmaps=false
+flags/anisotropic=true
 flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
@@ -30,6 +32,6 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
-size_limit=0
+size_limit=256
 detect_3d=false
 svg/scale=1.0

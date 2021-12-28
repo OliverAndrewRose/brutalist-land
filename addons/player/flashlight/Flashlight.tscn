@@ -5,10 +5,14 @@
 [ext_resource path="res://addons/player/flashlight/light_off.wav" type="AudioStream" id=3]
 
 [node name="Flashlight" type="SpotLight"]
+light_bake_mode = 0
+light_cull_mask = 4293918721
 shadow_enabled = true
+shadow_color = Color( 0.364706, 0.364706, 0.364706, 1 )
 spot_range = 15.0
 spot_attenuation = 0.392292
 spot_angle = 25.0
+spot_angle_attenuation = 0.307786
 script = ExtResource( 1 )
 light_on_sound = ExtResource( 2 )
 light_off_sound = ExtResource( 3 )

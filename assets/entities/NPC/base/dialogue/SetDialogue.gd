@@ -11,7 +11,7 @@ var require_input: bool = true;
 var _active_user: Player = null;
 var _dialogue_holder_name: String;
 var _dialogue_holder: Spatial;
-signal dialogue_signal;
+signal dialogic_signal;
 
 
 func _ready():
@@ -32,7 +32,7 @@ func _add_interaction_node() -> void:
 
 func _start_dialogic() -> void:
 	dialogue_node = Dialogic.start(dialogue) as Node;
-	dialogue_node.connect("dialogue_signal", self, "receive_dialogue_signal")
+	dialogue_node.connect("dialogic_signal", self, "receive_dialogic_signal")
 	dialogue_node.connect("tree_exited", self, "receive_dialogue_end")
 	add_child(dialogue_node);
 	pass # Replace with function body.
@@ -75,6 +75,6 @@ func receive_dialogue_end() -> void:
 		_active_user = null;
 
 
-func receive_dialogue_signal(signal_arg) -> void:
-	emit_signal("dialogue_signal", signal_arg);
+func receive_dialogic_signal(signal_arg) -> void:
+	emit_signal("dialogic_signal", signal_arg);
 	pass

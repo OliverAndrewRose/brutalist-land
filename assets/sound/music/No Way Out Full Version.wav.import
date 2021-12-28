@@ -12,10 +12,10 @@ dest_files=[ "res://.import/No Way Out Full Version.wav-0b25a5868bcb320e7efcc1af
 [params]
 
 force/8_bit=false
-force/mono=false
-force/max_rate=false
-force/max_rate_hz=44100
+force/mono=true
+force/max_rate=true
+force/max_rate_hz=22050.0
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop=true
 compress/mode=0

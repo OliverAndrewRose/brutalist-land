@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Spatial",
 "class": "AIHelper",
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/AI_Helper.gd"
@@ -584,6 +584,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/visual_shader_node_library/shader_nodes/common/to_polar_2d.gd"
 }, {
+"base": "NPC_State",
+"class": "WanderState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/WanderState.gd"
+}, {
 "base": "Spatial",
 "class": "WaterAnimated",
 "language": "GDScript",
@@ -725,6 +730,7 @@ _global_script_class_icons={
 "VisualShaderNodeSimplexNoise4D": "",
 "VisualShaderNodeStepMixS": "",
 "VisualShaderNodeToPolar2D": "",
+"WanderState": "",
 "WaterAnimated": "",
 "WaterLayer": "",
 "WeaponBase": "",
@@ -745,8 +751,7 @@ ImpactSoundSet="*res://assets/utilities/ImpactSoundSet.gd"
 
 [display]
 
-window/size/width=1600
-window/size/height=800
+window/size/width=1280
 window/stretch/aspect="keep"
 
 [editor_plugins]
@@ -787,17 +792,17 @@ map={
 
 [physics]
 
-common/physics_fps=160
-common/physics_jitter_fix=0.25
-common/enable_pause_aware_picking=true
+common/physics_fps=100
 3d/smooth_trimesh_collision=true
 
 [rendering]
 
-quality/filters/sharpen_intensity=0.05
-quality/shading/force_lambert_over_burley=true
+quality/filters/sharpen_intensity=0.2
+threads/thread_model=2
+quality/directional_shadow/size=2048
 quality/shading/force_blinn_over_ggx=true
-quality/filters/anisotropic_filter_level=2
 limits/rendering/max_lights_per_object=256
 quality/subsurface_scattering/quality=0
+cpu_lightmapper/quality/low_quality_ray_count=16
+quality/filters/use_debanding=true
 environment/default_environment="res://default_env.tres"
