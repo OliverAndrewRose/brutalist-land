@@ -18,7 +18,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta: float):
+func _process(_delta: float):
 	_check_should_aim_and_shoot();
 	pass
 	

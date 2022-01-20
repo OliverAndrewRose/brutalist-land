@@ -11,7 +11,7 @@ func enter(_msg := {}):
 	pass
 
 
-func update(delta: float):
+func update(_delta: float):
 	_process_target_location();
 	_charge_enemy();
 
@@ -25,7 +25,7 @@ func _process_target_location():
 		$enemy_extrapolation_timer.stop();
 		$end_pursuit_timer.stop()
 		
-	elif target_enemy != null:
+	elif target_enemy != null and weakref(target_enemy).get_ref():
 		target_destination = target_enemy.get_node("chest_position").get_global_transform().origin;
 		owner.get_node("Look_Towards").look_towards(target_destination);
 		

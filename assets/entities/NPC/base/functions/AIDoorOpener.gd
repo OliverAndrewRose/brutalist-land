@@ -1,7 +1,7 @@
 extends RayCast
 
 
-func _process(delta):
+func _process(_delta):
 	_process_door_open();
 
 

@@ -23,8 +23,8 @@ func _add_interaction_node() -> void:
 	_dialogue_holder = get_tree().root.get_node("Root/QodotHelper").get_nodes_by_targetname(_dialogue_holder_name)[0];
 	var _interaction_node: Spatial = interaction_scene.instance() as Spatial;
 	var _interaction_scale = Vector3(node_radius, node_height, node_radius);
-	_interaction_node.get_global_transform().scaled(_interaction_scale);
 	_dialogue_holder.add_child(_interaction_node);
+	_interaction_node.get_global_transform().scaled(_interaction_scale);
 	_interaction_node.get_global_transform().origin = _dialogue_holder.get_global_transform().origin;
 	_interaction_node.connect("start_interaction", self, "receive_dialogue_start");
 	pass

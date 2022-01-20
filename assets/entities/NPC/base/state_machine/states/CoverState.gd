@@ -32,7 +32,7 @@ func goto_nearest_cover() -> void:
 	path.target = current_cover.get_global_transform().origin;
 
 
-func update(delta: float):
+func update(_delta: float):
 	pass
 
 

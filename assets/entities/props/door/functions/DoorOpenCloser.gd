@@ -15,7 +15,7 @@ var door_is_open: bool = false;
 func _ready():
 	pass # Replace with function body.
 
-func receive_interaction(user: Spatial):
+func receive_interaction(_user: Spatial):
 	toggle_door_state();
 	pass
 
@@ -57,5 +57,5 @@ func _close_door():
 	door_is_open = false;
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	_is_active = false;

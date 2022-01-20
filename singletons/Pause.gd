@@ -16,7 +16,8 @@ func _input(event):
 		if Input.is_key_pressed(KEY_ESCAPE):
 			can_press = false
 			if get_tree().paused:
-				get_tree().quit()
-			
-			get_tree().paused = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				get_tree().paused = false;
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			else:
+				get_tree().paused = true
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -19,14 +19,20 @@ func _track_potential_entitiy(target: Spatial):
 
 
 func _check_enemy_team(target: Spatial):
-	if(target.is_in_group("Player")):
+	
+	if not "faction_index" in target:
+		return false;
+	
+	var _faction_relations = get_tree().get_root().get_node("FactionRelations");
+	var _relation = _faction_relations.relations[owner.faction_index][target.faction_index];
+	if(_relation < 0):
 		return true;
 	else:
 		return false;
 
 
 # process each enemy in the list to ensure they are still sighted by the raycast.
-func _process(delta):
+func _process(_delta):
 	_detect_potential_enemies();
 	_process_lost_enemies();
 	pass;

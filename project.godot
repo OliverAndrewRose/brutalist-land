@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/dialogue/SetDialogue.gd"
 }, {
+"base": "Node",
+"class": "BuildStaticProps",
+"language": "GDScript",
+"path": "res://assets/utilities/BuildStaticProps.gd"
+}, {
 "base": "RigidBody",
 "class": "Bullet",
 "language": "GDScript",
@@ -218,6 +223,11 @@ _global_script_classes=[ {
 "class": "QodotPlugin",
 "language": "GDScript",
 "path": "res://addons/qodot/src/qodot_plugin.gd"
+}, {
+"base": "QodotEntity",
+"class": "QodotPropStatic",
+"language": "GDScript",
+"path": "res://assets/entities/props/base/prop_static_qodot_entity.gd"
 }, {
 "base": "KinematicBody",
 "class": "QodotRotateEntity",
@@ -619,6 +629,7 @@ _global_script_class_icons={
 "AIHintPath": "",
 "AIHintPosition": "",
 "AddDialogue": "",
+"BuildStaticProps": "",
 "Bullet": "",
 "CoverState": "",
 "DTS": "",
@@ -657,6 +668,7 @@ _global_script_class_icons={
 "QodotLight": "",
 "QodotMap": "",
 "QodotPlugin": "",
+"QodotPropStatic": "",
 "QodotRotateEntity": "",
 "QodotSpatial": "res://addons/qodot/icons/icon_qodot_spatial.svg",
 "QodotTextureLoader": "",
@@ -742,12 +754,15 @@ _global_script_class_icons={
 
 config/name="Brutalistland"
 run/main_scene="res://maps/01_ResidentalBlock/01_ResidentialBlock.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/textures/special/icon.png"
+config/windows_native_icon="res://assets/textures/special/icon.ico"
+config/quit_on_go_back=false
 
 [autoload]
 
 Pause="*res://singletons/Pause.gd"
 ImpactSoundSet="*res://assets/utilities/ImpactSoundSet.gd"
+FactionRelations="*res://assets/utilities/FactionRelations.gd"
 
 [display]
 
@@ -780,6 +795,11 @@ map={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+"holster weapon"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -799,7 +819,7 @@ common/physics_fps=100
 
 quality/filters/sharpen_intensity=0.2
 threads/thread_model=2
-quality/directional_shadow/size=2048
+quality/directional_shadow/size=1024
 quality/shading/force_blinn_over_ggx=true
 limits/rendering/max_lights_per_object=256
 quality/subsurface_scattering/quality=0

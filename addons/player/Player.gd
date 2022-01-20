@@ -4,8 +4,8 @@ class_name Player
 var mouse_sensitivity = 1
 var joystick_deadzone = 0.2
 
-var run_speed = 10 # Running speed in m/s
-var walk_speed = run_speed / 1.5
+var walk_speed = 4;
+var run_speed = walk_speed * 2 # Running speed in m/s
 var crouch_speed = run_speed / 3
 var jump_height = 4
 
@@ -32,12 +32,14 @@ var can_look = true;
 var crouch_height = 1.3;
 var stand_height = 1.6;
 
+# Player properties
+var faction_index = 0;
+
 # Data:
 var player_speed = 0
 var falling_velocity = 0
 onready var _last_pos: Vector3 = get_global_transform().origin;
 var actual_velocity: Vector3;
-
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

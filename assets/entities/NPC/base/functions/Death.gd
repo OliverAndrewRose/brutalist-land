@@ -2,7 +2,7 @@ extends Node
 class_name Death
 
 export(PackedScene) var body_ragdoll;
-export(float) var ragdoll_movement_force_multiplier = 6;
+export(float) var ragdoll_movement_force_multiplier = 5;
 onready var _animator: AnimationPlayer = owner.get_node("model").get_node("AnimationPlayer");
 onready var _animator_tree: AnimationTree = _animator.get_node("../AnimationTree");
 var _ragdoll: Spatial;
@@ -26,7 +26,7 @@ func ragdoll_character_with_force(bodypart_path: String, force: Vector3):
 
 func ragdoll_character():
 	_ragdoll = body_ragdoll.instance();
-	get_tree().get_root().add_child(_ragdoll);
+	get_tree().get_root().get_node("Root").add_child(_ragdoll);
 	_set_ragdoll_animations();
 	
 	_ragdoll.global_transform = owner.get_node("model").global_transform;
@@ -39,7 +39,7 @@ func _set_ragdoll_animations():
 	
 	ragdoll_animator_tree = _animator_tree;
 	ragdoll_animator = _animator;
-	ragdoll_animator_tree.active
+	ragdoll_animator_tree.active = true;
 	pass
 	
 # Adds the NPC's current movement force to the _ragdoll

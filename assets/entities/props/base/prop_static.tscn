@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/entities/props/base/prop_static_qodot_entity.gd" type="Script" id=1]
+
+[node name="Prop_Static" type="Spatial"]
+script = ExtResource( 1 )
+properties = {
+"model_dir": "res://assets/entities/props/furniture/sofa_01.tscn"
+}

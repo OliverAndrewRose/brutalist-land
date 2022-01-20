@@ -14,7 +14,7 @@ func _on_Harpoon_body_entered(body):
 		pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if not _connected_body:
 		return;
