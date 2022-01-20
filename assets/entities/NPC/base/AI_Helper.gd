@@ -46,7 +46,7 @@ func get_nearest_enemy() -> Spatial:
 	return closest_enemy;
 
 
-func _process(delta):
+func _process(_delta):
 	#check_if_mobile(delta);
 	pass
 

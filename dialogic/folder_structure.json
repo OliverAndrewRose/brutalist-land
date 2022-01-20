@@ -5,11 +5,22 @@
 	"folders": {
 		"Characters": {
 			"files": [
-				"character-1640033049.json",
-				"character-1640623805.json"
+				"character-1640033049.json"
 			],
 			"folders": {
+				"generic": {
+					"files": [
+						"character-1640623805.json",
+						"character-1641411155.json"
+					],
+					"folders": {
 
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
 			},
 			"metadata": {
 				"color": null,
@@ -52,7 +63,8 @@
 					"folders": {
 						"Generic": {
 							"files": [
-								"timeline-1640623764.json"
+								"timeline-1640623764.json",
+								"timeline-1641411011.json"
 							],
 							"folders": {
 

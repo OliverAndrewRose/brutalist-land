@@ -6,6 +6,7 @@
 attenuation_model = 3
 unit_size = 70.0
 pitch_scale = 1.1
+max_distance = 40.0
 script = ExtResource( 1 )
 
 [connection signal="finished" from="." to="." method="_on_bullet_crack_finished"]

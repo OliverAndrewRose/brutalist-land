@@ -4,7 +4,7 @@ class_name HarpoonRope
 var start_body: Spatial;
 var end_body: Spatial;
 
-func _process(delta):
+func _process(_delta):
 	
 	if not start_body or not end_body:
 		return;

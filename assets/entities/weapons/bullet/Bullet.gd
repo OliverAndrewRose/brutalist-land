@@ -2,10 +2,10 @@ extends RigidBody
 class_name Bullet
 
 var bullet_damage: int = 30;
-var bullet_force: float = 250.0;
+var bullet_force: float = 400.0;
 var impacted: bool = false;
 
-func _on_Bullet_body_entered(body):
+func _on_Bullet_body_entered(_body):
 	if not impacted:
 		impacted = true;
 		$bullet_sounds.queue_free();

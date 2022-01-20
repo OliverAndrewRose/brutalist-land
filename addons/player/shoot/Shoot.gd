@@ -4,6 +4,7 @@ class_name Shoot
 var current_weapon: WeaponBase;
 var current_weapon_model: Spatial;
 var current_weapon_index: int = 0;
+var hand_index: int = 0;
 export(Array, NodePath) var available_weapons: Array;
 
 var shooting_sound_echo = true
@@ -41,7 +42,10 @@ func _input(event):
 		mouse_relative_x = clamp(event.relative.x, -50, 50)
 		mouse_relative_y = clamp(event.relative.y, -50, 10)
 		
-		
+	if Input.is_action_pressed("holster weapon"):
+		current_weapon_index = hand_index;
+		switch_animation();
+	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == BUTTON_WHEEL_DOWN:
@@ -111,7 +115,6 @@ func _process(delta):
 		if current_weapon.current_ammo != current_weapon.max_ammo and current_weapon.total_ammo > 0:
 			current_weapon.process_reload();
 			play_sound(current_weapon.reload_sound, -5, 0)
-			$SpawnMagazineTimer.start()
 			
 			if $HUD/ReloadTip.modulate == Color(1, 1, 1, 1):
 				$ReloadTipTween.interpolate_property($HUD/ReloadTip, "margin_top", 35, 45, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
@@ -207,6 +210,7 @@ func switch_animation():
 	if(current_weapon_model):
 		current_weapon_model.queue_free();
 	
+	
 	current_weapon = get_node(available_weapons[current_weapon_index % available_weapons.size()]) as WeaponBase;
 	current_weapon_model = (current_weapon.weapon_model as PackedScene).instance();
 	$Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon.add_child(current_weapon_model);
@@ -222,7 +226,6 @@ func switch_animation():
 	
 	var text_color_active = Color(1, 1, 1, 1)
 	var text_color_inactive = Color(1, 1, 1, 0.5)
-	
 	
 	update_ammo_HUD()
 	
@@ -253,8 +256,13 @@ func ammo_animation():
 
 
 func update_ammo_HUD():
-	$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo);
-	$HUD/DisplayAmmo/ClipText.text = str(current_weapon.total_ammo);
+	
+	if(current_weapon.hide_ammo_hud):
+		$HUD/DisplayAmmo/AmmoText.text = "-"
+		$HUD/DisplayAmmo/ClipText.text = "-"
+	else:
+		$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo);
+		$HUD/DisplayAmmo/ClipText.text = str(current_weapon.total_ammo);
 
 
 func reload_tip():

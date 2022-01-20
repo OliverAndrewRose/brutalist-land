@@ -8,8 +8,12 @@ var audio_played: bool = false;
 var audio_clip: AudioStream;
 const speed_of_sound: float = 343.0;
 
-func _on_bullet_crack_range_body_entered(body):
+func _on_bullet_crack_range_body_entered(_body):
 	
+	# We only want to play for chatacrAll characters have a faction index.
+	if not _body.is_in_group("Player"):
+		return null;
+		
 	if get_parent().linear_velocity.length() > speed_of_sound:
 		audio_clip = bullet_crack_clip;
 	else:
@@ -19,7 +23,7 @@ func _on_bullet_crack_range_body_entered(body):
 	if not audio_played:
 		var audio_player = bullet_audio_player.instance();
 		get_tree().get_root().add_child(audio_player);
-		audio_player.get_global_transform().origin = get_global_transform().origin;
+		audio_player.global_transform = $bullet_crack_range/CollisionShape.global_transform;
 		audio_player.stream = audio_clip;
 		audio_player.play();
 		audio_played = true;

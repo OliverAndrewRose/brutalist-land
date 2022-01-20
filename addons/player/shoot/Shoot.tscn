@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://assets/sound/gunshots/WHOOSH_Steam_Wobble_Fast_02_mono.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/entities/weapons/grapple/projectile/Rope.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/player/Theme.tres" type="Theme" id=13]
+[ext_resource path="res://assets/entities/weapons/hands/hands.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/entities/weapons/base/WeaponBase.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -24,9 +26,13 @@ font_data = ExtResource( 6 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
+[sub_resource type="AudioStreamSample" id=3]
+
+[sub_resource type="AudioStreamSample" id=4]
+
 [node name="Shoot" type="Spatial"]
 script = ExtResource( 1 )
-available_weapons = [ NodePath("Weapons/M1911"), NodePath("Weapons/M1911-A"), NodePath("Weapons/Harpoon") ]
+available_weapons = [ NodePath("Weapons/Hands"), NodePath("Weapons/M1911"), NodePath("Weapons/M1911-A"), NodePath("Weapons/Harpoon") ]
 
 [node name="BulletSpread" type="Position3D" parent="."]
 
@@ -56,9 +62,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.01, -0.2 )
 
 [node name="OmniLight" type="OmniLight" parent="Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7 )
+light_color = Color( 1, 0.72549, 0, 1 )
 light_energy = 0.0
 shadow_enabled = true
-omni_range = 2.0
+omni_attenuation = 4.2871
 
 [node name="MeleeAttack" type="Position3D" parent="Position3D/SwitchAndAttack"]
 
@@ -240,6 +247,17 @@ __meta__ = {
 }
 
 [node name="Weapons" type="Node" parent="."]
+
+[node name="Hands" type="Node" parent="Weapons"]
+script = ExtResource( 16 )
+weapon_name = "Hands"
+shoot_sound = SubResource( 3 )
+reload_sound = SubResource( 4 )
+weapon_model = ExtResource( 14 )
+current_ammo = 0
+max_ammo = 0
+total_ammo = 0
+hide_ammo_hud = true
 
 [node name="M1911" type="Node" parent="Weapons"]
 script = ExtResource( 4 )

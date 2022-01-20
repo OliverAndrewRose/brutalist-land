@@ -4,7 +4,8 @@ export(Dictionary) var properties setget set_properties
 
 export var layer_mask = 95;
 export var health = 40;
-export var break_unit_DB = 75;
+export var break_unit_DB = 80;
+export var max_sound_distance = 50;
 export var material_type = "GLASS";
 
 onready var impact_util = get_node("/root/ImpactSoundSet");
@@ -45,9 +46,9 @@ func take_damage(body: Node):
 func destroy_brush():
 	var player: PlayThenDeletePlayer = PlayThenDeletePlayer.new();
 	get_tree().root.add_child(player);
-	player.get_global_transform().origin = get_global_transform().origin;
+	player.global_transform = self.global_transform;
 	player.unit_db = break_unit_DB;
-	player.max_distance = 0;
+	player.max_distance = max_sound_distance;
 	player.stream = impact_util.get_sound(material_type);
 	player.play();
 	queue_free();

@@ -397,19 +397,6 @@ tracks/51/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.69136e-17, -9.08039e-09, -1.862
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.013, 0, 0, 0, -5.68248e-10, -0.013, 0, 0.013, -5.68248e-10, 0, 0, 0 )
 
-[node name="Skeleton" parent="Armature" index="0"]
-bones/1/bound_children = [ NodePath("col_spine") ]
-bones/3/bound_children = [ NodePath("col_spine2") ]
-bones/5/bound_children = [ NodePath("col_head") ]
-bones/8/bound_children = [ NodePath("col_leftarm") ]
-bones/9/bound_children = [ NodePath("col_leftforearm") ]
-bones/32/bound_children = [ NodePath("col_rightarm") ]
-bones/33/bound_children = [ NodePath("col_rightforearm") ]
-bones/55/bound_children = [ NodePath("col_leftupleg") ]
-bones/56/bound_children = [ NodePath("col_leftleg") ]
-bones/60/bound_children = [ NodePath("col_rightupleg") ]
-bones/61/bound_children = [ NodePath("col_rightleg") ]
-
 [node name="Ch01_Body" parent="Armature/Skeleton" index="0"]
 material/0 = ExtResource( 4 )
 
@@ -423,7 +410,7 @@ material/0 = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="col_head" type="BoneAttachment" parent="Armature/Skeleton" index="4"]
-transform = Transform( 0.99928, -0.0314596, -0.0212275, 0.0216112, 0.0119052, 0.999696, -0.0311973, -0.999434, 0.0125766, -1.52892, 5.06899, -152.268 )
+transform = Transform( 0.999354, -0.0161334, 0.0321234, -0.0312775, 0.0501954, 0.99825, -0.0177176, -0.998609, 0.0496584, 1.61816, 6.66904, -155.724 )
 bone_name = "mixamorig_Head"
 
 [node name="col_head" type="RigidBody" parent="Armature/Skeleton/col_head" index="0"]
@@ -431,7 +418,8 @@ transform = Transform( 1, 2.40771e-17, -2.77556e-17, 2.89346e-17, 1, -2.84217e-1
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -440,7 +428,7 @@ transform = Transform( 1, -8.39332e-18, 2.77556e-17, -7.58938e-19, 1, 0, -4.1633
 shape = SubResource( 9 )
 
 [node name="col_spine2" type="BoneAttachment" parent="Armature/Skeleton" index="5"]
-transform = Transform( 0.998871, -0.0379065, -0.0286408, 0.0267819, -0.0486697, 0.998456, -0.039242, -0.998096, -0.0475996, -0.622762, 2.69175, -129.859 )
+transform = Transform( 0.998906, -0.0269393, 0.0382127, -0.0387319, -0.0190219, 0.999069, -0.0261873, -0.999456, -0.0200445, 2.06573, 3.59789, -133.396 )
 bone_name = "mixamorig_Spine2"
 
 [node name="col_spine2" type="RigidBody" parent="Armature/Skeleton/col_spine2" index="0"]
@@ -448,7 +436,8 @@ transform = Transform( 1, 3.46945e-17, -1.38778e-17, 1.21431e-17, 0.996193, -0.0
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -457,7 +446,7 @@ transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 
 shape = SubResource( 10 )
 
 [node name="col_spine" type="BoneAttachment" parent="Armature/Skeleton" index="6"]
-transform = Transform( 0.998612, -0.0289353, 0.0440163, -0.0456325, -0.0577931, 0.997285, -0.0263129, -0.997909, -0.0590332, 0.167543, 4.08998, -104.628 )
+transform = Transform( 0.997715, -0.028455, 0.0612775, -0.0623057, -0.0367727, 0.99738, -0.0261271, -0.998918, -0.0384616, 2.77368, 4.40833, -108.137 )
 bone_name = "mixamorig_Spine"
 
 [node name="col_spine" type="RigidBody" parent="Armature/Skeleton/col_spine" index="0"]
@@ -465,7 +454,8 @@ transform = Transform( 1, 1.86483e-17, 1.38778e-17, 1.38778e-17, 0.996194, -0.08
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -474,7 +464,7 @@ transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 
 shape = SubResource( 11 )
 
 [node name="col_rightupleg" type="BoneAttachment" parent="Armature/Skeleton" index="7"]
-transform = Transform( -0.998238, -0.00375493, 0.0593348, 0.0519195, 0.431205, 0.900771, -0.0289679, 0.902245, -0.430244, -9.30627, 7.04569, -89.0336 )
+transform = Transform( -0.997607, -0.0692273, -0.00124415, -0.0280045, 0.387006, 0.921663, -0.0633221, 0.919474, -0.388013, -6.33576, 6.64417, -92.2091 )
 bone_name = "mixamorig_RightUpLeg"
 
 [node name="col_rightupleg" type="RigidBody" parent="Armature/Skeleton/col_rightupleg" index="0"]
@@ -482,7 +472,8 @@ transform = Transform( 1, 0, -2.03727e-10, 1.13505e-09, -3.91155e-08, -1, -4.656
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -491,7 +482,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 12 )
 
 [node name="col_leftupleg" type="BoneAttachment" parent="Armature/Skeleton" index="8"]
-transform = Transform( -0.952286, 0.111074, 0.284304, 0.274715, -0.0940697, 0.956925, 0.133033, 0.98935, 0.0590622, 10.0379, 3.696, -89.0022 )
+transform = Transform( -0.983499, 0.00901433, 0.18073, 0.180609, 0.110529, 0.977335, -0.0111654, 0.993832, -0.110337, 13.1817, 4.62796, -92.8604 )
 bone_name = "mixamorig_LeftUpLeg"
 
 [node name="col_leftupleg" type="RigidBody" parent="Armature/Skeleton/col_leftupleg" index="0"]
@@ -499,7 +490,8 @@ transform = Transform( 1, 0, -2.03727e-10, 1.13505e-09, -3.91155e-08, -1, -4.656
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -508,7 +500,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 12 )
 
 [node name="col_leftleg" type="BoneAttachment" parent="Armature/Skeleton" index="9"]
-transform = Transform( -0.975789, -0.0446447, 0.214145, 0.177593, -0.733246, 0.656378, 0.127716, 0.678508, 0.723405, 14.797, -0.33448, -46.6128 )
+transform = Transform( -0.99341, -0.0462513, 0.104939, 0.113469, -0.263803, 0.95789, -0.0166194, 0.96347, 0.267302, 13.5679, 9.36363, -50.2789 )
 bone_name = "mixamorig_LeftLeg"
 
 [node name="col_leftleg" type="RigidBody" parent="Armature/Skeleton/col_leftleg" index="0"]
@@ -516,7 +508,8 @@ transform = Transform( 1, -4.65661e-10, -1.35333e-09, 4.51109e-10, -3.72529e-08,
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -525,7 +518,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 12 )
 
 [node name="col_rightleg" type="BoneAttachment" parent="Armature/Skeleton" index="10"]
-transform = Transform( -0.995401, -0.0134627, -0.0949204, -0.0955303, 0.0559325, 0.993865, -0.00807104, 0.998341, -0.0569626, -9.46709, 25.514, -50.3909 )
+transform = Transform( -0.980779, -0.0658844, -0.183699, -0.157718, -0.286799, 0.94493, -0.114939, 0.955722, 0.270889, -9.30073, 23.2194, -52.8285 )
 bone_name = "mixamorig_RightLeg"
 
 [node name="col_rightleg" type="RigidBody" parent="Armature/Skeleton/col_rightleg" index="0"]
@@ -533,7 +526,8 @@ transform = Transform( 1, -1.39698e-09, -1.18744e-08, 4.36557e-09, -7.45058e-08,
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -542,7 +536,7 @@ transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 12 )
 
 [node name="col_leftarm" type="BoneAttachment" parent="Armature/Skeleton" index="11"]
-transform = Transform( 0.246918, 0.208376, -0.946367, -0.947751, 0.255499, -0.191022, 0.201992, 0.944087, 0.260576, 17.9907, 3.00699, -134.811 )
+transform = Transform( 0.117986, 0.131253, -0.984303, -0.990525, 0.0857082, -0.107302, 0.070279, 0.987637, 0.140122, 20.6561, 2.55642, -138.012 )
 bone_name = "mixamorig_LeftArm"
 
 [node name="col_leftarm" type="RigidBody" parent="Armature/Skeleton/col_leftarm" index="0"]
@@ -550,7 +544,8 @@ transform = Transform( 0.994521, 0.104528, -4.56908e-09, 0, -4.37114e-08, -1, -0
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -559,7 +554,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 13 )
 
 [node name="col_leftforearm" type="BoneAttachment" parent="Armature/Skeleton" index="12"]
-transform = Transform( 0.33536, 0.127651, -0.933402, -0.739193, 0.649899, -0.176704, 0.584061, 0.749224, 0.312309, 23.2657, 9.47486, -110.912 )
+transform = Transform( 0.172608, 0.146706, -0.974004, -0.903083, 0.418363, -0.0970254, 0.393253, 0.896354, 0.2047, 23.9788, 4.7261, -113.01 )
 bone_name = "mixamorig_LeftForeArm"
 
 [node name="col_leftforearm" type="RigidBody" parent="Armature/Skeleton/col_leftforearm" index="0"]
@@ -567,7 +562,8 @@ transform = Transform( 0.994522, 0.104528, -4.56908e-09, 0, -4.37114e-08, -1, -0
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -576,7 +572,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 13 )
 
 [node name="col_rightarm" type="BoneAttachment" parent="Armature/Skeleton" index="13"]
-transform = Transform( -0.262932, -0.0375856, 0.964082, 0.918172, -0.316679, 0.238065, 0.296357, 0.947788, 0.117775, -19.8167, 0.19062, -133.775 )
+transform = Transform( -0.0375691, -0.0793178, 0.996141, 0.982642, -0.184158, 0.0223964, 0.181671, 0.979691, 0.0848595, -17.2871, 2.99019, -137.706 )
 bone_name = "mixamorig_RightArm"
 
 [node name="col_rightarm" type="RigidBody" parent="Armature/Skeleton/col_rightarm" index="0"]
@@ -584,7 +580,8 @@ transform = Transform( 0.994521, -0.104528, 4.56908e-09, 0, -4.37114e-08, -1, 0.
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 
@@ -593,7 +590,7 @@ transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08
 shape = SubResource( 13 )
 
 [node name="col_rightforearm" type="BoneAttachment" parent="Armature/Skeleton" index="14"]
-transform = Transform( -0.230082, -0.178091, 0.956738, 0.972811, -0.0688428, 0.221133, 0.0264827, 0.981603, 0.189088, -20.7685, -7.82881, -109.774 )
+transform = Transform( 0.00407561, -0.154758, 0.987944, 0.991761, 0.127124, 0.0158222, -0.12804, 0.97974, 0.154, -19.2957, -1.67335, -112.896 )
 bone_name = "mixamorig_RightForeArm"
 
 [node name="col_rightforearm" type="RigidBody" parent="Armature/Skeleton/col_rightforearm" index="0"]
@@ -601,7 +598,8 @@ transform = Transform( 0.994522, -0.104528, 4.56908e-09, 0, -4.37114e-08, -1, 0.
 collision_layer = 16
 collision_mask = 8
 mode = 3
-mass = 0.00102041
+gravity_scale = 0.0
+continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
 

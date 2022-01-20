@@ -26,8 +26,7 @@ height = 0.15
 
 [sub_resource type="CapsuleShape" id=4]
 margin = 1.0
-radius = 5.0
-height = 3.0
+radius = 3.0
 
 [node name="Bullet" type="RigidBody"]
 collision_layer = 8
@@ -63,7 +62,7 @@ collision_mask = 2
 priority = 5.0
 
 [node name="CollisionShape" type="CollisionShape" parent="bullet_sounds/bullet_crack_range"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 shape = SubResource( 4 )
 
 [node name="bullet_impact" type="Spatial" parent="."]
