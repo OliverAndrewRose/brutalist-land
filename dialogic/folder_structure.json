@@ -18,6 +18,18 @@
 					},
 					"metadata": {
 						"color": null,
+						"folded": true
+					}
+				},
+				"guard": {
+					"files": [
+						"character-1643411753.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
 						"folded": false
 					}
 				}
@@ -53,18 +65,41 @@
 		},
 		"Timelines": {
 			"files": [
-				"timeline-1640032941.json"
+
 			],
 			"folders": {
 				"Civilians": {
 					"files": [
-
+						"timeline-1640032941.json"
 					],
 					"folders": {
 						"Generic": {
 							"files": [
 								"timeline-1640623764.json",
 								"timeline-1641411011.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"Guards": {
+					"files": [
+
+					],
+					"folders": {
+						"00_backalley": {
+							"files": [
+								"timeline-1643411721.json"
 							],
 							"folders": {
 

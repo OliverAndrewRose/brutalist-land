@@ -1,34 +1,111 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=7 format=2]
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "walk_forward_unarmed"
-
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "walk_strafe_left_unarmed"
+[gd_resource type="AnimationNodeBlendTree" load_steps=23 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=20]
-animation = "walk_strafe_right_unarmed"
+animation = "holster_pistol"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "walk_backward_unarmed"
+[sub_resource type="AnimationNodeTimeScale" id=21]
 
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "idle"
+[sub_resource type="AnimationNodeBlendTree" id=17]
+graph_offset = Vector2( -427, 0 )
+nodes/Animation/node = SubResource( 20 )
+nodes/Animation/position = Vector2( -320, 140 )
+nodes/TimeScale/node = SubResource( 21 )
+nodes/TimeScale/position = Vector2( -40, 160 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "idle_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "walk_forward_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "walk_forward_pistol"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=22]
-blend_point_0/node = SubResource( 18 )
-blend_point_0/pos = Vector2( 0, 0.8 )
-blend_point_1/node = SubResource( 19 )
-blend_point_1/pos = Vector2( 0.5, 0 )
-blend_point_2/node = SubResource( 20 )
-blend_point_2/pos = Vector2( -0.5, 0 )
-blend_point_3/node = SubResource( 21 )
+blend_point_0/node = SubResource( 25 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 26 )
+blend_point_1/pos = Vector2( -0.2, 0.7 )
+blend_point_2/node = SubResource( 27 )
+blend_point_2/pos = Vector2( 0.2, 0.7 )
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "walk_forward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "walk_strafe_right_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "walk_strafe_left_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "walk_backward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=1]
+blend_point_0/node = SubResource( 5 )
+blend_point_0/pos = Vector2( 0, 0.7 )
+blend_point_1/node = SubResource( 6 )
+blend_point_1/pos = Vector2( -0.5, 0 )
+blend_point_2/node = SubResource( 7 )
+blend_point_2/pos = Vector2( 0.5, 0 )
+blend_point_3/node = SubResource( 8 )
 blend_point_3/pos = Vector2( 0, -0.3 )
-blend_point_4/node = SubResource( 23 )
+blend_point_4/node = SubResource( 9 )
 blend_point_4/pos = Vector2( 0, 0 )
 
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "unholster_pistol"
+
+[sub_resource type="AnimationNodeTimeScale" id=16]
+
+[sub_resource type="AnimationNodeBlendTree" id=12]
+graph_offset = Vector2( -313, 24 )
+nodes/Animation/node = SubResource( 15 )
+nodes/Animation/position = Vector2( -120, 140 )
+nodes/TimeScale/node = SubResource( 16 )
+nodes/TimeScale/position = Vector2( 116, 134 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "unholstering"
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+advance_condition = "holstering"
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/holster_pistol_tree/node = SubResource( 17 )
+states/holster_pistol_tree/position = Vector2( 614, 137 )
+states/pistol_walk/node = SubResource( 22 )
+states/pistol_walk/position = Vector2( 884, 54 )
+states/unarmed_walk/node = SubResource( 1 )
+states/unarmed_walk/position = Vector2( 203, 54 )
+states/unholster_pistol_tree/node = SubResource( 12 )
+states/unholster_pistol_tree/position = Vector2( 614, 54 )
+transitions = [ "unarmed_walk", "unholster_pistol_tree", SubResource( 13 ), "holster_pistol_tree", "unarmed_walk", SubResource( 18 ), "unholster_pistol_tree", "pistol_walk", SubResource( 23 ), "pistol_walk", "holster_pistol_tree", SubResource( 24 ) ]
+start_node = "unarmed_walk"
+graph_offset = Vector2( 166, -34 )
+
+[sub_resource type="AnimationNodeTimeScale" id=11]
+
 [resource]
-graph_offset = Vector2( -178.167, 3.22223 )
-nodes/movement_dir/node = SubResource( 22 )
-nodes/movement_dir/position = Vector2( 0, 140 )
-node_connections = [ "output", 0, "movement_dir" ]
+graph_offset = Vector2( -371, -65.5 )
+nodes/StateMachine/node = SubResource( 4 )
+nodes/StateMachine/position = Vector2( -200, 60 )
+nodes/TimeScale/node = SubResource( 11 )
+nodes/TimeScale/position = Vector2( 100, 60 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "StateMachine" ]

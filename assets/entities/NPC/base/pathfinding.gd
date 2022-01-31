@@ -3,6 +3,7 @@ class_name Pathfinding
 
 var path = [];
 var path_node: int;
+var can_move: bool = true;
 export(PackedScene) var debug_model: PackedScene;
 
 onready var kinematic_body: KinematicBody = get_parent().get_parent() as KinematicBody;
@@ -16,11 +17,12 @@ export(float) var current_speed;
 
 func _ready():
 	current_speed = walk_speed;
+	target = self.global_transform.origin;
 	pass # Replace with function body.
 
 func _physics_process(delta: float):
 	
-	if(path_node < path.size()):
+	if(path_node < path.size() and can_move):
 		_move_to_next_node(delta);
 		pass
 		

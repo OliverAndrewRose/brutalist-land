@@ -44,4 +44,4 @@ func _on_enemy_extrapolation_timer_timeout():
 
 
 func _on_end_pursuit_timer_timeout():
-	state_machine.transition_to("patrol");
+	state_machine.transition_to(owner.start_state_name);

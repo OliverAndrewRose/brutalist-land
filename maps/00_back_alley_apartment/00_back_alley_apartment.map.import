@@ -1,0 +1,13 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+path="res://.import/00_back_alley_apartment.map-1b6c5cd7758e31697e2c847ff62b7225.tres"
+
+[deps]
+
+source_file="res://maps/00_back_alley_apartment/00_back_alley_apartment.map"
+dest_files=[ "res://.import/00_back_alley_apartment.map-1b6c5cd7758e31697e2c847ff62b7225.tres" ]
+
+[params]
+

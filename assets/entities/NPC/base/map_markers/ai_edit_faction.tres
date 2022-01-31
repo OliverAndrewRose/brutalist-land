@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://assets/entities/NPC/base/map_markers/ai_edit_faction.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" type="Script" id=2]
+[ext_resource path="res://assets/entities/NPC/base/map_markers/ai_edit_faction.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 2 )
+class_options = "----------------------------------------------------------------"
+classname = "ai_edit_faction"
+description = "An entity which contains methods used to modify a faction and its attributes."
+qodot_internal = false
+base_classes = [  ]
+class_properties = {
+"faction_name": "Guards"
+}
+class_property_descriptions = {
+"faction_name": "The name of the faction to edit."
+}
+meta_properties = {
+"color": Color( 0.00392157, 0.552941, 0.231373, 1 ),
+"size": AABB( -8, -8, -8, 8, 8, 8 )
+}
+node_options = "----------------------------------------------------------------"
+node_class = ""
+transient_node = false
+scene = "----------------------------------------------------------------"
+scene_file = ExtResource( 1 )
+scripting = "----------------------------------------------------------------"
+script_class = ExtResource( 3 )

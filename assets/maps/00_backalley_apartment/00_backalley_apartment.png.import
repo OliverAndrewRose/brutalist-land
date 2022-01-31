@@ -1,0 +1,25 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/00_backalley_apartment.png-341ced5ab22d89bf46951132e735076e.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/maps/00_backalley_apartment/00_backalley_apartment.png"
+dest_files=[ "res://.import/00_backalley_apartment.png-341ced5ab22d89bf46951132e735076e.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=false
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=true
+slices/horizontal=1
+slices/vertical=1

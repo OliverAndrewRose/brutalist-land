@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1643411753.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[nw=1] I can't let you past reception unless you show some valid ID sir."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1643411721.json",
+		"name": "frontdesk_guard_01"
+	}
+}

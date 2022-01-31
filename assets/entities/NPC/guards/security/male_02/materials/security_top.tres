@@ -1,0 +1,7 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/textures/Douglas_Top_Diffuse_White.png" type="Texture" id=1]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0

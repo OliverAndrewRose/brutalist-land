@@ -33,7 +33,7 @@ var crouch_height = 1.3;
 var stand_height = 1.6;
 
 # Player properties
-var faction_index = 0;
+var faction_name = "Hunter";
 
 # Data:
 var player_speed = 0

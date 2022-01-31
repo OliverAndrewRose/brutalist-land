@@ -1,0 +1,188 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/models/basic/cone_collision.tres" type="Shape" id=2]
+[ext_resource path="res://assets/entities/NPC/base/functions/Health.gd" type="Script" id=3]
+[ext_resource path="res://assets/models/basic/debug_capsule.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/entities/NPC/models/security_01/security_officer_01_ragdoll.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/male_02_security.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/entities/NPC/base/functions/Death.gd" type="Script" id=7]
+[ext_resource path="res://assets/entities/NPC/base/functions/NPCProperties.gd" type="Script" id=8]
+[ext_resource path="res://assets/entities/NPC/base/AI_Helper.gd" type="Script" id=9]
+[ext_resource path="res://assets/entities/NPC/base/LookForEnemy.gd" type="Script" id=10]
+[ext_resource path="res://assets/entities/NPC/base/functions/LookTowards.gd" type="Script" id=11]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/StateMachine.gd" type="Script" id=12]
+[ext_resource path="res://assets/entities/NPC/base/functions/AIDoorOpener.gd" type="Script" id=13]
+[ext_resource path="res://assets/entities/NPC/base/pathfinding.gd" type="Script" id=14]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/IdleState.gd" type="Script" id=15]
+[ext_resource path="res://assets/entities/weapons/WeaponProperties.gd" type="Script" id=16]
+[ext_resource path="res://assets/entities/NPC/base/attacks/ShootTarget.gd" type="Script" id=17]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/PatrolState.gd" type="Script" id=18]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/CoverState.gd" type="Script" id=19]
+[ext_resource path="res://assets/entities/weapons/PlayGunshot.gd" type="Script" id=20]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/AssaultState.gd" type="Script" id=21]
+[ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=22]
+[ext_resource path="res://assets/entities/NPC/base/functions/Radio/AiRadio.gd" type="Script" id=23]
+[ext_resource path="res://assets/entities/NPC/base/functions/Radio/RadioEnemySpotted.gd" type="Script" id=24]
+[ext_resource path="res://assets/entities/NPC/base/attacks/NpcHolsterWeapon.gd" type="Script" id=25]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/WanderState.gd" type="Script" id=26]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.4
+height = 1.5
+
+[node name="NPC_Guard" type="KinematicBody" groups=["damagable"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource( 8 )
+properties = {
+"faction_name": "Guard",
+"start_state": "Idle",
+"state_target_marker": "",
+"targetname": ""
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="model" parent="." instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.15, 0 )
+
+[node name="Aim_and_Shoot" type="Spatial" parent="."]
+
+[node name="set_npc_gun_model" type="Spatial" parent="Aim_and_Shoot"]
+
+[node name="weapon_properties" type="Spatial" parent="Aim_and_Shoot"]
+script = ExtResource( 16 )
+bullet_velocity = 370.0
+bullet = ExtResource( 22 )
+
+[node name="shoot_at_enemy" type="Spatial" parent="Aim_and_Shoot"]
+script = ExtResource( 17 )
+
+[node name="shot_interval" type="Timer" parent="Aim_and_Shoot/shoot_at_enemy"]
+wait_time = 2.0
+
+[node name="lost_visual" type="Timer" parent="Aim_and_Shoot/shoot_at_enemy"]
+wait_time = 1.5
+one_shot = true
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="Aim_and_Shoot/shoot_at_enemy"]
+stream = ExtResource( 1 )
+attenuation_model = 1
+unit_db = 50.0
+unit_size = 2.0
+max_distance = 500.0
+script = ExtResource( 20 )
+
+[node name="holster_weapon" type="Node" parent="Aim_and_Shoot"]
+script = ExtResource( 25 )
+
+[node name="reload_weapon" type="Node" parent="Aim_and_Shoot"]
+
+[node name="AI_behaviour" type="Spatial" parent="."]
+script = ExtResource( 9 )
+
+[node name="state_machine" type="Node" parent="AI_behaviour"]
+script = ExtResource( 12 )
+
+[node name="idle" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 15 )
+debug_cover = true
+
+[node name="cover" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 19 )
+
+[node name="wander" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 26 )
+
+[node name="patrol" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 18 )
+starting_path_node = "route_A_00"
+node_wait = 2.0
+
+[node name="node_wait_timer" type="Timer" parent="AI_behaviour/state_machine/patrol"]
+wait_time = 2.0
+one_shot = true
+
+[node name="assault" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 21 )
+
+[node name="enemy_extrapolation_timer" type="Timer" parent="AI_behaviour/state_machine/assault"]
+wait_time = 4.0
+
+[node name="end_pursuit_timer" type="Timer" parent="AI_behaviour/state_machine/assault"]
+wait_time = 25.0
+
+[node name="look_for_enemy" type="Spatial" parent="AI_behaviour"]
+script = ExtResource( 10 )
+
+[node name="fov_detection" type="Area" parent="AI_behaviour/look_for_enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+collision_layer = 6
+collision_mask = 6
+
+[node name="fov_shape" type="CollisionShape" parent="AI_behaviour/look_for_enemy/fov_detection"]
+transform = Transform( 75, 0, 0, 0, -8.74228e-07, -75, 0, 20, -3.27835e-06, 0, 0, -20 )
+shape = ExtResource( 2 )
+
+[node name="cast_detection" type="RayCast" parent="AI_behaviour/look_for_enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+collision_mask = 7
+
+[node name="pathfinding" type="Spatial" parent="AI_behaviour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+script = ExtResource( 14 )
+debug_model = ExtResource( 4 )
+target = Vector3( 0, 0.1, 0 )
+
+[node name="path_regen" type="Timer" parent="AI_behaviour"]
+wait_time = 2.0
+autostart = true
+
+[node name="DoorOpener" type="RayCast" parent="AI_behaviour"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+script = ExtResource( 13 )
+
+[node name="Ai_radio" type="Node" parent="AI_behaviour"]
+script = ExtResource( 23 )
+
+[node name="enemy_spotted" type="Node" parent="AI_behaviour/Ai_radio"]
+script = ExtResource( 24 )
+
+[node name="chest_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="head_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.65 )
+
+[node name="shoot_position" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1 )
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Death" type="Node" parent="Health"]
+script = ExtResource( 7 )
+body_ragdoll = ExtResource( 5 )
+
+[node name="Look_Towards" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/shot_interval" to="Aim_and_Shoot/shoot_at_enemy" method="_on_shot_interval_timeout"]
+[connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/shot_interval" to="Aim_and_Shoot/shoot_at_enemy/gunshot" method="_on_shot_interval_timeout"]
+[connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/lost_visual" to="Aim_and_Shoot/shoot_at_enemy" method="_on_lost_visual_timeout"]
+[connection signal="timeout" from="AI_behaviour/state_machine/patrol/node_wait_timer" to="AI_behaviour/state_machine/patrol" method="_on_node_wait_timer_timeout"]
+[connection signal="timeout" from="AI_behaviour/state_machine/assault/enemy_extrapolation_timer" to="AI_behaviour/state_machine/assault" method="_on_enemy_extrapolation_timer_timeout"]
+[connection signal="timeout" from="AI_behaviour/state_machine/assault/end_pursuit_timer" to="AI_behaviour/state_machine/assault" method="_on_end_pursuit_timer_timeout"]
+[connection signal="enemy_detected" from="AI_behaviour/look_for_enemy" to="AI_behaviour" method="_on_look_for_enemy_enemy_detected"]
+[connection signal="enemy_lost" from="AI_behaviour/look_for_enemy" to="AI_behaviour" method="_on_look_for_enemy_enemy_lost"]
+[connection signal="body_entered" from="AI_behaviour/look_for_enemy/fov_detection" to="AI_behaviour/look_for_enemy" method="_on_fov_detection_body_entered"]
+[connection signal="body_exited" from="AI_behaviour/look_for_enemy/fov_detection" to="AI_behaviour/look_for_enemy" method="_on_fov_detection_body_exited"]
+[connection signal="timeout" from="AI_behaviour/path_regen" to="AI_behaviour/pathfinding" method="_on_path_regen_timeout"]
+[connection signal="character_death" from="Health" to="Health/Death" method="_on_Health_character_death"]

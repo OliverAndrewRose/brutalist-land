@@ -5,30 +5,20 @@ signal enemy_lost(enemy)
 
 onready var detection_area: Area = get_node("fov_detection") as Area;
 onready var raycast_detector: RayCast = get_node("cast_detection") as RayCast;
+onready var _faction_relations = get_tree().get_root().get_node("FactionRelations");
 
 var potential_enemies = {}
 var detected_enemies = {};
+
 
 func _on_fov_detection_body_entered(body: Spatial):
 	_track_potential_entitiy(body);
 
 func _track_potential_entitiy(target: Spatial):
-	if _check_enemy_team(target):
+	#
+	if "faction_name" in target:
 		#print("Enemy spotted: " + target.name)
 		potential_enemies[target] = true;
-
-
-func _check_enemy_team(target: Spatial):
-	
-	if not "faction_index" in target:
-		return false;
-	
-	var _faction_relations = get_tree().get_root().get_node("FactionRelations");
-	var _relation = _faction_relations.relations[owner.faction_index][target.faction_index];
-	if(_relation < 0):
-		return true;
-	else:
-		return false;
 
 
 # process each enemy in the list to ensure they are still sighted by the raycast.
@@ -39,15 +29,18 @@ func _process(_delta):
 
 
 func _detect_potential_enemies():
-	var recently_detected = _return_all_in_line_of_sight(potential_enemies, true);
+	var recently_detected = _check_entites_in_line_of_sight(potential_enemies, true);
 	for i in recently_detected:
-		detected_enemies[i]=true;
-		potential_enemies.erase(i);
-		emit_signal("enemy_detected",i);
+		if _check_enemy_team(i):
+			detected_enemies[i]=true;
+			potential_enemies.erase(i);
+			emit_signal("enemy_detected",i);
 	pass
 	
 
-func _return_all_in_line_of_sight(entity_list, in_sight: bool = true):
+# The second parameter will decide whether the method returns those
+# in the list who are in sight, or those who are not.
+func _check_entites_in_line_of_sight(entity_list, in_sight: bool = true):
 	var detected = [];
 	
 	for target in entity_list.keys():
@@ -71,8 +64,20 @@ func _check_line_of_sight(target: Spatial):
 		return false;
 
 
+func _check_enemy_team(target: Spatial):
+	
+	if not "faction_name" in target:
+		return false;
+	
+	var _relation = _faction_relations.get_faction_relation(owner.faction_name, target.faction_name);
+	if(_relation < 0):
+		return true;
+	else:
+		return false;
+
+
 func _process_lost_enemies():
-	var recently_lost = _return_all_in_line_of_sight(detected_enemies, false);
+	var recently_lost = _check_entites_in_line_of_sight(detected_enemies, false);
 	for i in recently_lost:
 		detected_enemies.erase(i);
 		potential_enemies[i]=true;

@@ -2,6 +2,7 @@ extends Node
 class_name ShootTarget
 
 onready var weaponProperties: WeaponProperties = get_parent().get_node("weapon_properties") as WeaponProperties;
+onready var holster = get_node("../holster_weapon");
 onready var shoot_origin: Spatial = owner.get_node("shoot_position") as Spatial;
 
 onready var shot_interval_timer: Timer = get_node("shot_interval") as Timer;
@@ -14,7 +15,6 @@ var is_visible: bool = false;
 var enemy: Spatial = null;
 
 func _ready():
-	shot_interval_timer.wait_time = 1 / weaponProperties.fire_rate;
 	pass # Replace with function body.
 
 
@@ -30,9 +30,13 @@ func _check_should_aim_and_shoot():
 		lost_visual_timer.stop() # Enemy is no longer hidden, so stop timer.
 		_aim_at_enemy();
 		
-		if(not is_visible):
-			shot_interval_timer.start(); # Begin gunshots
+		if not _check_unholster(): # Checks to see if the NPC has their weapon unholsted.
+			return;
+	
+		if not is_visible: # Checks whether to reset enemy visiblity to true.
 			is_visible = true; # enemy is visible.
+			shot_interval_timer.start(_calculate_shot_delay()); # Begin gunshots
+		
 	
 	elif is_visible:
 		is_visible = false;
@@ -50,9 +54,21 @@ func _aim_at_enemy():
 	owner.get_node("Look_Towards").look_towards(look_direction);
 
 
+func _check_unholster():
+	if not holster.is_holstered:
+		return true;
+	elif not holster.preparing_weapon:
+		holster.unholster_weapon();
+		return false;
+
+
+func _calculate_shot_delay() -> float:
+	return 1 / rand_range(weaponProperties.min_fire_rate, weaponProperties.max_fire_rate);
+	pass
+
+
 func _on_lost_visual_timeout():
 	shot_interval_timer.stop(); # stop shooting.
-
 
 
 func _on_shot_interval_timeout():

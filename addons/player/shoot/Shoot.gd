@@ -7,7 +7,6 @@ var current_weapon_index: int = 0;
 var hand_index: int = 0;
 export(Array, NodePath) var available_weapons: Array;
 
-var shooting_sound_echo = true
 
 var weapon_sway_amount = 5
 var mouse_relative_x = 0
@@ -125,7 +124,7 @@ func _process(delta):
 
 func shoot():
 	# Adding echo
-	_play_gun_echo();
+	_play_gun_sound();
 	
 	# Calculate bullet spread amount
 	_process_recoil();
@@ -135,14 +134,10 @@ func shoot():
 	$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo)
 
 
-func _play_gun_echo():
-	if shooting_sound_echo:
-		var delay = 0
-		var dB = -5
-		for i in 5: # Add an echo effect when shooting by delaying the sound and reducing the volume
-			play_sound(current_weapon.shoot_sound, dB, delay)
-			delay += 0.5
-			dB -= 15
+func _play_gun_sound():
+	var delay = 0
+	var dB = -5
+	play_sound(current_weapon.shoot_sound, dB, delay)
 	pass
 
 

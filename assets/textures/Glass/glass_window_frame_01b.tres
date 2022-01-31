@@ -4,10 +4,10 @@
 
 [resource]
 flags_transparent = true
-albedo_color = Color( 1, 1, 1, 0.196078 )
+albedo_color = Color( 1, 1, 1, 0.392157 )
 albedo_texture = ExtResource( 1 )
 metallic = 0.5
-metallic_specular = 0.25
+metallic_specular = 0.4
 roughness = 0.0
 normal_enabled = true
 normal_scale = 16.0
