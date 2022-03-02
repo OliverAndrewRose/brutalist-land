@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/growly_6a.wav-1017478bc859dfed414f2b46e6c675b9.sample"
+
+[deps]
+
+source_file="res://assets/sound/dialogue_sfx/growly_6a.wav"
+dest_files=[ "res://.import/growly_6a.wav-1017478bc859dfed414f2b46e6c675b9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

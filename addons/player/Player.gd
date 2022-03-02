@@ -7,7 +7,7 @@ var joystick_deadzone = 0.2
 var walk_speed = 4;
 var run_speed = walk_speed * 2 # Running speed in m/s
 var crouch_speed = run_speed / 3
-var jump_height = 4
+var jump_height = 5;
 
 var current_speed = run_speed
 
@@ -19,7 +19,7 @@ var direction = Vector3()
 var velocity = Vector3() # Direction with acceleration added
 var movement = Vector3() # Velocity with gravity added
 
-var gravity = 9.8
+var gravity = 12
 var gravity_vec = Vector3()
 
 var snapped = false
@@ -128,7 +128,7 @@ func _physics_process(delta):
 		can_jump = true
 	
 	if is_on_ceiling():
-		#gravity_vec.y = 0
+		gravity_vec.y = 0
 		pass;
 	
 	if Input.is_key_pressed(KEY_CONTROL) or Input.is_key_pressed(KEY_C) or Input.is_joy_button_pressed(0, JOY_XBOX_B):

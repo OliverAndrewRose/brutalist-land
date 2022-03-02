@@ -33,6 +33,8 @@ func update_properties():
 func _ready():
 	connect("body_entered",self,"emit_enter_signal");
 	connect("body_exited",self,"emit_exit_signal");
+	set_collision_layer(64);
+	set_collision_mask(6)
 
 # This faction will engage with the trespasser.DD
 func _set_faction_hostile(body: Spatial):

@@ -2,7 +2,8 @@ extends RigidBody;
 
 export(Dictionary) var properties setget set_properties
 
-export var layer_mask = 95;
+export var col_mask = 559;
+export var col_layer = 512;
 export var health = 40;
 export var break_unit_DB = 80;
 export var max_sound_distance = 50;
@@ -11,7 +12,8 @@ export var material_type = "GLASS";
 onready var impact_util = get_node("/root/ImpactSoundSet");
 
 func _ready():
-	set_collision_mask(layer_mask);
+	set_collision_mask(col_mask);
+	set_collision_layer(col_layer);
 	set_mode(MODE_KINEMATIC);
 	set_contact_monitor(true);
 	contacts_reported = 5;

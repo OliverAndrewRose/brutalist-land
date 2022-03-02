@@ -1,10 +1,14 @@
 {
 	"events": [
 		{
+			"event_id": "dialogic_024",
+			"set_theme": "guard-theme.cfg"
+		},
+		{
 			"character": "character-1643411753.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[nw=1] I can't let you past reception unless you show some valid ID sir."
+			"text": "[nw=2] I can't let you past reception unless you show some valid ID sir."
 		}
 	],
 	"metadata": {

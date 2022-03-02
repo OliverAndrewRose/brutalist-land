@@ -100,6 +100,11 @@ _global_script_classes=[ {
 "path": "res://assets/entities/NPC/base/functions/Health.gd"
 }, {
 "base": "NPC_State",
+"class": "HideState",
+"language": "GDScript",
+"path": "res://assets/entities/NPC/base/state_machine/states/HideState.gd"
+}, {
+"base": "NPC_State",
 "class": "IdleState",
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/state_machine/states/IdleState.gd"
@@ -138,6 +143,11 @@ _global_script_classes=[ {
 "class": "NPC_State",
 "language": "GDScript",
 "path": "res://assets/entities/NPC/base/state_machine/states/NPC_State.gd"
+}, {
+"base": "Node",
+"class": "NpcWeaponProperties",
+"language": "GDScript",
+"path": "res://assets/entities/weapons/NpcWeaponProperties.gd"
 }, {
 "base": "Spatial",
 "class": "OrbitArm",
@@ -623,11 +633,6 @@ _global_script_classes=[ {
 "class": "WeaponGrapple",
 "language": "GDScript",
 "path": "res://assets/entities/weapons/grapple/WeaponGrapple.gd"
-}, {
-"base": "Node",
-"class": "WeaponProperties",
-"language": "GDScript",
-"path": "res://assets/entities/weapons/WeaponProperties.gd"
 } ]
 _global_script_class_icons={
 "AIHelper": "",
@@ -648,6 +653,7 @@ _global_script_class_icons={
 "FirearmBase": "",
 "HarpoonRope": "",
 "Health": "",
+"HideState": "",
 "IdleState": "",
 "LavaLayer": "",
 "LiquidLayer": "",
@@ -656,6 +662,7 @@ _global_script_class_icons={
 "NPCHolster": "",
 "NPCProperties": "",
 "NPC_State": "",
+"NpcWeaponProperties": "",
 "OrbitArm": "",
 "Pathfinding": "",
 "PatrolState": "",
@@ -752,8 +759,7 @@ _global_script_class_icons={
 "WaterAnimated": "",
 "WaterLayer": "",
 "WeaponBase": "",
-"WeaponGrapple": "",
-"WeaponProperties": ""
+"WeaponGrapple": ""
 }
 
 [application]
@@ -806,6 +812,11 @@ map={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+reload={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -815,10 +826,15 @@ map={
 3d_physics/layer_4="bullets"
 3d_physics/layer_5="npc_hitbox"
 3d_physics/layer_6="ragdoll"
+3d_physics/layer_7="trigger"
+3d_physics/layer_8="door"
+3d_physics/layer_9="navigation obstacle"
+3d_physics/layer_10="glass"
+3d_physics/layer_11="shoot_through"
 
 [physics]
 
-common/physics_fps=100
+common/physics_fps=80
 common/physics_jitter_fix=0.25
 3d/smooth_trimesh_collision=true
 

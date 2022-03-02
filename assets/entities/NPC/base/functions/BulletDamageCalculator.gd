@@ -1,9 +1,9 @@
 extends Node
 
 onready var health: Health = get_node("../../Health") as Health;
-var head_multiplier: float = 4.0;
-var body_mutliplier: float = 1.0;
-var limb_multiplier: float  = 0.75;
+export(float) var head_multiplier: float = 4.0;
+export(float) var body_mutliplier: float = 1.0;
+export(float) var limb_multiplier: float  = 0.75;
 
 
 func _process_damage(bullet: Bullet, bodypart_path: String, multiplier: float):

@@ -6,7 +6,7 @@ extends Node
 # That's one unorthodox detail of our state implementation, as it adds a dependency between the
 # state and the state machine objects, but we found it to be most efficient for our needs.
 # The state machine node will set it.
-var state_machine: StateMachine = null
+var state_machine = null
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:

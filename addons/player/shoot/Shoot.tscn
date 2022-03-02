@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://addons/player/shoot/Shoot.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://assets/entities/weapons/hands/hands.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/entities/weapons/base/WeaponBase.gd" type="Script" id=16]
+[ext_resource path="res://addons/player/shoot/WeaponSoundDetection.gd" type="Script" id=17]
+
+[sub_resource type="SphereShape" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -33,6 +36,14 @@ default_font = SubResource( 1 )
 [node name="Shoot" type="Spatial"]
 script = ExtResource( 1 )
 available_weapons = [ NodePath("Weapons/Hands"), NodePath("Weapons/M1911"), NodePath("Weapons/M1911-A"), NodePath("Weapons/Harpoon") ]
+
+[node name="SoundDetection" type="Area" parent="."]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource( 17 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SoundDetection"]
+shape = SubResource( 5 )
 
 [node name="BulletSpread" type="Position3D" parent="."]
 
@@ -258,6 +269,8 @@ current_ammo = 0
 max_ammo = 0
 total_ammo = 0
 hide_ammo_hud = true
+will_alert = false
+max_sound_distance = 0.0
 
 [node name="M1911" type="Node" parent="Weapons"]
 script = ExtResource( 4 )
@@ -267,9 +280,11 @@ weapon_model = ExtResource( 3 )
 current_ammo = 7
 max_ammo = 7
 weapon_z_position = -0.25
+max_sound_distance = 30.0
 bullet_scene = ExtResource( 15 )
 shell = ExtResource( 8 )
 bullet_velocity = 200
+bullet_damage = 40
 
 [node name="M1911-A" type="Node" parent="Weapons"]
 script = ExtResource( 4 )
@@ -282,6 +297,7 @@ fire_rate = 11.0
 bullet_spread = 60
 single_shot = false
 weapon_z_position = -0.2
+max_sound_distance = 40.0
 bullet_scene = ExtResource( 15 )
 shell = ExtResource( 8 )
 bullet_velocity = 200
@@ -295,6 +311,7 @@ current_ammo = 1
 max_ammo = 1
 total_ammo = 40
 bullet_spread = 4
+max_sound_distance = 0.0
 harpoon_scene = ExtResource( 10 )
 rope_scene = ExtResource( 12 )
 
@@ -328,6 +345,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[connection signal="body_entered" from="SoundDetection" to="SoundDetection" method="_on_SoundDetection_body_entered"]
 [connection signal="tween_all_completed" from="ReloadTween" to="." method="_on_ReloadTween_tween_all_completed"]
 [connection signal="timeout" from="RecoilTimer" to="." method="_on_RecoilTimer_timeout"]
 [connection signal="timeout" from="SpawnMagazineTimer" to="." method="_on_SpawnMagazineTimer_timeout"]

@@ -5,10 +5,14 @@ signal character_death(bodypart_path, force);
 
 export(int) var current_health: int = 100;
 export(int) var max_health: int = 100;
+export(bool) var god_mode: bool = false;
 var is_dead: bool = false;
 
 
 func take_damage_and_force(damage: int, bodypart_path: String, force: Vector3):
+	if god_mode:
+		return;
+		
 	current_health = clamp(current_health - damage, 0, max_health);
 	
 	if(current_health <= 0 and not is_dead):
@@ -17,6 +21,9 @@ func take_damage_and_force(damage: int, bodypart_path: String, force: Vector3):
 
 
 func take_damage(damage: int):
+	if god_mode:
+		return;
+		
 	current_health = clamp(current_health - damage, 0, max_health);
 	
 	if(current_health <= 0 and not is_dead):

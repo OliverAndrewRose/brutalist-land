@@ -9,11 +9,17 @@ export(PackedScene) var debug_model: PackedScene;
 onready var kinematic_body: KinematicBody = get_parent().get_parent() as KinematicBody;
 onready var npc_root: NPCProperties = owner as NPCProperties;
 onready var nav: Navigation = get_node("/root/Root/Navigation") as Navigation;
+onready var look_towards: LookTowards = owner.get_node("Look_Towards") as LookTowards;
+onready var ai_helper: AIHelper = owner.get_node("AI_behaviour") as AIHelper;
 
 export(Vector3) var target: Vector3;
-export (float) var walk_speed: float = 3;
-export(float) var run_speed: float = 10;
+export (float) var walk_speed: float = 6;
+export(float) var run_speed: float = 15;
 export(float) var current_speed;
+var is_running: bool = false;
+
+var _direction: Vector3;
+var _move_vector: Vector3;
 
 func _ready():
 	current_speed = walk_speed;
@@ -27,17 +33,19 @@ func _physics_process(delta: float):
 		pass
 		
 	_process_gravity(delta);
+	pass
 	
 
 func _move_to_next_node(delta_t: float):
 	
-	var direction: Vector3 = (path[path_node] - global_transform.origin);
-	if(direction.length() < 1):
+	_direction = (path[path_node] - global_transform.origin);
+	if(_direction.length() < 1):
 		path_node = clamp(path_node + 1,0, path.size()-1);
 		_look_towards_path();
 	else:
-		var move_dir: Vector3 = npc_root.linear_velocity.linear_interpolate(direction.normalized() * current_speed,delta_t*10);
-		kinematic_body.move_and_slide(move_dir, Vector3.UP);
+		#_move_vector = npc_root.linear_velocity.linear_interpolate(_direction.normalized() * current_speed,delta_t*10);
+		_move_vector = _direction.normalized() * current_speed * delta_t * 20;
+		kinematic_body.move_and_slide(_move_vector, Vector3.UP);
 
 
 func _process_gravity(delta: float):
@@ -49,11 +57,11 @@ func _process_gravity(delta: float):
 func _look_towards_path():
 	
 	# If there's an enemy, don't look towards the path.
-	if owner.get_node("AI_behaviour").current_enemy != null:
+	if ai_helper.current_enemy != null:
 		return null;
 	
 	var look_direction: Vector3 = path[path_node];
-	owner.get_node("Look_Towards").look_towards(look_direction);
+	look_towards.look_towards(look_direction);
 	pass
 
 
@@ -67,6 +75,15 @@ func _create_path():
 	path = nav.get_simple_path(global_transform.origin, target, true);
 	path_node = 0;
 	#_debug_path();
+
+# Sets the NPC to run if the parameter is true.
+func set_to_run(should_run: bool):
+	is_running = should_run;
+	
+	if should_run:
+		current_speed = run_speed;
+	else:
+		should_run = walk_speed;
 
 
 func _debug_path():

@@ -21,6 +21,10 @@ func resume_game():
 	pass
 
 
+func restart_level():
+	resume_game();
+	var scene = get_tree().reload_current_scene();
+
 func quit_game():
 	get_tree().quit();
 

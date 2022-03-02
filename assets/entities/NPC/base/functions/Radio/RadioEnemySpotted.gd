@@ -19,7 +19,8 @@ func radio_in_enemy(enemy: Spatial):
 
 
 func radio_in_timeout():
-	set_enemy_permanently_hostile();
+	if weakref(_reported_enemy).get_ref():
+		set_enemy_permanently_hostile();
 	pass
 	
 

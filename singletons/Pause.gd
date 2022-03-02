@@ -1,13 +1,14 @@
 # Singleton
-
 extends Node
 
 var can_press = true
-onready var _menu: Control = get_node("/root/Root/Menu/MenuPanel") as Control;
+var _menu: Control;
+
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS # This script can't get paused
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func _input(event):
 	if not Input.is_key_pressed(KEY_ESCAPE):
@@ -15,7 +16,10 @@ func _input(event):
 	
 	if can_press:
 		if Input.is_key_pressed(KEY_ESCAPE):
+			
 			can_press = false
+			_menu = get_node("/root/Root/Menu/MenuPanel") as Control;
+			
 			if get_tree().paused:
 				resume_game();
 			else:

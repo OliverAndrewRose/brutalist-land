@@ -2,6 +2,6 @@ extends AudioStreamPlayer3D
 class_name PlayGunshot
 
 
-func _on_shot_interval_timeout():
+func _on_gunshot():
 	play();	
 	pass # Replace with function body.

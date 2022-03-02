@@ -1,10 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/sound/gunshots/FIREARM_Handgun_H_P30L_9mm_Fire_RR1_edit.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/models/basic/cone_collision.tres" type="Shape" id=2]
 [ext_resource path="res://assets/entities/NPC/base/functions/Health.gd" type="Script" id=3]
 [ext_resource path="res://assets/models/basic/debug_capsule.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/entities/NPC/models/security_01/security_officer_01_ragdoll.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/male_02_security_ragdoll.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/entities/NPC/guards/security/male_02/male_02_security.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/entities/NPC/base/functions/Death.gd" type="Script" id=7]
 [ext_resource path="res://assets/entities/NPC/base/functions/NPCProperties.gd" type="Script" id=8]
@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/entities/NPC/base/functions/AIDoorOpener.gd" type="Script" id=13]
 [ext_resource path="res://assets/entities/NPC/base/pathfinding.gd" type="Script" id=14]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/IdleState.gd" type="Script" id=15]
-[ext_resource path="res://assets/entities/weapons/WeaponProperties.gd" type="Script" id=16]
+[ext_resource path="res://assets/entities/weapons/NpcWeaponProperties.gd" type="Script" id=16]
 [ext_resource path="res://assets/entities/NPC/base/attacks/ShootTarget.gd" type="Script" id=17]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/PatrolState.gd" type="Script" id=18]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/CoverState.gd" type="Script" id=19]
@@ -26,6 +26,9 @@
 [ext_resource path="res://assets/entities/NPC/base/functions/Radio/RadioEnemySpotted.gd" type="Script" id=24]
 [ext_resource path="res://assets/entities/NPC/base/attacks/NpcHolsterWeapon.gd" type="Script" id=25]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/WanderState.gd" type="Script" id=26]
+[ext_resource path="res://assets/entities/NPC/guards/base/investigate.gd" type="Script" id=27]
+[ext_resource path="res://assets/entities/weapons/m1911/m1911_world.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/entities/NPC/base/attacks/NpcReloadWeapon.gd" type="Script" id=29]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -33,7 +36,7 @@ height = 1.5
 
 [node name="NPC_Guard" type="KinematicBody" groups=["damagable"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 69
 script = ExtResource( 8 )
 properties = {
 "faction_name": "Guard",
@@ -51,11 +54,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.1
 
 [node name="Aim_and_Shoot" type="Spatial" parent="."]
 
-[node name="set_npc_gun_model" type="Spatial" parent="Aim_and_Shoot"]
-
 [node name="weapon_properties" type="Spatial" parent="Aim_and_Shoot"]
 script = ExtResource( 16 )
-bullet_velocity = 370.0
+weapon_model = ExtResource( 28 )
+bullet_velocity = 200.0
 bullet = ExtResource( 22 )
 
 [node name="shoot_at_enemy" type="Spatial" parent="Aim_and_Shoot"]
@@ -78,8 +80,10 @@ script = ExtResource( 20 )
 
 [node name="holster_weapon" type="Node" parent="Aim_and_Shoot"]
 script = ExtResource( 25 )
+weapon_attach_path = NodePath("../../model/Armature/Skeleton/attach_weapon/weapon_position")
 
 [node name="reload_weapon" type="Node" parent="Aim_and_Shoot"]
+script = ExtResource( 29 )
 
 [node name="AI_behaviour" type="Spatial" parent="."]
 script = ExtResource( 9 )
@@ -100,11 +104,6 @@ script = ExtResource( 26 )
 [node name="patrol" type="Node" parent="AI_behaviour/state_machine"]
 script = ExtResource( 18 )
 starting_path_node = "route_A_00"
-node_wait = 2.0
-
-[node name="node_wait_timer" type="Timer" parent="AI_behaviour/state_machine/patrol"]
-wait_time = 2.0
-one_shot = true
 
 [node name="assault" type="Node" parent="AI_behaviour/state_machine"]
 script = ExtResource( 21 )
@@ -114,6 +113,9 @@ wait_time = 4.0
 
 [node name="end_pursuit_timer" type="Timer" parent="AI_behaviour/state_machine/assault"]
 wait_time = 25.0
+
+[node name="investigate" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 27 )
 
 [node name="look_for_enemy" type="Spatial" parent="AI_behaviour"]
 script = ExtResource( 10 )
@@ -131,7 +133,7 @@ shape = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
 enabled = true
 cast_to = Vector3( 0, 0, -100 )
-collision_mask = 7
+collision_mask = 135
 
 [node name="pathfinding" type="Spatial" parent="AI_behaviour"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
@@ -146,7 +148,8 @@ autostart = true
 [node name="DoorOpener" type="RayCast" parent="AI_behaviour"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -5 )
+cast_to = Vector3( 0, 0, -2.5 )
+collision_mask = 128
 script = ExtResource( 13 )
 
 [node name="Ai_radio" type="Node" parent="AI_behaviour"]
@@ -174,10 +177,9 @@ body_ragdoll = ExtResource( 5 )
 [node name="Look_Towards" type="Node" parent="."]
 script = ExtResource( 11 )
 
+[connection signal="on_gunshot" from="Aim_and_Shoot/shoot_at_enemy" to="Aim_and_Shoot/shoot_at_enemy/gunshot" method="_on_gunshot"]
 [connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/shot_interval" to="Aim_and_Shoot/shoot_at_enemy" method="_on_shot_interval_timeout"]
-[connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/shot_interval" to="Aim_and_Shoot/shoot_at_enemy/gunshot" method="_on_shot_interval_timeout"]
 [connection signal="timeout" from="Aim_and_Shoot/shoot_at_enemy/lost_visual" to="Aim_and_Shoot/shoot_at_enemy" method="_on_lost_visual_timeout"]
-[connection signal="timeout" from="AI_behaviour/state_machine/patrol/node_wait_timer" to="AI_behaviour/state_machine/patrol" method="_on_node_wait_timer_timeout"]
 [connection signal="timeout" from="AI_behaviour/state_machine/assault/enemy_extrapolation_timer" to="AI_behaviour/state_machine/assault" method="_on_enemy_extrapolation_timer_timeout"]
 [connection signal="timeout" from="AI_behaviour/state_machine/assault/end_pursuit_timer" to="AI_behaviour/state_machine/assault" method="_on_end_pursuit_timer_timeout"]
 [connection signal="enemy_detected" from="AI_behaviour/look_for_enemy" to="AI_behaviour" method="_on_look_for_enemy_enemy_detected"]

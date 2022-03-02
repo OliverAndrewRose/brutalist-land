@@ -7,6 +7,8 @@ onready var detection_area: Area = get_node("fov_detection") as Area;
 onready var raycast_detector: RayCast = get_node("cast_detection") as RayCast;
 onready var _faction_relations = get_tree().get_root().get_node("FactionRelations");
 
+onready var _head_pos: Spatial = owner.get_node("head_position") as Spatial;
+
 var potential_enemies = {}
 var detected_enemies = {};
 
@@ -22,7 +24,7 @@ func _track_potential_entitiy(target: Spatial):
 
 
 # process each enemy in the list to ensure they are still sighted by the raycast.
-func _process(_delta):
+func _physics_process(delta):
 	_detect_potential_enemies();
 	_process_lost_enemies();
 	pass;
@@ -52,7 +54,7 @@ func _check_entites_in_line_of_sight(entity_list, in_sight: bool = true):
 
 func _check_line_of_sight(target: Spatial):
 	var global_cast_direction = target.get_node("head_position").get_global_transform().origin;
-	var local_cast_direction = owner.get_node("head_position").to_local(global_cast_direction);
+	var local_cast_direction = _head_pos.to_local(global_cast_direction);
 	
 	raycast_detector.cast_to = local_cast_direction * 100;
 	raycast_detector.force_raycast_update();

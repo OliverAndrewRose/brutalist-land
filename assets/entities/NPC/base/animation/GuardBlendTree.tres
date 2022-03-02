@@ -1,0 +1,119 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=24 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "holster_pistol"
+
+[sub_resource type="AnimationNodeTimeScale" id=25]
+
+[sub_resource type="AnimationNodeBlendTree" id=16]
+graph_offset = Vector2( -101, 53 )
+nodes/Animation/node = SubResource( 24 )
+nodes/Animation/position = Vector2( -100, 140 )
+nodes/TimeScale/node = SubResource( 25 )
+nodes/TimeScale/position = Vector2( 100, 140 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "idle_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "walk_forward_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "walk_strafe_left_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "walk_strafe_right_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "walk_backward_pistol"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=33]
+blend_point_0/node = SubResource( 37 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 38 )
+blend_point_1/pos = Vector2( 0, 0.3 )
+blend_point_2/node = SubResource( 39 )
+blend_point_2/pos = Vector2( 0.2, 0 )
+blend_point_3/node = SubResource( 40 )
+blend_point_3/pos = Vector2( -0.2, 0 )
+blend_point_4/node = SubResource( 41 )
+blend_point_4/pos = Vector2( 0, -0.1 )
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "walk_forward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "walk_strafe_left_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "walk_strafe_right_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "walk_backward_unarmed"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=31]
+blend_point_0/node = SubResource( 26 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 27 )
+blend_point_1/pos = Vector2( 0, 0.5 )
+blend_point_2/node = SubResource( 28 )
+blend_point_2/pos = Vector2( 0.2, 0 )
+blend_point_3/node = SubResource( 29 )
+blend_point_3/pos = Vector2( -0.2, 0 )
+blend_point_4/node = SubResource( 30 )
+blend_point_4/pos = Vector2( 0, -0.1 )
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "unholster_pistol"
+
+[sub_resource type="AnimationNodeTimeScale" id=18]
+
+[sub_resource type="AnimationNodeBlendTree" id=13]
+graph_offset = Vector2( -426.321, -23.1559 )
+nodes/Animation/node = SubResource( 17 )
+nodes/Animation/position = Vector2( -120, 140 )
+nodes/TimeScale/node = SubResource( 18 )
+nodes/TimeScale/position = Vector2( 120, 140 )
+nodes/output/position = Vector2( 300, 140 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+advance_condition = "unholstering"
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+advance_condition = "holstering"
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/holster_tree/node = SubResource( 16 )
+states/holster_tree/position = Vector2( 447, 140 )
+states/pistol_walk/node = SubResource( 33 )
+states/pistol_walk/position = Vector2( 728, 93 )
+states/unarmed_walk/node = SubResource( 31 )
+states/unarmed_walk/position = Vector2( 132, 93 )
+states/unholster_tree/node = SubResource( 13 )
+states/unholster_tree/position = Vector2( 447, 53 )
+transitions = [ "unarmed_walk", "unholster_tree", SubResource( 32 ), "unholster_tree", "pistol_walk", SubResource( 34 ), "pistol_walk", "holster_tree", SubResource( 35 ), "holster_tree", "unarmed_walk", SubResource( 36 ) ]
+start_node = "unarmed_walk"
+graph_offset = Vector2( -16, -58 )
+
+[resource]
+graph_offset = Vector2( -390.36, -25.7007 )
+nodes/StateMachine/node = SubResource( 4 )
+nodes/StateMachine/position = Vector2( -200, 60 )
+node_connections = [ "output", 0, "StateMachine" ]

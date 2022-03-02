@@ -5,7 +5,7 @@
 	"folders": {
 		"Characters": {
 			"files": [
-				"character-1640033049.json"
+
 			],
 			"folders": {
 				"generic": {
@@ -30,7 +30,19 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
+					}
+				},
+				"shops": {
+					"files": [
+						"character-1640033049.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
 					}
 				}
 			},
@@ -53,7 +65,8 @@
 		},
 		"Themes": {
 			"files": [
-				"default-theme.cfg"
+				"default-theme.cfg",
+				"guard-theme.cfg"
 			],
 			"folders": {
 
@@ -70,7 +83,7 @@
 			"folders": {
 				"Civilians": {
 					"files": [
-						"timeline-1640032941.json"
+
 					],
 					"folders": {
 						"Generic": {
@@ -83,13 +96,25 @@
 							},
 							"metadata": {
 								"color": null,
-								"folded": false
+								"folded": true
+							}
+						},
+						"Shops": {
+							"files": [
+								"timeline-1640032941.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": true
 							}
 						}
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
 					}
 				},
 				"Guards": {

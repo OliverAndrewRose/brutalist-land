@@ -7,6 +7,7 @@ export(String) var pathType: String
 
 export(String) var nodeName: String
 export(String) var nextNode: String
+export(float) var wait_time: float;
 
 func update_properties():
 	if "pathType" in properties:
@@ -17,4 +18,6 @@ func update_properties():
 		
 	if "target" in properties:
 		nextNode = properties["target"];
-	pass
+	
+	if "waitTime" in properties:
+		wait_time = properties.waitTime;

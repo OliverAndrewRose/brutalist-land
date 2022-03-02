@@ -6,7 +6,7 @@ signal transitioned(state_name)
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 export var initial_state_name: String = "idle";
-var state;
+var state: State;
 
 func _ready() -> void:
 	yield(owner, "ready")
