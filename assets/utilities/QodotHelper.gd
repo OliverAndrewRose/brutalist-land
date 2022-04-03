@@ -23,12 +23,7 @@ func collect_all_path_nodes(starting_path_node: String) -> Array:
 				next_path_node = path_node.nextNode;
 		
 		
-#		if(current_path_size != patrol_path.size() + 1):
-#			path_finished = true;
-#		else:
-#			current_path_size += 1;
-		
-		if path_names.has(next_path_node) or next_path_node == "":
+		if path_names.has(next_path_node) or next_path_node == "" or next_path_node == null:
 			path_finished = true;
 			
 	return patrol_path;

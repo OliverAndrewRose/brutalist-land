@@ -45,7 +45,6 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.2
 
 [node name="weapon_properties" type="Spatial" parent="Aim_and_Shoot"]
 script = ExtResource( 7 )
-fire_rate = 1.0
 bullet_velocity = 370.0
 bullet = ExtResource( 13 )
 
@@ -101,7 +100,6 @@ script = ExtResource( 6 )
 [node name="patrol" type="Node" parent="AI_behaviour/state_machine"]
 script = ExtResource( 15 )
 starting_path_node = "route_A_00"
-node_wait = 2.0
 
 [node name="node_wait_timer" type="Timer" parent="AI_behaviour/state_machine/patrol"]
 wait_time = 2.0

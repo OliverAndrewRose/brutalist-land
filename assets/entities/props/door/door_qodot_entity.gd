@@ -11,13 +11,13 @@ func _ready():
 	if not Engine.editor_hint:
 		# Set the lock state of the door.
 		if "locked" in properties:
-			if properties.locked:
+			if properties.locked == "true":
 				openCloser.locked = true;
 			else:
 				openCloser.locked = false;
 				
 		if "open_forwards" in properties:
-			if properties.open_forwards:
+			if properties.open_forwards == "true":
 				openCloser.open_forwards = true;
 			else:
 				openCloser.open_forwards = false;

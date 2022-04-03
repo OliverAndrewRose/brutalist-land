@@ -74,6 +74,10 @@ func force_door_open():
 	_open_door();
 	pass
 
+# Ignore the locked state of the door.
+func force_door_close():
+	_close_door();
+	pass
 
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	_is_active = false;

@@ -49,7 +49,7 @@ func _move_to_next_node(delta_t: float):
 
 
 func _process_gravity(delta: float):
-	if not kinematic_body.is_on_floor():
+	if not kinematic_body.is_on_floor() and can_move:
 		kinematic_body.move_and_slide(Vector3.DOWN * 9.81 * delta, Vector3.UP);
 	pass
 
@@ -83,7 +83,7 @@ func set_to_run(should_run: bool):
 	if should_run:
 		current_speed = run_speed;
 	else:
-		should_run = walk_speed;
+		current_speed = walk_speed;
 
 
 func _debug_path():

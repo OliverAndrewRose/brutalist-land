@@ -21,7 +21,6 @@
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/CoverState.gd" type="Script" id=19]
 [ext_resource path="res://assets/entities/weapons/PlayGunshot.gd" type="Script" id=20]
 [ext_resource path="res://assets/entities/NPC/base/state_machine/states/AssaultState.gd" type="Script" id=21]
-[ext_resource path="res://assets/entities/weapons/bullet/bullet.tscn" type="PackedScene" id=22]
 [ext_resource path="res://assets/entities/NPC/base/functions/Radio/AiRadio.gd" type="Script" id=23]
 [ext_resource path="res://assets/entities/NPC/base/functions/Radio/RadioEnemySpotted.gd" type="Script" id=24]
 [ext_resource path="res://assets/entities/NPC/base/attacks/NpcHolsterWeapon.gd" type="Script" id=25]
@@ -29,6 +28,7 @@
 [ext_resource path="res://assets/entities/NPC/guards/base/investigate.gd" type="Script" id=27]
 [ext_resource path="res://assets/entities/weapons/m1911/m1911_world.tscn" type="PackedScene" id=28]
 [ext_resource path="res://assets/entities/NPC/base/attacks/NpcReloadWeapon.gd" type="Script" id=29]
+[ext_resource path="res://assets/entities/NPC/base/state_machine/states/GuardState.gd" type="Script" id=30]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.4
@@ -57,8 +57,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.1
 [node name="weapon_properties" type="Spatial" parent="Aim_and_Shoot"]
 script = ExtResource( 16 )
 weapon_model = ExtResource( 28 )
-bullet_velocity = 200.0
-bullet = ExtResource( 22 )
+damage = 40
 
 [node name="shoot_at_enemy" type="Spatial" parent="Aim_and_Shoot"]
 script = ExtResource( 17 )
@@ -77,6 +76,12 @@ unit_db = 50.0
 unit_size = 2.0
 max_distance = 500.0
 script = ExtResource( 20 )
+
+[node name="hit_scan" type="RayCast" parent="Aim_and_Shoot/shoot_at_enemy"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+collision_mask = 665
 
 [node name="holster_weapon" type="Node" parent="Aim_and_Shoot"]
 script = ExtResource( 25 )
@@ -100,6 +105,9 @@ script = ExtResource( 19 )
 
 [node name="wander" type="Node" parent="AI_behaviour/state_machine"]
 script = ExtResource( 26 )
+
+[node name="guard" type="Node" parent="AI_behaviour/state_machine"]
+script = ExtResource( 30 )
 
 [node name="patrol" type="Node" parent="AI_behaviour/state_machine"]
 script = ExtResource( 18 )
@@ -130,7 +138,7 @@ transform = Transform( 75, 0, 0, 0, -8.74228e-07, -75, 0, 20, -3.27835e-06, 0, 0
 shape = ExtResource( 2 )
 
 [node name="cast_detection" type="RayCast" parent="AI_behaviour/look_for_enemy"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.55 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.42682 )
 enabled = true
 cast_to = Vector3( 0, 0, -100 )
 collision_mask = 135

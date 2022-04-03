@@ -1,15 +1,14 @@
 extends Node
-class_name ShootTarget
 
-onready var weaponProperties: NpcWeaponProperties = get_parent().get_node("weapon_properties") as NpcWeaponProperties;
+onready var weapon_properties: NpcWeaponProperties = get_parent().get_node("weapon_properties") as NpcWeaponProperties;
 onready var holster = get_node("../holster_weapon");
 onready var reload = get_node("../reload_weapon");
-onready var shoot_origin: Spatial = owner.get_node("shoot_position") as Spatial;
+
+onready var _hit_scan: RayCast = $hit_scan;
 
 onready var shot_interval_timer: Timer = get_node("shot_interval") as Timer;
 onready var lost_visual_timer: Timer = get_node("lost_visual") as Timer;
 
-onready var bullet_scene: PackedScene = weaponProperties.bullet;
 onready var _root: Spatial = get_tree().get_root().get_node("Root") as Spatial;
 
 var aim_direction: Vector3;
@@ -60,12 +59,12 @@ func _aim_at_enemy():
 	var aim_loc: Vector3 = aim_body.get_global_transform().origin
 	var look_direction: Vector3 = Vector3(aim_loc.x, owner.get_global_transform().origin.y, aim_loc.z);
 	
-	aim_direction = (aim_loc - shoot_origin.get_global_transform().origin).normalized();
+	aim_direction = (aim_loc - _hit_scan.get_global_transform().origin).normalized();
 	owner.get_node("Look_Towards").look_towards(look_direction);
 
 
 func _calculate_shot_delay() -> float:
-	return 1 / rand_range(weaponProperties.min_fire_rate, weaponProperties.max_fire_rate);
+	return 1 / rand_range(weapon_properties.min_fire_rate, weapon_properties.max_fire_rate);
 	pass
 
 
@@ -78,7 +77,7 @@ func _on_shot_interval_timeout():
 	# Check if the NPC has enough ammo before shooting.
 	shot_interval_timer.wait_time = _calculate_shot_delay();
 	
-	if weaponProperties.ammo <= 0:
+	if weapon_properties.ammo <= 0:
 		if not reload.is_reloading:
 			reload.reload_weapon();
 	else:
@@ -87,13 +86,10 @@ func _on_shot_interval_timeout():
 
 
 func _shoot_weapon():
-	var bullet: Bullet = bullet_scene.instance() as Bullet;
-	_root.add_child(bullet);
-	bullet.global_translate(shoot_origin.get_global_transform().origin);
-	bullet.global_transform.basis.z = -aim_direction;
-	bullet.apply_impulse(Vector3.ZERO, aim_direction * weaponProperties.bullet_velocity);
-	bullet.bullet_damage = weaponProperties.damage;
-	
-	weaponProperties.ammo -= 1;
+
+	_hit_scan.cast_to = Vector3(0.0, aim_direction.y, -weapon_properties.max_range);
+	WeaponFunctions.scan_bullet_hit(_hit_scan, weapon_properties.damage, weapon_properties.hit_force);
+	weapon_properties.ammo -= 1;
 	emit_signal("on_gunshot");
-	pass
+	
+	

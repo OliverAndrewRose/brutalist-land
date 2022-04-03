@@ -9,7 +9,9 @@ func _ready():
 	_timer.connect("timeout",self,"timer_timeout");
 	if deleteOnReady:
 		_timer.start();
-	pass
+	
+	randomize();
+	$impact_sound.pitch_scale = randf() + 0.7;
 
 func start_timer():
 	_timer.start();

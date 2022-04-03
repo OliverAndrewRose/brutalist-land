@@ -12,6 +12,26 @@ onready var _head_pos: Spatial = owner.get_node("head_position") as Spatial;
 var potential_enemies = {}
 var detected_enemies = {};
 
+# A seperate detection tick rate to reduce performance cost.
+onready var detection_tick_timer: Timer = Timer.new();
+var detection_tick: float = 1.0 / 40.0; # Tick rate.
+
+func _ready():
+	add_child(detection_tick_timer);
+	# Disabled custom tick process for now.
+	#detection_tick_timer.connect("timeout", self, "_on_tick_process");
+	#detection_tick_timer.start(detection_tick);
+
+
+func _physics_process(delta):
+	_on_tick_process(); # Uses physics process.
+
+
+func _on_tick_process():
+	if potential_enemies.size() > 0: # Only run if there are potential enemies.
+		_detect_potential_enemies();
+		_process_lost_enemies();
+	pass;
 
 func _on_fov_detection_body_entered(body: Spatial):
 	_track_potential_entitiy(body);
@@ -21,13 +41,6 @@ func _track_potential_entitiy(target: Spatial):
 	if "faction_name" in target:
 		#print("Enemy spotted: " + target.name)
 		potential_enemies[target] = true;
-
-
-# process each enemy in the list to ensure they are still sighted by the raycast.
-func _physics_process(delta):
-	_detect_potential_enemies();
-	_process_lost_enemies();
-	pass;
 
 
 func _detect_potential_enemies():

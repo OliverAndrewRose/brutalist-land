@@ -66,3 +66,6 @@ func _process_enemy_detection():
 			state_machine.transition_to("assault");
 		else:
 			state_machine.transition_to("hide");
+
+func exit():
+	wait_timer.stop();

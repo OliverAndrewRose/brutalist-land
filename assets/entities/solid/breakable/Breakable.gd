@@ -35,12 +35,8 @@ func update_properties():
 	pass
 
 	
-func take_damage(body: Node):
-
-	
-	if "bullet_damage" in body:
-		health -= body.bullet_damage;
-		
+func process_damage(damage: float, _force: Vector3):
+	health -= damage;
 	if health <= 0:
 		destroy_brush();
 	pass

@@ -21,8 +21,8 @@ func update_properties():
 
 
 func _ready():
-	connect("body_entered",self,"emit_enter_signal");
-	connect("body_exited",self,"emit_exit_signal");
+	var _error = connect("body_entered",self,"emit_enter_signal");
+	_error = connect("body_exited",self,"emit_exit_signal");
 	
 
 func emit_enter_signal(body):

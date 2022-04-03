@@ -18,7 +18,6 @@ var weapon_position_z = -0.2
 
 var can_switch_joy_dpad = true
 var reload_tip_displayed = false
-
 onready var weapon = $Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon
 
 onready var player = owner
@@ -26,9 +25,15 @@ onready var camera = player.get_node("Head/Camera")
 onready var crosshair = player.get_node("Head/Camera/Crosshair")
 var recoil: float;
 
+# Sound detection effect.
+onready var sound_detection_timer: Timer = Timer.new();
+var sound_detection_fade_time: float = 0.5;
+
 signal on_weapon_swap(player_weapon)
 
 func _ready():
+	add_child(sound_detection_timer);
+	sound_detection_timer.connect("timeout",self,"deactivate_sound_trigger");
 	deactivate_sound_trigger();
 	switch_weapon();
 	pass
@@ -62,12 +67,10 @@ func _input(event):
 
 func _process(delta):
 	
-	deactivate_sound_trigger();
-	
 	if not enable_all_input:
 		return;
 	
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if Input.is_action_pressed("fire"):
 		if $FireRateTimer.is_stopped() and can_shoot:
 			if current_weapon.current_ammo > 0:
 				shoot()
@@ -79,12 +82,14 @@ func _process(delta):
 				ammo_animation()
 	
 	weapon_look_animation(delta);
-	reload_tip()
+	
+	if not current_weapon.hide_ammo_hud:
+		reload_tip()
 	
 	crosshair.recoil = crosshair.recoil + (recoil*10 - crosshair.recoil) * delta * 2;
 	
 	if current_weapon.single_shot:
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if Input.is_action_pressed("fire"):
 			can_shoot = false
 		else:
 			can_shoot = true
@@ -102,7 +107,9 @@ func shoot():
 	current_weapon.fire_weapon();
 	
 	current_weapon.current_ammo -= 1
-	$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo)
+	
+	if not current_weapon.hide_ammo_hud:
+		$HUD/DisplayAmmo/AmmoText.text = str(current_weapon.current_ammo)
 
 
 func _process_reload():
@@ -303,10 +310,12 @@ func reload_tip():
 func activate_sound_trigger():
 	$SoundDetection.scale = Vector3.ONE * current_weapon.max_sound_distance;
 	$SoundDetection/CollisionShape.disabled = false;
+	sound_detection_timer.start(sound_detection_fade_time);
 
 func deactivate_sound_trigger():
 	$SoundDetection.scale = Vector3.ONE * 0.01;
 	$SoundDetection/CollisionShape.disabled = true;
+	sound_detection_timer.stop();
 
 func set_active_input(set_active: bool):
 	enable_all_input = set_active;
