@@ -42,7 +42,8 @@ func _on_target_wait_timer_timeout():
 	wait_timer.stop();
 	target_pos = _get_new_target_pos();
 	waiting = false;
-	_goto_current_target(); 
+	if state_machine.state.name == self.name:
+		_goto_current_target(); 
 	
 
 func _get_new_target_pos() -> Vector3:
@@ -63,3 +64,8 @@ func _process_enemy_detection():
 	if ai_helper.current_enemy != null:
 		if npc_properties.does_npc_fight:
 			state_machine.transition_to("assault");
+		else:
+			state_machine.transition_to("hide");
+
+func exit():
+	wait_timer.stop();

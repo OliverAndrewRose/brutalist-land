@@ -41,17 +41,17 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.125 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.1 )
 shape = SubResource( 728 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0.44 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0.3 )
 shape = SubResource( 729 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0.6, -0.1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.575, 0.6, -0.108892 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, 0.6, -0.1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.575, 0.6, -0.108892 )
 shape = SubResource( 5 )

@@ -1,0 +1,306 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/materials/security_shoes.tres" type="Material" id=1]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/male_02_security.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/materials/security_top.tres" type="Material" id=3]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/materials/security_bottoms.tres" type="Material" id=4]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/materials/security_body_male_02.tres" type="Material" id=5]
+[ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageReceiver.gd" type="Script" id=6]
+[ext_resource path="res://assets/entities/NPC/base/animation/HumanMovementAnimator.gd" type="Script" id=7]
+[ext_resource path="res://assets/entities/NPC/base/animation/GuardBlendTree.tres" type="AnimationNodeBlendTree" id=8]
+
+[sub_resource type="BoxShape" id=1]
+margin = 0.1
+extents = Vector3( 10, 14, 10 )
+
+[sub_resource type="BoxShape" id=2]
+margin = 0.1
+extents = Vector3( 15, 12, 14 )
+
+[sub_resource type="BoxShape" id=3]
+margin = 0.1
+extents = Vector3( 15, 12, 14 )
+
+[sub_resource type="BoxShape" id=4]
+margin = 0.1
+extents = Vector3( 8, 20, 8 )
+
+[sub_resource type="BoxShape" id=5]
+margin = 0.1
+extents = Vector3( 6, 16, 6 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[node name="male_02_security" instance=ExtResource( 2 )]
+
+[node name="Armature" parent="." index="0"]
+transform = Transform( 0.013, 0, 0, 0, -5.68248e-10, -0.013, 0, 0.013, -5.68248e-10, 0, 0, 0 )
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/1/bound_children = [ NodePath("col_spine") ]
+bones/3/bound_children = [ NodePath("col_spine2") ]
+bones/5/bound_children = [ NodePath("col_head") ]
+bones/8/bound_children = [ NodePath("col_leftarm") ]
+bones/9/bound_children = [ NodePath("col_leftforearm") ]
+bones/32/bound_children = [ NodePath("col_rightarm") ]
+bones/33/bound_children = [ NodePath("col_rightforearm") ]
+bones/34/bound_children = [ NodePath("attach_weapon") ]
+bones/55/bound_children = [ NodePath("col_leftupleg") ]
+bones/56/bound_children = [ NodePath("col_leftleg") ]
+bones/60/bound_children = [ NodePath("col_rightupleg") ]
+bones/61/bound_children = [ NodePath("col_rightleg") ]
+
+[node name="Body" parent="Armature/Skeleton" index="0"]
+material/0 = ExtResource( 5 )
+
+[node name="Bottoms" parent="Armature/Skeleton" index="1"]
+material/0 = ExtResource( 4 )
+
+[node name="Eyes" parent="Armature/Skeleton" index="2"]
+material/0 = ExtResource( 5 )
+
+[node name="Shoes" parent="Armature/Skeleton" index="3"]
+material/0 = ExtResource( 1 )
+
+[node name="Tops" parent="Armature/Skeleton" index="4"]
+material/0 = ExtResource( 3 )
+
+[node name="col_head" type="BoneAttachment" parent="Armature/Skeleton" index="5"]
+transform = Transform( 0.994638, -0.0584418, -0.0853148, 0.0917786, 0.118713, 0.988678, -0.0476522, -0.991207, 0.12344, -0.949534, 3.8415, -152.93 )
+bone_name = "mixamorig_Head"
+
+[node name="col_head" type="RigidBody" parent="Armature/Skeleton/col_head" index="0"]
+transform = Transform( 1, 2.40771e-17, -2.77556e-17, 2.89346e-17, 1, -2.84217e-14, -2.77556e-17, 9.9476e-14, 1, 4.65661e-10, 7.66451, 3.63927 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 3.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_head/col_head" index="0"]
+transform = Transform( 1, -8.39332e-18, 2.77556e-17, -7.58938e-19, 1, 0, -4.16334e-17, -2.84217e-14, 1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="col_spine2" type="BoneAttachment" parent="Armature/Skeleton" index="6"]
+transform = Transform( 0.993052, -0.0395485, -0.110833, 0.11036, -0.0139537, 0.993794, -0.0408496, -0.99912, -0.00949213, 0.32781, 0.445821, -130.761 )
+bone_name = "mixamorig_Spine2"
+
+[node name="col_spine2" type="RigidBody" parent="Armature/Skeleton/col_spine2" index="0"]
+transform = Transform( 1, 3.46945e-17, -1.38778e-17, 1.21431e-17, 0.996193, -0.0871557, 8.32667e-17, 0.0871557, 0.996194, 0, 2, 2.18 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+mass = 4.0
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_spine2/col_spine2" index="0"]
+transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="col_spine" type="BoneAttachment" parent="Armature/Skeleton" index="7"]
+transform = Transform( 0.996174, -0.0244117, -0.0839095, 0.0827108, -0.0465457, 0.995486, -0.0282071, -0.998618, -0.0443485, 1.04501, 1.4013, -105.508 )
+bone_name = "mixamorig_Spine"
+
+[node name="col_spine" type="RigidBody" parent="Armature/Skeleton/col_spine" index="0"]
+transform = Transform( 1, 1.86483e-17, 1.38778e-17, 1.38778e-17, 0.996194, -0.0871557, 9.71445e-17, 0.0871557, 0.996194, 0, -0.0416107, 0.409283 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+mass = 5.0
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_spine/col_spine" index="0"]
+transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="col_rightupleg" type="BoneAttachment" parent="Armature/Skeleton" index="8"]
+transform = Transform( -0.987094, -0.0881605, -0.133743, -0.15795, 0.396762, 0.904241, -0.0266552, 0.913677, -0.405562, -8.36367, 2.04597, -89.6105 )
+bone_name = "mixamorig_RightUpLeg"
+
+[node name="col_rightupleg" type="RigidBody" parent="Armature/Skeleton/col_rightupleg" index="0"]
+transform = Transform( 1, 0, -2.03727e-10, 1.13505e-09, -3.91155e-08, -1, -4.65661e-10, 1, -3.91155e-08, -0.322514, 18.9046, 0.380244 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightupleg/col_rightupleg" index="0"]
+transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="col_leftupleg" type="BoneAttachment" parent="Armature/Skeleton" index="9"]
+transform = Transform( -0.986239, 0.081208, 0.144055, 0.136679, -0.090083, 0.986523, 0.0930902, 0.992617, 0.0777403, 11.2565, 2.48248, -90.1361 )
+bone_name = "mixamorig_LeftUpLeg"
+
+[node name="col_leftupleg" type="RigidBody" parent="Armature/Skeleton/col_leftupleg" index="0"]
+transform = Transform( 1, 0, -2.03727e-10, 1.13505e-09, -3.91155e-08, -1, -4.65661e-10, 1, -3.91155e-08, -0.322514, 18.9046, 0.380244 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftupleg/col_leftupleg" index="0"]
+transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="col_leftleg" type="BoneAttachment" parent="Armature/Skeleton" index="10"]
+transform = Transform( -0.994045, 0.0676518, 0.0855165, 0.0490276, -0.423229, 0.904708, 0.0973981, 0.903496, 0.417382, 14.7359, -1.37719, -47.6067 )
+bone_name = "mixamorig_LeftLeg"
+
+[node name="col_leftleg" type="RigidBody" parent="Armature/Skeleton/col_leftleg" index="0"]
+transform = Transform( 1, -4.65661e-10, -1.35333e-09, 4.51109e-10, -3.72529e-08, -1, 0, 1, -4.47035e-08, -0.376014, 19.873, 0.59803 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftleg/col_leftleg" index="0"]
+transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="col_rightleg" type="BoneAttachment" parent="Armature/Skeleton" index="11"]
+transform = Transform( -0.952467, -0.0585065, -0.298994, -0.304509, 0.151675, 0.940366, -0.00966857, 0.986695, -0.162281, -12.1395, 19.0391, -50.4782 )
+bone_name = "mixamorig_RightLeg"
+
+[node name="col_rightleg" type="RigidBody" parent="Armature/Skeleton/col_rightleg" index="0"]
+transform = Transform( 1, -1.39698e-09, -1.18744e-08, 4.36557e-09, -7.45058e-08, -1, 2.32831e-09, 1, -5.96046e-08, 0.376049, 19.8734, 0.582335 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightleg/col_rightleg" index="0"]
+transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="col_leftarm" type="BoneAttachment" parent="Armature/Skeleton" index="12"]
+transform = Transform( 0.434357, 0.170355, -0.884484, -0.882325, 0.278015, -0.37975, 0.181207, 0.94535, 0.271066, 19.0426, 3.20309, -136.261 )
+bone_name = "mixamorig_LeftArm"
+
+[node name="col_leftarm" type="RigidBody" parent="Armature/Skeleton/col_leftarm" index="0"]
+transform = Transform( 0.994521, 0.104528, -4.56908e-09, 0, -4.37114e-08, -1, -0.104528, 0.994522, -4.34719e-08, 1.23978e-05, 11.8566, -1.52588e-05 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftarm/col_leftarm" index="0"]
+transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
+shape = SubResource( 5 )
+
+[node name="col_leftforearm" type="BoneAttachment" parent="Armature/Skeleton" index="13"]
+transform = Transform( 0.481653, 0.00632771, -0.876339, -0.691223, 0.617452, -0.375451, 0.538722, 0.786583, 0.301771, 23.355, 10.2409, -112.329 )
+bone_name = "mixamorig_LeftForeArm"
+
+[node name="col_leftforearm" type="RigidBody" parent="Armature/Skeleton/col_leftforearm" index="0"]
+transform = Transform( 0.994522, 0.104528, -4.56908e-09, 0, -4.37114e-08, -1, -0.104528, 0.994522, -4.34719e-08, 2.38419e-05, 22.2327, -0.000137329 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftforearm/col_leftforearm" index="0"]
+transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
+shape = SubResource( 5 )
+
+[node name="col_rightarm" type="BoneAttachment" parent="Armature/Skeleton" index="14"]
+transform = Transform( -0.0453515, -0.105317, 0.993404, 0.9637, -0.266523, 0.0157396, 0.263107, 0.958057, 0.113581, -19.0645, -2.21111, -135.013 )
+bone_name = "mixamorig_RightArm"
+
+[node name="col_rightarm" type="RigidBody" parent="Armature/Skeleton/col_rightarm" index="0"]
+transform = Transform( 0.994521, -0.104528, 4.56908e-09, 0, -4.37114e-08, -1, 0.104528, 0.994522, -4.34719e-08, 1.23978e-05, 11.8566, -1.52588e-05 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightarm/col_rightarm" index="0"]
+transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
+shape = SubResource( 5 )
+
+[node name="col_rightforearm" type="BoneAttachment" parent="Armature/Skeleton" index="15"]
+transform = Transform( -0.0159533, -0.163921, 0.986345, 0.99866, -0.0511668, 0.00764897, 0.0492143, 0.985145, 0.164518, -21.7315, -8.96042, -110.752 )
+bone_name = "mixamorig_RightForeArm"
+
+[node name="col_rightforearm" type="RigidBody" parent="Armature/Skeleton/col_rightforearm" index="0"]
+transform = Transform( 0.994522, -0.104528, 4.56908e-09, 0, -4.37114e-08, -1, 0.104528, 0.994522, -4.34719e-08, 0, 22.233, 0 )
+collision_layer = 16
+collision_mask = 8
+mode = 3
+gravity_scale = 0.0
+continuous_cd = true
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 6 )
+damage_multiplier = 0.75
+
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightforearm/col_rightforearm" index="0"]
+transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
+shape = SubResource( 5 )
+
+[node name="attach_weapon" type="BoneAttachment" parent="Armature/Skeleton" index="16"]
+transform = Transform( 0.296079, -0.0671527, 0.9528, 0.945954, -0.117568, -0.302238, 0.132314, 0.990791, 0.0287137, -25.5297, -10.146, -87.925 )
+bone_name = "mixamorig_RightHand"
+
+[node name="weapon_position" type="Spatial" parent="Armature/Skeleton/attach_weapon" index="0"]
+transform = Transform( 8.46013e-06, 110, -3.33786e-06, -7.68658, -3.33786e-06, -109.731, -109.731, 5.87851e-06, 7.68656, 2.43236, 5.77109, 5.58569 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource( 8 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource( 6 )
+parameters/StateMachine/conditions/holstering = false
+parameters/StateMachine/conditions/unholstering = false
+parameters/StateMachine/holster_tree/TimeScale/scale = 4.0
+parameters/StateMachine/pistol_walk/blend_position = Vector2( 0.104294, -0.492754 )
+parameters/StateMachine/unarmed_walk/blend_position = Vector2( -0.0163599, 0.323672 )
+parameters/StateMachine/unholster_tree/TimeScale/scale = 4.0
+script = ExtResource( 7 )

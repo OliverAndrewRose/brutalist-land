@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/entities/NPC/civilians/male_01/civilian_male_01.glb" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_shirt_yellow.tres" type="Material" id=2]
 [ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body_black.tres" type="Material" id=3]
 [ext_resource path="res://assets/entities/NPC/civilians/male_01/Ch01_body.material" type="Material" id=4]
-[ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageCalculator.gd" type="Script" id=5]
+[ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageReceiver.gd" type="Script" id=5]
 [ext_resource path="res://assets/entities/NPC/base/animation/HumanMovementAnimator.gd" type="Script" id=6]
-[ext_resource path="res://assets/entities/NPC/base/animation/HumanoidBlendTree.tres" type="AnimationNodeBlendTree" id=7]
+[ext_resource path="res://assets/entities/NPC/civilians/HumanoidAnimationTree.tres" type="AnimationNodeBlendTree" id=7]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/unholster_pistol.anim" type="Animation" id=8]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/holster_pistol.anim" type="Animation" id=9]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/idle_pistol.anim" type="Animation" id=10]
+[ext_resource path="res://assets/entities/NPC/guards/security/male_02/walk_forward_pistol.anim" type="Animation" id=11]
 
 [sub_resource type="BoxShape" id=9]
 extents = Vector3( 10, 14, 10 )
@@ -392,10 +396,25 @@ tracks/51/imported = false
 tracks/51/enabled = true
 tracks/51/keys = PoolRealArray( 0, 1, 0, 0, 0, 1.69136e-17, -9.08039e-09, -1.86264e-09, 1, 1, 1, 1, 0.0666667, 1, 0.000768661, 0.000656128, 0.00151682, 0.000110801, 3.18784e-06, -1.12302e-05, 1, 1, 1, 1, 0.133333, 1, 0.00410795, 0.003479, 0.0122046, 0.000339047, -0.000134072, -2.43273e-05, 1, 1, 1, 1, 0.2, 1, 0.00854397, 0.00804901, 0.0298905, 0.000445494, -0.000547739, -5.202e-05, 1, 1, 1, 1, 0.266667, 1, 0.0123053, 0.0116806, 0.0475507, 0.000570241, -0.00126601, -0.000109416, 0.999999, 1, 1, 1, 0.333333, 1, 0.0158329, 0.0118027, 0.0644369, 0.000655483, -0.00199773, -0.000189139, 0.999998, 1, 1, 1, 0.4, 1, 0.0206447, 0.0181351, 0.0826654, 0.000830258, -0.00271042, -0.000330125, 0.999996, 1, 1, 1, 0.466667, 1, 0.0245714, 0.0198212, 0.0989318, 0.00114725, -0.00334627, -0.000437501, 0.999994, 1, 1, 1, 0.533333, 1, 0.0224185, 0.0173569, 0.113519, 0.00135878, -0.00384641, -0.000583669, 0.999992, 1, 1, 1, 0.6, 1, 0.0103102, 0.013916, 0.126341, 0.00161656, -0.00417509, -0.000788549, 0.99999, 1, 1, 1, 0.666667, 1, -0.00440025, 0.00960541, 0.141243, 0.00201051, -0.00425989, -0.000940116, 0.999989, 1, 1, 1, 0.733333, 1, -0.0205083, 0.00913239, 0.160435, 0.00231186, -0.00429349, -0.00107759, 0.999988, 1, 1, 1, 0.8, 1, -0.0389471, 0.00691986, 0.185282, 0.00275819, -0.00419839, -0.00113909, 0.999987, 1, 1, 1, 0.866667, 1, -0.0541973, 0.00761414, 0.22164, 0.0031945, -0.00430139, -0.00115417, 0.999985, 1, 1, 1, 0.933333, 1, -0.065547, 0.00831604, 0.265233, 0.00335396, -0.00436437, -0.000995365, 0.999984, 1, 1, 1, 1, 1, -0.0776424, 0.00170898, 0.306242, 0.00325854, -0.0042307, -0.000716594, 0.999986, 1, 1, 1, 1.06667, 1, -0.0972099, -0.001297, 0.356529, 0.00291638, -0.00410662, -0.000471032, 0.999987, 1, 1, 1, 1.13333, 1, -0.12042, -0.00499725, 0.410114, 0.00243885, -0.00412552, -0.000274626, 0.999988, 1, 1, 1, 1.2, 1, -0.141532, -0.01017, 0.452092, 0.00194392, -0.00396681, -7.41137e-05, 0.99999, 1, 1, 1, 1.26667, 1, -0.161712, -0.0158386, 0.480862, 0.00137204, -0.00348638, 0.000233429, 0.999993, 1, 1, 1, 1.33333, 1, -0.179493, -0.0198059, 0.500535, 0.000843658, -0.00263467, 0.000684287, 0.999996, 1, 1, 1, 1.4, 1, -0.196108, -0.0260239, 0.504622, 0.000470619, -0.00146918, 0.0011779, 0.999998, 1, 1, 1, 1.46667, 1, -0.218441, -0.0377045, 0.500462, 0.000160624, -9.87452e-05, 0.0015848, 0.999999, 1, 1, 1, 1.53333, 1, -0.245968, -0.0478134, 0.493108, -0.000171077, 0.00110701, 0.00196194, 0.999997, 1, 1, 1, 1.6, 1, -0.280058, -0.0566101, 0.489517, -0.000414965, 0.00197389, 0.00227372, 0.999995, 1, 1, 1, 1.66667, 1, -0.319558, -0.0621719, 0.49176, -0.000630642, 0.00251324, 0.00252212, 0.999994, 1, 1, 1, 1.73333, 1, -0.359969, -0.0672836, 0.496161, -0.00066937, 0.00280431, 0.00268495, 0.999992, 1, 1, 1, 1.8, 1, -0.392899, -0.0707474, 0.507114, -0.000617883, 0.0027587, 0.00283761, 0.999992, 1, 1, 1, 1.86667, 1, -0.416763, -0.071167, 0.52662, -0.000661592, 0.00236785, 0.00299326, 0.999992, 1, 1, 1, 1.93333, 1, -0.432504, -0.0711899, 0.547489, -0.0007768, 0.00199254, 0.00316166, 0.999993, 1, 1, 1, 2, 1, -0.44238, -0.0725784, 0.568437, -0.000965218, 0.00157206, 0.00330053, 0.999993, 1, 1, 1, 2.06667, 1, -0.448208, -0.0750656, 0.58752, -0.00119871, 0.00105021, 0.0033757, 0.999993, 1, 1, 1, 2.13333, 1, -0.453638, -0.0786743, 0.605599, -0.00146116, 0.000640936, 0.00338631, 0.999993, 1, 1, 1, 2.2, 1, -0.453563, -0.0800323, 0.620044, -0.00178505, 0.000285385, 0.00333492, 0.999993, 1, 1, 1, 2.26667, 1, -0.448917, -0.0804214, 0.633569, -0.00222931, 0.000197351, 0.00323955, 0.999992, 1, 1, 1, 2.33333, 1, -0.443488, -0.0835724, 0.64473, -0.00271879, 0.000371656, 0.00312957, 0.999991, 1, 1, 1, 2.4, 1, -0.440367, -0.0886765, 0.651103, -0.00321765, 0.000741329, 0.00305592, 0.99999, 1, 1, 1, 2.46667, 1, -0.442647, -0.0980988, 0.659904, -0.00383627, 0.0014471, 0.00303168, 0.999987, 1, 1, 1, 2.53333, 1, -0.448864, -0.11013, 0.665173, -0.00453316, 0.00228169, 0.00308136, 0.999982, 1, 1, 1, 2.6, 1, -0.467788, -0.123543, 0.672475, -0.00511198, 0.00324968, 0.00316336, 0.999977, 1, 1, 1, 2.66667, 1, -0.498737, -0.134216, 0.688961, -0.00548091, 0.00433813, 0.00329065, 0.99997, 1, 1, 1, 2.73333, 1, -0.532759, -0.137901, 0.715304, -0.00562323, 0.00516319, 0.00339661, 0.999965, 1, 1, 1, 2.8, 1, -0.565338, -0.142479, 0.747981, -0.00581712, 0.00551807, 0.0035439, 0.999962, 1, 1, 1, 2.86667, 1, -0.60333, -0.14872, 0.786856, -0.00607395, 0.00569835, 0.0037602, 0.999958, 1, 1, 1, 2.93333, 1, -0.647664, -0.155212, 0.829708, -0.00628152, 0.00591319, 0.00392702, 0.999955, 1, 1, 1, 3, 1, -0.682702, -0.158508, 0.872535, -0.00644501, 0.00591553, 0.00413391, 0.999953, 1, 1, 1, 3.06667, 1, -0.709167, -0.157715, 0.913988, -0.00656869, 0.00564558, 0.00433368, 0.999953, 1, 1, 1, 3.13333, 1, -0.724876, -0.159058, 0.936126, -0.00682676, 0.00527969, 0.00455674, 0.999952, 1, 1, 1, 3.2, 1, -0.729764, -0.154243, 0.938664, -0.00712167, 0.00501976, 0.0047365, 0.999951, 1, 1, 1, 3.26667, 1, -0.717773, -0.144592, 0.925523, -0.00698439, 0.00479187, 0.00494819, 0.999952, 1, 1, 1, 3.33333, 1, -0.695808, -0.138336, 0.894736, -0.0066088, 0.00458613, 0.00518926, 0.999954, 1, 1, 1, 3.4, 1, -0.674349, -0.130676, 0.854591, -0.00623111, 0.00443921, 0.00537397, 0.999956, 1, 1, 1, 3.46667, 1, -0.64889, -0.1213, 0.814852, -0.00593966, 0.00424448, 0.00552905, 0.999958, 1, 1, 1, 3.53333, 1, -0.619808, -0.10965, 0.779685, -0.00560814, 0.00400411, 0.00561957, 0.99996, 1, 1, 1, 3.6, 1, -0.593868, -0.0994034, 0.745054, -0.00515307, 0.00368969, 0.00563222, 0.999964, 1, 1, 1, 3.66667, 1, -0.564736, -0.0865555, 0.716986, -0.0045341, 0.00335593, 0.0056423, 0.999968, 1, 1, 1, 3.73333, 1, -0.531181, -0.0719986, 0.697857, -0.00393728, 0.00304227, 0.00557203, 0.999972, 1, 1, 1, 3.8, 1, -0.492846, -0.0552521, 0.697287, -0.00360689, 0.00263291, 0.00562508, 0.999974, 1, 1, 1, 3.86667, 1, -0.456408, -0.0436554, 0.700929, -0.00364661, 0.00216436, 0.00571832, 0.999975, 1, 1, 1, 3.93333, 1, -0.430455, -0.0371094, 0.70652, -0.00386941, 0.00196229, 0.00574011, 0.999974, 1, 1, 1, 4, 1, -0.405957, -0.0307465, 0.717274, -0.00410401, 0.00181291, 0.00579758, 0.999973, 1, 1, 1, 4.06667, 1, -0.386282, -0.0246353, 0.724157, -0.00424461, 0.00161376, 0.0057872, 0.999973, 1, 1, 1, 4.13333, 1, -0.37238, -0.0211487, 0.722752, -0.00421519, 0.00152024, 0.00572975, 0.999974, 1, 1, 1, 4.2, 1, -0.361208, -0.0151215, 0.719348, -0.00411059, 0.00150136, 0.00564169, 0.999975, 1, 1, 1, 4.26667, 1, -0.35492, -0.0093689, 0.719555, -0.00397721, 0.00153088, 0.00552714, 0.999976, 1, 1, 1, 4.33333, 1, -0.351718, -0.00841522, 0.7214, -0.00377178, 0.00148256, 0.00539084, 0.999977, 1, 1, 1, 4.4, 1, -0.357141, -0.0159607, 0.720083, -0.00364761, 0.00151657, 0.0052009, 0.999979, 1, 1, 1, 4.46667, 1, -0.36956, -0.0226822, 0.723158, -0.00360937, 0.00164424, 0.00501355, 0.99998, 1, 1, 1, 4.53333, 1, -0.382799, -0.0294724, 0.732793, -0.00355279, 0.00168087, 0.00485148, 0.999981, 1, 1, 1, 4.6, 1, -0.403007, -0.0401154, 0.741749, -0.00331428, 0.00157214, 0.00469812, 0.999982, 1, 1, 1, 4.66667, 1, -0.425107, -0.0450897, 0.750541, -0.00292645, 0.00135389, 0.00447513, 0.999985, 1, 1, 1, 4.73333, 1, -0.443426, -0.0459671, 0.768183, -0.00250097, 0.000957794, 0.00426458, 0.999987, 1, 1, 1, 4.8, 1, -0.458423, -0.0520859, 0.786911, -0.0021328, 0.000541776, 0.00415152, 0.999989, 1, 1, 1, 4.86667, 1, -0.471678, -0.0562592, 0.809183, -0.00186873, 0.000244757, 0.00409181, 0.99999, 1, 1, 1, 4.93333, 1, -0.481335, -0.057663, 0.835372, -0.00150722, -9.79368e-05, 0.00411222, 0.99999, 1, 1, 1, 5, 1, -0.488069, -0.058403, 0.86038, -0.0011096, -0.000502169, 0.0041706, 0.999991, 1, 1, 1, 5.06667, 1, -0.49646, -0.0597687, 0.878846, -0.000670997, -0.000728192, 0.00418098, 0.999991, 1, 1, 1, 5.13333, 1, -0.501735, -0.0615845, 0.900415, -0.000270984, -0.000930416, 0.00421979, 0.999991, 1, 1, 1, 5.2, 1, -0.498787, -0.0582123, 0.924762, -7.78708e-05, -0.00121297, 0.00426872, 0.99999, 1, 1, 1, 5.26667, 1, -0.495452, -0.0598068, 0.945442, -0.000115978, -0.00145723, 0.00431455, 0.99999, 1, 1, 1, 5.33333, 1, -0.493919, -0.0645676, 0.963862, -0.000372116, -0.00157026, 0.00436278, 0.999989, 1, 1, 1, 5.4, 1, -0.495244, -0.0647964, 0.981527, -0.000717002, -0.00163609, 0.00427242, 0.999989, 1, 1, 1, 5.46667, 1, -0.501009, -0.0692902, 0.993453, -0.0010834, -0.00162178, 0.00408337, 0.99999, 1, 1, 1, 5.53333, 1, -0.50228, -0.0795135, 0.985552, -0.00153542, -0.00160816, 0.00387703, 0.99999, 1, 1, 1, 5.6, 1, -0.50361, -0.092041, 0.96911, -0.00188788, -0.00138078, 0.00370174, 0.99999, 1, 1, 1, 5.66667, 1, -0.509099, -0.103683, 0.967391, -0.0023133, -0.00101692, 0.00356002, 0.99999, 1, 1, 1, 5.73333, 1, -0.506238, -0.114754, 0.9774, -0.00306833, -0.000888716, 0.0034961, 0.999989, 1, 1, 1, 5.8, 1, -0.50949, -0.13282, 0.984787, -0.00403162, -0.000622211, 0.00344628, 0.999986, 1, 1, 1, 5.86667, 1, -0.527554, -0.152649, 0.986279, -0.00498787, -0.000132097, 0.00335365, 0.999982, 1, 1, 1, 5.93333, 1, -0.555315, -0.161797, 0.992068, -0.00555202, 0.000465468, 0.0032853, 0.999979, 1, 1, 1, 6, 1, -0.582434, -0.164848, 0.988069, -0.0057326, 0.00100397, 0.00334491, 0.999977, 1, 1, 1, 6.06667, 1, -0.607318, -0.168869, 0.967915, -0.00567305, 0.00142988, 0.00338609, 0.999977, 1, 1, 1, 6.13333, 1, -0.627117, -0.170036, 0.94936, -0.00554906, 0.00168797, 0.00347112, 0.999977, 1, 1, 1, 6.2, 1, -0.633322, -0.164993, 0.926663, -0.00540683, 0.00162319, 0.00365959, 0.999977, 1, 1, 1, 6.26667, 1, -0.635664, -0.16259, 0.897504, -0.00519606, 0.00156121, 0.00378236, 0.999978, 1, 1, 1, 6.33333, 1, -0.63262, -0.159866, 0.868416, -0.00504518, 0.00141382, 0.00384529, 0.999979, 1, 1, 1, 6.4, 1, -0.626286, -0.154663, 0.839051, -0.00490771, 0.00126089, 0.00388956, 0.99998, 1, 1, 1, 6.46667, 1, -0.613178, -0.152451, 0.80056, -0.00478472, 0.00112981, 0.00386576, 0.99998, 1, 1, 1, 6.53333, 1, -0.593781, -0.150696, 0.742134, -0.00469951, 0.00122127, 0.00373239, 0.999981, 1, 1, 1, 6.6, 1, -0.574229, -0.144966, 0.669261, -0.00445359, 0.00146039, 0.00348836, 0.999983, 1, 1, 1, 6.66667, 1, -0.536949, -0.132225, 0.590827, -0.00421025, 0.0013092, 0.00321918, 0.999985, 1, 1, 1, 6.73333, 1, -0.485668, -0.115952, 0.511487, -0.0039812, 0.000805729, 0.00309756, 0.999987, 1, 1, 1, 6.8, 1, -0.44284, -0.106621, 0.437046, -0.00382755, 0.000501937, 0.00293851, 0.999988, 1, 1, 1, 6.86667, 1, -0.405636, -0.0997696, 0.366292, -0.00351824, 0.000357632, 0.00272036, 0.99999, 1, 1, 1, 6.93333, 1, -0.370407, -0.0878296, 0.303049, -0.00308054, 0.000155925, 0.00252744, 0.999992, 1, 1, 1, 7, 1, -0.334074, -0.0745926, 0.241449, -0.00275128, -0.000200481, 0.00236785, 0.999993, 1, 1, 1, 7.06667, 1, -0.296761, -0.0605392, 0.176695, -0.00233044, -0.000624452, 0.00216617, 0.999995, 1, 1, 1, 7.13333, 1, -0.254685, -0.0428391, 0.118382, -0.00168224, -0.00105877, 0.00200614, 0.999996, 1, 1, 1, 7.2, 1, -0.205169, -0.0199738, 0.0699081, -0.00105856, -0.0014598, 0.00192476, 0.999997, 1, 1, 1, 7.26667, 1, -0.154768, -0.0018158, 0.023592, -0.000717949, -0.00175401, 0.00183431, 0.999997, 1, 1, 1, 7.33333, 1, -0.105655, 0.00852966, -0.0237274, -0.000646768, -0.00193235, 0.00173722, 0.999996, 1, 1, 1, 7.4, 1, -0.0637302, 0.0148544, -0.0602479, -0.000832396, -0.00190639, 0.00162029, 0.999997, 1, 1, 1, 7.46667, 1, -0.0274916, 0.0206451, -0.0847912, -0.00115455, -0.00168528, 0.00148658, 0.999997, 1, 1, 1, 7.53333, 1, 0.0101666, 0.028038, -0.10634, -0.00151613, -0.00133371, 0.00134205, 0.999997, 1, 1, 1, 7.6, 1, 0.048986, 0.0316925, -0.128774, -0.00195752, -0.00125387, 0.00129621, 0.999996, 1, 1, 1, 7.66667, 1, 0.088728, 0.0298004, -0.154237, -0.00248396, -0.00120451, 0.00133159, 0.999995, 1, 1, 1, 7.73333, 1, 0.119509, 0.0276489, -0.179094, -0.00292127, -0.000831556, 0.00130608, 0.999995, 1, 1, 1, 7.8, 1, 0.141178, 0.0288696, -0.20064, -0.00308942, -0.000449852, 0.00120019, 0.999994, 1, 1, 1, 7.86667, 1, 0.154236, 0.0306549, -0.220731, -0.00279019, -0.000109488, 0.00108984, 0.999996, 1, 1, 1, 7.93333, 1, 0.158504, 0.0317078, -0.239699, -0.00219734, 0.000186654, 0.00088648, 0.999997, 1, 1, 1, 8, 1, 0.157423, 0.0309067, -0.246303, -0.00161077, 0.00045592, 0.000673717, 0.999998, 1, 1, 1, 8.06667, 1, 0.144124, 0.0293961, -0.234269, -0.00128814, 0.000700015, 0.000466971, 0.999999, 1, 1, 1, 8.13333, 1, 0.125189, 0.0245972, -0.202095, -0.00108146, 0.000764148, 0.000359449, 0.999999, 1, 1, 1, 8.2, 1, 0.103201, 0.0214081, -0.156149, -0.000808825, 0.000596247, 0.000314616, 0.999999, 1, 1, 1, 8.26667, 1, 0.0699453, 0.0152054, -0.101348, -0.00055298, 0.000398635, 0.000219342, 1, 1, 1, 1, 8.33333, 1, 0.0265422, 0.00589752, -0.0386429, -0.00027558, 0.000201806, 8.43329e-05, 1, 1, 1, 1, 8.375, 1, 0, 0, 0, 1.69136e-17, -9.08039e-09, -1.86264e-09, 1, 1, 1, 1 )
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+
 [node name="civilian_male_01" instance=ExtResource( 1 )]
 
 [node name="Armature" parent="." index="0"]
 transform = Transform( 0.013, 0, 0, 0, -5.68248e-10, -0.013, 0, 0.013, -5.68248e-10, 0, 0, 0 )
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/1/bound_children = [ NodePath("col_spine") ]
+bones/3/bound_children = [ NodePath("col_spine2") ]
+bones/5/bound_children = [ NodePath("col_head") ]
+bones/8/bound_children = [ NodePath("col_leftarm") ]
+bones/9/bound_children = [ NodePath("col_leftforearm") ]
+bones/32/bound_children = [ NodePath("col_rightarm") ]
+bones/33/bound_children = [ NodePath("col_rightforearm") ]
+bones/55/bound_children = [ NodePath("col_leftupleg") ]
+bones/56/bound_children = [ NodePath("col_leftleg") ]
+bones/60/bound_children = [ NodePath("col_rightupleg") ]
+bones/61/bound_children = [ NodePath("col_rightleg") ]
 
 [node name="Ch01_Body" parent="Armature/Skeleton" index="0"]
 material/0 = ExtResource( 4 )
@@ -410,7 +429,7 @@ material/0 = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="col_head" type="BoneAttachment" parent="Armature/Skeleton" index="4"]
-transform = Transform( 0.999354, -0.0161334, 0.0321234, -0.0312775, 0.0501954, 0.99825, -0.0177176, -0.998609, 0.0496584, 1.61816, 6.66904, -155.724 )
+transform = Transform( 0.999322, -0.0321442, 0.0179438, -0.0151909, 0.083928, 0.996356, -0.033533, -0.995953, 0.0833828, -1.61144, 3.77114, -155.083 )
 bone_name = "mixamorig_Head"
 
 [node name="col_head" type="RigidBody" parent="Armature/Skeleton/col_head" index="0"]
@@ -422,13 +441,15 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
+damage_multiplier = 3.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_head/col_head" index="0"]
 transform = Transform( 1, -8.39332e-18, 2.77556e-17, -7.58938e-19, 1, 0, -4.16334e-17, -2.84217e-14, 1, 0, 0, 0 )
 shape = SubResource( 9 )
 
 [node name="col_spine2" type="BoneAttachment" parent="Armature/Skeleton" index="5"]
-transform = Transform( 0.998906, -0.0269393, 0.0382127, -0.0387319, -0.0190219, 0.999069, -0.0261873, -0.999456, -0.0200445, 2.06573, 3.59789, -133.396 )
+transform = Transform( 0.999432, -0.0240945, 0.0235437, -0.0236924, -0.00590241, 0.999702, -0.0239483, -0.999692, -0.00646988, -1.11078, 0.331464, -132.835 )
 bone_name = "mixamorig_Spine2"
 
 [node name="col_spine2" type="RigidBody" parent="Armature/Skeleton/col_spine2" index="0"]
@@ -440,13 +461,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_spine2/col_spine2" index="0"]
 transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 10 )
 
 [node name="col_spine" type="BoneAttachment" parent="Armature/Skeleton" index="6"]
-transform = Transform( 0.997715, -0.028455, 0.0612775, -0.0623057, -0.0367727, 0.99738, -0.0261271, -0.998918, -0.0384616, 2.77368, 4.40833, -108.137 )
+transform = Transform( 0.999556, -0.0199791, 0.0220972, -0.0229164, -0.0417512, 0.998865, -0.0190339, -0.998928, -0.0421905, -0.577839, 1.14529, -107.572 )
 bone_name = "mixamorig_Spine"
 
 [node name="col_spine" type="RigidBody" parent="Armature/Skeleton/col_spine" index="0"]
@@ -458,13 +480,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_spine/col_spine" index="0"]
 transform = Transform( 1, 1.42109e-14, 1.38829e-17, -1.38778e-17, -4.37115e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 11 )
 
 [node name="col_rightupleg" type="BoneAttachment" parent="Armature/Skeleton" index="7"]
-transform = Transform( -0.997607, -0.0692273, -0.00124415, -0.0280045, 0.387006, 0.921663, -0.0633221, 0.919474, -0.388013, -6.33576, 6.64417, -92.2091 )
+transform = Transform( -0.989233, -0.0434946, -0.13977, -0.144158, 0.123691, 0.981803, -0.0254146, 0.991367, -0.128628, -10.0752, 2.92589, -91.8143 )
 bone_name = "mixamorig_RightUpLeg"
 
 [node name="col_rightupleg" type="RigidBody" parent="Armature/Skeleton/col_rightupleg" index="0"]
@@ -476,13 +499,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightupleg/col_rightupleg" index="0"]
 transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="col_leftupleg" type="BoneAttachment" parent="Armature/Skeleton" index="8"]
-transform = Transform( -0.983499, 0.00901433, 0.18073, 0.180609, 0.110529, 0.977335, -0.0111654, 0.993832, -0.110337, 13.1817, 4.62796, -92.8604 )
+transform = Transform( -0.994613, 0.0986108, 0.0321445, 0.072038, 0.433827, 0.898118, 0.0746189, 0.895584, -0.438594, 9.54841, 2.46522, -92.1622 )
 bone_name = "mixamorig_LeftUpLeg"
 
 [node name="col_leftupleg" type="RigidBody" parent="Armature/Skeleton/col_leftupleg" index="0"]
@@ -494,13 +518,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftupleg/col_leftupleg" index="0"]
 transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="col_leftleg" type="BoneAttachment" parent="Armature/Skeleton" index="9"]
-transform = Transform( -0.99341, -0.0462513, 0.104939, 0.113469, -0.263803, 0.95789, -0.0166194, 0.96347, 0.267302, 13.5679, 9.36363, -50.2789 )
+transform = Transform( -0.990215, 0.0345362, 0.135253, 0.0956289, -0.538021, 0.837497, 0.101692, 0.84223, 0.529444, 13.7735, 21.0529, -53.7903 )
 bone_name = "mixamorig_LeftLeg"
 
 [node name="col_leftleg" type="RigidBody" parent="Armature/Skeleton/col_leftleg" index="0"]
@@ -512,13 +537,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftleg/col_leftleg" index="0"]
 transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="col_rightleg" type="BoneAttachment" parent="Armature/Skeleton" index="10"]
-transform = Transform( -0.980779, -0.0658844, -0.183699, -0.157718, -0.286799, 0.94493, -0.114939, 0.955722, 0.270889, -9.30073, 23.2194, -52.8285 )
+transform = Transform( -0.985704, 0.0287423, -0.166042, -0.168424, -0.136364, 0.976246, 0.0054171, 0.990241, 0.139253, -11.938, 8.22351, -49.3546 )
 bone_name = "mixamorig_RightLeg"
 
 [node name="col_rightleg" type="RigidBody" parent="Armature/Skeleton/col_rightleg" index="0"]
@@ -530,13 +556,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightleg/col_rightleg" index="0"]
 transform = Transform( 1, -1.45519e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 0, 0, 0 )
 shape = SubResource( 12 )
 
 [node name="col_leftarm" type="BoneAttachment" parent="Armature/Skeleton" index="11"]
-transform = Transform( 0.117986, 0.131253, -0.984303, -0.990525, 0.0857082, -0.107302, 0.070279, 0.987637, 0.140122, 20.6561, 2.55642, -138.012 )
+transform = Transform( 0.00726618, 0.188745, -0.981999, -0.986256, -0.160746, -0.0381936, -0.165061, 0.968781, 0.184983, 17.8947, -0.593531, -137.988 )
 bone_name = "mixamorig_LeftArm"
 
 [node name="col_leftarm" type="RigidBody" parent="Armature/Skeleton/col_leftarm" index="0"]
@@ -548,13 +575,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftarm/col_leftarm" index="0"]
 transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
 shape = SubResource( 13 )
 
 [node name="col_leftforearm" type="BoneAttachment" parent="Armature/Skeleton" index="12"]
-transform = Transform( 0.172608, 0.146706, -0.974004, -0.903083, 0.418363, -0.0970254, 0.393253, 0.896354, 0.2047, 23.9788, 4.7261, -113.01 )
+transform = Transform( 0.124562, 0.201727, -0.971488, -0.93826, 0.342413, -0.0492006, 0.322725, 0.917638, 0.231924, 22.6727, -4.66276, -113.464 )
 bone_name = "mixamorig_LeftForeArm"
 
 [node name="col_leftforearm" type="RigidBody" parent="Armature/Skeleton/col_leftforearm" index="0"]
@@ -566,13 +594,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_leftforearm/col_leftforearm" index="0"]
 transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
 shape = SubResource( 13 )
 
 [node name="col_rightarm" type="BoneAttachment" parent="Armature/Skeleton" index="13"]
-transform = Transform( -0.0375691, -0.0793178, 0.996141, 0.982642, -0.184158, 0.0223964, 0.181671, 0.979691, 0.0848595, -17.2871, 2.99019, -137.706 )
+transform = Transform( -0.0437487, -0.124492, 0.991255, 0.98743, -0.156227, 0.0239593, 0.151878, 0.979844, 0.129762, -20.3975, -0.242347, -137.126 )
 bone_name = "mixamorig_RightArm"
 
 [node name="col_rightarm" type="RigidBody" parent="Armature/Skeleton/col_rightarm" index="0"]
@@ -584,13 +613,14 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightarm/col_rightarm" index="0"]
 transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
 shape = SubResource( 13 )
 
 [node name="col_rightforearm" type="BoneAttachment" parent="Armature/Skeleton" index="14"]
-transform = Transform( 0.00407561, -0.154758, 0.987944, 0.991761, 0.127124, 0.0158222, -0.12804, 0.97974, 0.154, -19.2957, -1.67335, -112.896 )
+transform = Transform( 0.0588949, -0.162942, 0.984876, 0.915728, 0.401628, 0.011687, -0.397459, 0.901191, 0.172864, -23.5501, -4.19857, -112.313 )
 bone_name = "mixamorig_RightForeArm"
 
 [node name="col_rightforearm" type="RigidBody" parent="Armature/Skeleton/col_rightforearm" index="0"]
@@ -602,6 +632,7 @@ gravity_scale = 0.0
 continuous_cd = true
 contacts_reported = 2
 contact_monitor = true
+script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/col_rightforearm/col_rightforearm" index="0"]
 transform = Transform( 1, -1.45448e-11, -2.79397e-09, -1.86265e-09, -3.72529e-08, 1, 8.51287e-09, -1, -4.37722e-08, 9.53674e-07, 0, 4.11435 )
@@ -609,26 +640,20 @@ shape = SubResource( 13 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "idle"
+anims/holster_pistol = ExtResource( 9 )
 anims/idle = SubResource( 6 )
+anims/idle_pistol = ExtResource( 10 )
+anims/unholster_pistol = ExtResource( 8 )
+anims/walk_forward_pistol = ExtResource( 11 )
 
-[node name="BulletDamageCalculator" type="Node" parent="." index="2"]
-script = ExtResource( 5 )
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/movement_dir/blend_position = Vector2( 0.00334454, 0.671698 )
+parameters/StateMachine/playback = SubResource( 14 )
+parameters/StateMachine/conditions/run = true
+parameters/StateMachine/conditions/walk = false
+parameters/StateMachine/unarmed_run/blend_position = Vector2( -0.0128315, -0.0517242 )
+parameters/StateMachine/unarmed_walk/blend_position = Vector2( -0.336185, 0.655172 )
+parameters/TimeScale/scale = 0.8
 script = ExtResource( 6 )
-
-[connection signal="body_entered" from="Armature/Skeleton/col_head/col_head" to="BulletDamageCalculator" method="_on_col_head_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_spine2/col_spine2" to="BulletDamageCalculator" method="_on_col_spine2_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_spine/col_spine" to="BulletDamageCalculator" method="_on_col_spine_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_rightupleg/col_rightupleg" to="BulletDamageCalculator" method="_on_col_rightupleg_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_leftupleg/col_leftupleg" to="BulletDamageCalculator" method="_on_col_leftupleg_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_leftleg/col_leftleg" to="BulletDamageCalculator" method="_on_col_leftleg_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_rightleg/col_rightleg" to="BulletDamageCalculator" method="_on_col_rightleg_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_leftarm/col_leftarm" to="BulletDamageCalculator" method="_on_col_leftarm_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_leftforearm/col_leftforearm" to="BulletDamageCalculator" method="_on_col_leftforearm_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_rightarm/col_rightarm" to="BulletDamageCalculator" method="_on_col_rightarm_body_entered"]
-[connection signal="body_entered" from="Armature/Skeleton/col_rightforearm/col_rightforearm" to="BulletDamageCalculator" method="_on_col_rightforearm_body_entered"]

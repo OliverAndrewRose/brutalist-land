@@ -1,0 +1,82 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=17 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "run_forward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "run_strafe_right_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "run_strafe_left_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "run_backward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+blend_point_0/node = SubResource( 15 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 16 )
+blend_point_1/pos = Vector2( -0.4, 0 )
+blend_point_2/node = SubResource( 17 )
+blend_point_2/pos = Vector2( 0.4, 0 )
+blend_point_3/node = SubResource( 18 )
+blend_point_3/pos = Vector2( 0, -0.4 )
+blend_point_4/node = SubResource( 19 )
+blend_point_4/pos = Vector2( 0, 0 )
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "walk_forward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "walk_strafe_right_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "walk_strafe_left_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "walk_backward_unarmed"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=1]
+blend_point_0/node = SubResource( 5 )
+blend_point_0/pos = Vector2( 0, 0.7 )
+blend_point_1/node = SubResource( 6 )
+blend_point_1/pos = Vector2( -0.5, 0 )
+blend_point_2/node = SubResource( 7 )
+blend_point_2/pos = Vector2( 0.5, 0 )
+blend_point_3/node = SubResource( 8 )
+blend_point_3/pos = Vector2( 0, -0.3 )
+blend_point_4/node = SubResource( 9 )
+blend_point_4/pos = Vector2( 0, 0 )
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+advance_condition = "run"
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+advance_condition = "walk"
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/unarmed_run/node = SubResource( 12 )
+states/unarmed_run/position = Vector2( 534, 54 )
+states/unarmed_walk/node = SubResource( 1 )
+states/unarmed_walk/position = Vector2( 203, 54 )
+transitions = [ "unarmed_walk", "unarmed_run", SubResource( 13 ), "unarmed_run", "unarmed_walk", SubResource( 14 ) ]
+start_node = "unarmed_walk"
+graph_offset = Vector2( -153, -25 )
+
+[sub_resource type="AnimationNodeTimeScale" id=11]
+
+[resource]
+graph_offset = Vector2( -410, -32 )
+nodes/StateMachine/node = SubResource( 4 )
+nodes/StateMachine/position = Vector2( -200, 60 )
+nodes/TimeScale/node = SubResource( 11 )
+nodes/TimeScale/position = Vector2( 100, 60 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "StateMachine" ]

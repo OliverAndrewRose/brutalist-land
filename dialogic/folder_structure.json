@@ -5,7 +5,7 @@
 	"folders": {
 		"Characters": {
 			"files": [
-				"character-1640033049.json"
+
 			],
 			"folders": {
 				"generic": {
@@ -18,7 +18,31 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": false
+						"folded": true
+					}
+				},
+				"guard": {
+					"files": [
+						"character-1643411753.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
+					}
+				},
+				"shops": {
+					"files": [
+						"character-1640033049.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
 					}
 				}
 			},
@@ -41,7 +65,8 @@
 		},
 		"Themes": {
 			"files": [
-				"default-theme.cfg"
+				"default-theme.cfg",
+				"guard-theme.cfg"
 			],
 			"folders": {
 
@@ -53,7 +78,7 @@
 		},
 		"Timelines": {
 			"files": [
-				"timeline-1640032941.json"
+
 			],
 			"folders": {
 				"Civilians": {
@@ -65,6 +90,41 @@
 							"files": [
 								"timeline-1640623764.json",
 								"timeline-1641411011.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": true
+							}
+						},
+						"Shops": {
+							"files": [
+								"timeline-1640032941.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": true
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": true
+					}
+				},
+				"Guards": {
+					"files": [
+
+					],
+					"folders": {
+						"00_backalley": {
+							"files": [
+								"timeline-1643411721.json"
 							],
 							"folders": {
 

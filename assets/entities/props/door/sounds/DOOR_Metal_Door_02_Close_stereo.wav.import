@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DOOR_Metal_Door_02_Close_stereo.wav-9e6d708d5bcdf07f3b6213f0182ec808.sample"
+
+[deps]
+
+source_file="res://assets/entities/props/door/sounds/DOOR_Metal_Door_02_Close_stereo.wav"
+dest_files=[ "res://.import/DOOR_Metal_Door_02_Close_stereo.wav-9e6d708d5bcdf07f3b6213f0182ec808.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

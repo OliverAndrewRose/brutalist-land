@@ -14,7 +14,8 @@ base_classes = [  ]
 class_properties = {
 "pathType": "patrol",
 "target": "",
-"targetname": ""
+"targetname": "",
+"waitTime": 5.0
 }
 class_property_descriptions = {
 "nextNode": "The name of the next node in the path.",

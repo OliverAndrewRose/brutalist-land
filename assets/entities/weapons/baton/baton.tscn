@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/entities/weapons/baton/baton.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/entities/weapons/m1911/Ch33_body.material" type="Material" id=2]
+[ext_resource path="res://assets/entities/weapons/baton/baton.material" type="Material" id=3]
+
+[node name="baton" instance=ExtResource( 1 )]
+transform = Transform( 0.935976, 0.272572, 0.222828, -0.278467, 0.960432, -0.00515709, -0.215417, -0.0572232, 0.974844, 0.0661088, -0.028187, 0 )
+
+[node name="baton" parent="Armature/Skeleton" index="0"]
+material/0 = ExtResource( 3 )
+
+[node name="Ch33_Body" parent="Armature/Skeleton" index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="Ch33_Suit" parent="Armature/Skeleton" index="2"]
+material/0 = ExtResource( 2 )

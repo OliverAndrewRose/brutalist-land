@@ -1,0 +1,76 @@
+// Game: BrutalistLand
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/Building;textures/Door;textures/Furniture;textures/Glass;textures/Ground;textures/Roof;textures/Wall;textures/base;textures/decals;textures/layers;textures/particle;textures/signs;textures/special"
+// brush 0
+{
+( -64 672 -8 ) ( -64 -256 -8 ) ( -64 -256 -64 ) special/skip 0 -16 0 1 1
+( -64 -256 -8 ) ( 64 -256 -8 ) ( 64 -256 -64 ) special/skip 0 -16 0 1 1
+( 64 -256 -64 ) ( 64 672 -64 ) ( -64 672 -64 ) special/skip 0 0 0 1 1
+( -64 672 -8 ) ( 64 672 -8 ) ( 64 -256 -8 ) Ground/road_02 -19.033203 169.5 90 0.5089799 0.3775811
+( 64 672 -64 ) ( 64 672 -8 ) ( -64 672 -8 ) special/skip 0 -16 0 1 1
+( 64 -256 -8 ) ( 64 672 -8 ) ( 64 672 -64 ) special/skip 0 -16 0 1 1
+}
+// brush 1
+{
+( -128 704 0 ) ( -128 -256 0 ) ( -128 -256 -64 ) special/skip 0 -16 0 1 1
+( -128 -256 0 ) ( -64 -256 0 ) ( -64 -256 -64 ) special/skip 128 -16 0 1 1
+( -64 -256 -64 ) ( -64 704 -64 ) ( -128 704 -64 ) special/skip 128 0 0 1 1
+( -128 704 0 ) ( -64 704 0 ) ( -64 -256 0 ) Ground/Concrete_floor_03 0 -194 90 0.05 0.05250779
+( -64 704 -64 ) ( -64 704 0 ) ( -128 704 0 ) special/skip 128 -16 0 1 1
+( -64 -256 0 ) ( -64 704 0 ) ( -64 704 -64 ) special/skip 0 -16 0 1 1
+}
+// brush 2
+{
+( 64 704 0 ) ( 64 -256 0 ) ( 64 -256 -64 ) special/skip 0 -16 0 1 1
+( 64 -256 0 ) ( 128 -256 0 ) ( 128 -256 -64 ) special/skip -64 -16 0 1 1
+( 128 -256 -64 ) ( 128 704 -64 ) ( 64 704 -64 ) special/skip -64 0 0 1 1
+( 64 704 0 ) ( 128 704 0 ) ( 128 -256 0 ) Ground/Concrete_floor_03 0 -817.6001 90 0.05 0.05250779
+( 128 704 -64 ) ( 128 704 0 ) ( 64 704 0 ) special/skip -64 -16 0 1 1
+( 128 -256 0 ) ( 128 704 0 ) ( 128 704 -64 ) special/skip 0 -16 0 1 1
+}
+// brush 3
+{
+( -64 704 0 ) ( -64 -256 0 ) ( -64 -256 -8 ) special/skip 0 -16 0 1 1
+( -64 -256 0 ) ( -56 -256 0 ) ( -56 -256 -8 ) special/skip 120 -16 0 1 1
+( -56 -256 -8 ) ( -56 704 -8 ) ( -64 704 -8 ) special/skip 120 0 0 1 1
+( -64 704 0 ) ( -56 704 0 ) ( -56 -256 0 ) Wall/Marble_Wall_Top 0 38 90 0.2 0.2
+( -56 704 -8 ) ( -56 704 0 ) ( -64 704 0 ) special/skip 120 -16 0 1 1
+( -56 -256 0 ) ( -56 704 0 ) ( -56 704 -8 ) Wall/Marble_Wall_Top 1 -36 0 0.2 0.2
+}
+// brush 4
+{
+( 56 704 0 ) ( 56 -256 0 ) ( 56 -256 -8 ) Wall/Marble_Wall_Top 1 -36 180 0.2 -0.2
+( 56 -256 0 ) ( 64 -256 0 ) ( 64 -256 -8 ) special/skip 120 -16 180 1 -1
+( 64 -256 -8 ) ( 64 704 -8 ) ( 56 704 -8 ) special/skip 120 0 180 1 1
+( 56 704 0 ) ( 64 704 0 ) ( 64 -256 0 ) Wall/Marble_Wall_Top 0 38 270 0.2 0.2
+( 64 704 -8 ) ( 64 704 0 ) ( 56 704 0 ) special/skip 120 -16 180 1 -1
+( 64 -256 0 ) ( 64 704 0 ) ( 64 704 -8 ) special/skip 0 -16 180 1 -1
+}
+// brush 5
+{
+( -64 704 -8 ) ( -64 672 -8 ) ( -64 672 -64 ) special/skip -32 -16 0 1 1
+( -64 672 -8 ) ( 64 672 -8 ) ( 64 672 -64 ) special/skip 0 -16 0 1 1
+( 64 672 -64 ) ( 64 704 -64 ) ( -64 704 -64 ) special/skip 0 32 0 1 1
+( -64 704 -8 ) ( 64 704 -8 ) ( 64 672 -8 ) Wall/Concrete_Wall_06 256.00006 -684.0051 0 0.08409987 0.10857504
+( 64 704 -64 ) ( 64 704 -8 ) ( -64 704 -8 ) special/skip 0 -16 0 1 1
+( 64 672 -8 ) ( 64 704 -8 ) ( 64 704 -64 ) special/skip -32 -16 0 1 1
+}
+// brush 6
+{
+( -40 696 24 ) ( -40 688 24 ) ( -40 688 -8 ) special/skip 24 24 0 1 1
+( -40 688 24 ) ( -32 688 24 ) ( -32 688 -8 ) special/skip -8 24 0 1 1
+( -32 688 -8 ) ( -32 696 -8 ) ( -40 696 -8 ) special/skip -8 -24 0 1 1
+( -40 696 24 ) ( -32 696 24 ) ( -32 688 24 ) special/skip -8 -24 0 1 1
+( -32 696 -8 ) ( -32 696 24 ) ( -40 696 24 ) special/skip -8 24 0 1 1
+( -32 688 24 ) ( -32 696 24 ) ( -32 696 -8 ) special/skip 24 24 0 1 1
+}
+}
+// entity 1
+{
+"classname" "info_player_start"
+"origin" "-88 680 8"
+"angle" "270"
+}

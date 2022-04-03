@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/entities/NPC/base/map_markers/ai_edit_faction.gd" type="Script" id=1]
+
+[node name="ai_edit_faction" type="Spatial"]
+script = ExtResource( 1 )

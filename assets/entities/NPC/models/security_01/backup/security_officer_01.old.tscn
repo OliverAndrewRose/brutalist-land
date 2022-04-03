@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/entities/weapons/m1911/m1911.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/NPC/models/security_01/security_model.glb" type="PackedScene" id=2]
-[ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageCalculator.gd" type="Script" id=3]
+[ext_resource path="res://assets/entities/NPC/base/functions/BulletDamageReceiver.gd" type="Script" id=3]
 [ext_resource path="res://assets/entities/NPC/models/animation/HumanMovementAnimator.gd" type="Script" id=4]
 [ext_resource path="res://assets/entities/NPC/models/animation/human_animator.tres" type="AnimationNodeBlendTree" id=5]
 

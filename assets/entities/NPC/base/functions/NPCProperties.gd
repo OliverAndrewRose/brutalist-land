@@ -6,7 +6,7 @@ var forward_velocity: Vector3;
 var target_name: String;
 var start_state_name: String = "idle";
 var state_target_marker_name: String;
-export(int) var faction_index = 1;
+export(int) var faction_name = "Guard";
 
 export(bool) var does_npc_fight: bool = true;
 
@@ -32,8 +32,8 @@ func _calculate_forward_velocity(_delta_t: float):
 func update_properties() -> void:
 	if "targetname" in properties:
 		target_name = properties.targetname;
-	if "faction_index" in properties:
-		faction_index = properties.faction_index;
+	if "faction_name" in properties:
+		faction_name = properties.faction_name;
 	if "start_state" in properties:
 		start_state_name = properties.start_state;
 	if "state_target_marker" in properties:

@@ -17,6 +17,8 @@ export(bool) var single_shot: bool = true;
 export(bool) var hide_ammo_hud: bool = false;
 
 export(float) var weapon_z_position: float = -0.3;
+export(bool) var will_alert: bool = true;
+export(float) var max_sound_distance: float = 20.0;
 
 func fire_weapon() -> void:
 	shoot_animation();

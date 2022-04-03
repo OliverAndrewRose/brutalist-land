@@ -2495,12 +2495,12 @@
 }
 // brush 280
 {
-( 224 -272 112 ) ( 224 -640 112 ) ( 224 -640 16 ) special/trigger 320 -200 0 0.5 0.5
-( 224 -640 112 ) ( 736 -640 112 ) ( 736 -640 16 ) special/trigger 192 -200 0 0.5 0.5
-( 736 -640 16 ) ( 736 -272 16 ) ( 224 -272 16 ) special/trigger -128 -128 0 0.05 0.05
-( 224 -272 112 ) ( 736 -272 112 ) ( 736 -640 112 ) special/trigger 0 0 270 0.1 0.1
-( 736 -272 16 ) ( 736 -272 112 ) ( 224 -272 112 ) special/trigger 192 -200 0 0.5 0.5
-( 736 -640 112 ) ( 736 -272 112 ) ( 736 -272 16 ) special/trigger 320 -200 0 0.5 0.5
+( 224 -272 112 ) ( 224 -640 112 ) ( 224 -640 16 ) special/skip -320 32 180 1 -1
+( 224 -640 112 ) ( 736 -640 112 ) ( 736 -640 16 ) special/skip -320 32 180 1 -1
+( 736 -640 16 ) ( 736 -272 16 ) ( 224 -272 16 ) special/skip -320 32 180 1 -1
+( 224 -272 112 ) ( 736 -272 112 ) ( 736 -640 112 ) Ground/Concrete_floor_04 0 0 270 0.1 0.1
+( 736 -272 16 ) ( 736 -272 112 ) ( 224 -272 112 ) special/skip -320 32 180 1 -1
+( 736 -640 112 ) ( 736 -272 112 ) ( 736 -272 16 ) special/skip -320 32 180 1 -1
 }
 // brush 281
 {
@@ -14455,13 +14455,52 @@
 }
 // entity 251
 {
+"classname" "ai_edit_faction"
+"origin" "1112 -712 1640"
+"faction_name" "Guards"
+"targetname" "guards_faction_edit"
+}
+// entity 252
+{
+"classname" "signal"
+"origin" "1112 -648 1640"
+"signal_name" "on_trigger_enter"
+"target" "set_enemy_hostile"
+"targetname" "enemy_area_signal"
+}
+// entity 253
+{
+"classname" "receiver"
+"origin" "1112 -680 1640"
+"receiver_name" "set_anger_to_characters_faction"
+"targetname" "set_enemy_hostile"
+"target" "guards_faction_edit"
+}
+// entity 254
+{
+"classname" "signal"
+"origin" "1096 -648 1640"
+"signal_name" "on_trigger_exit"
+"target" "set_enemy_neutral"
+"targetname" "enemy_area_signal"
+}
+// entity 255
+{
+"classname" "receiver"
+"origin" "1096 -680 1640"
+"receiver_name" "set_neutral_to_characters_faction"
+"targetname" "set_enemy_neutral"
+"target" "guards_faction_edit"
+}
+// entity 256
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "clip"
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 252
+// entity 257
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -14469,10 +14508,19 @@
 "_tb_id" "16"
 "_tb_layer_sort_index" "1"
 }
-// entity 253
+// entity 258
+{
+"classname" "prop_static"
+"origin" "832 -600 1632"
+"angle" "90"
+"_tb_layer" "16"
+}
+// entity 259
 {
 "classname" "func_trigger"
 "targetname" "enemy_area"
+"trigger_signal_delay" ""
+"target" "enemy_area_signal"
 "_tb_layer" "16"
 // brush 0
 {
@@ -14483,11 +14531,4 @@
 ( 1488 672 1632 ) ( 1488 672 1984 ) ( -528 672 1984 ) special/clip -16 -32 0 0.1 0.1
 ( 1488 -640 1984 ) ( 1488 672 1984 ) ( 1488 672 1632 ) special/clip 0 -32 0 0.1 0.1
 }
-}
-// entity 254
-{
-"classname" "prop_static"
-"origin" "832 -600 1632"
-"angle" "90"
-"_tb_layer" "16"
 }

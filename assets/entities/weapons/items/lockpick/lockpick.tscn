@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.01, 0.01, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.015, 0.015, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+
+[node name="Lockpick" type="Spatial"]
+
+[node name="Pick" type="MeshInstance" parent="."]
+transform = Transform( 0.926393, 0.0189514, 0.376081, 0.157142, 0.888155, -0.431841, -0.342202, 0.459153, 0.819803, 0.000132181, -0.0354022, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Base" type="MeshInstance" parent="Pick"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0486922 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 4 )

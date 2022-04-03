@@ -22,12 +22,8 @@ func collect_all_path_nodes(starting_path_node: String) -> Array:
 				path_names.append(path_node.nodeName);
 				next_path_node = path_node.nextNode;
 		
-		if(current_path_size != patrol_path.size() + 1):
-			path_finished = true;
-		else:
-			current_path_size += 1;
 		
-		if path_names.has(next_path_node) or next_path_node == "":
+		if path_names.has(next_path_node) or next_path_node == "" or next_path_node == null:
 			path_finished = true;
 			
 	return patrol_path;
@@ -51,6 +47,29 @@ func get_nodes_by_targetname(targetname: String) -> Array:
 			continue
 
 		if entity_properties['targetname'] == targetname:
+			nodes.append(node)
+
+	return nodes
+
+# Collects nodes with a specific arribute value.
+func get_nodes_by_attribute_value(attribute: String, value: String) -> Array:
+	var nodes := []
+
+	for node_idx in range(0, qodot_map.get_child_count()):
+		var node = qodot_map.get_child(node_idx)
+		if not node:
+			continue
+			
+		var entity_properties;
+		if "properties" in node:
+			entity_properties = node.properties;
+		else:
+			continue
+			
+		if not attribute  in entity_properties:
+			continue
+
+		if entity_properties[attribute] == value:
 			nodes.append(node)
 
 	return nodes

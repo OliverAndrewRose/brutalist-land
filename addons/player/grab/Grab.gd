@@ -21,7 +21,7 @@ func _physics_process(delta):
 	
 	if object_grabbed:
 		player_shoot.current_weapon_index = 0;
-		player_shoot.switch_animation();
+		player_shoot.switch_weapon();
 		var vector = $GrabPosition.global_transform.origin - object_grabbed.global_transform.origin
 		if object_grabbed is RigidBody:
 			object_grabbed.linear_velocity = vector * 10

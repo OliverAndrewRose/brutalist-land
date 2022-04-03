@@ -12,6 +12,8 @@ description = "Rotating door model."
 qodot_internal = false
 base_classes = [  ]
 class_properties = {
+"locked": "false",
+"open_forwards": "false"
 }
 class_property_descriptions = {
 }

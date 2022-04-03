@@ -1,8 +1,9 @@
 extends Node
 class_name LookTowards
 
-onready var look_toward: Vector3 = owner.transform.xform(Vector3.FORWARD);
+# A helper class allowing the NPC to look towards a certain position.
 
+onready var look_toward: Vector3 = owner.transform.xform(Vector3.FORWARD);
 
 func look_towards(direction: Vector3):
 	look_toward = Vector3(direction.x, owner.get_global_transform().origin.y, direction.z);
